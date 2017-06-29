@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>CNR-ISSIA</groupId>
+  <artifactId>dcs-cnr-issia-spinua</artifactId>
+  <packaging>pom</packaging>
+  <name>dcs-cnr-issia-spinua</name>
+  <parent>
+    <groupId>com.terradue</groupId>
+    <artifactId>dcs-bash-parent</artifactId>
+    <version>2.0.0</version>
+  </parent>
+  <description>CNR ISSIA InSAR4Indo SPINUA</description>
+  <version>1.02</version>
+  <properties>
+    <summary>SPINUA (Stable Point INterferometry even over Unurbanized Areas) is a PSI-like algorithm originally developed for detection and monitoring of coherent targets (CT) in non- or scarcely- urbanized areas, extended for applications involving densely urbanized areas, as well as to assure proper processing of high resolution X-band data from both CSK and TSX. SPINUA through GEP will be used to derive deformation maps in Indonesia over test sites.</summary>
+    <description>CNR ISSIA InSAR4Indo SPINUA</description>
+    <community>geohazards-tep</community>
+    <yumRepo>geohazards-tep</yumRepo>
+  </properties>
+  <scm>
+    <connection>scm:git:ssh://git@github.com/geohazards-tep/dcs-cnr-issia-spinua</connection>
+    <developerConnection>scm:git:ssh://git@github.com/geohazards-tep/dcs-cnr-issia-spinua</developerConnection>
+    <url>https://github.com/geohazards-tep/dcs-cnr-issia-spinua</url>
+    <tag>HEAD</tag>
+  </scm>
+  <profiles>
+    <profile>
+      <id>package-app</id>
+      <activation>
+         <property>
+           <name>env</name>
+           <value>ci</value>
+         </property>
+      </activation>
+      <build>
+        <plugins>
+          <plugin>
+            <groupId>org.codehaus.mojo</groupId>
+            <artifactId>rpm-maven-plugin</artifactId>
+            <executions>
+              <execution>
+                <id>generate-rpm</id>
+                <goals>
+                  <goal>rpm</goal>
+                </goals>
+                <configuration>
+                  <!-- Set here the dependencies installed with 'sudo yum install'-->
+                  <requires>
+                    <require>bash</require>
+                  </requires>
+                </configuration>
+              </execution>
+            </executions>
+          </plugin>
+        </plugins>
+      </build>
+    </profile>
+  </profiles>
+</project>
