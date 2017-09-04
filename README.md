@@ -1,4 +1,4 @@
-## Developer Cloud Sandbox <app-name> application  
+## Developer Cloud Sandbox SPINUA application  
 
 Put here an introductory text describing the application.
 
