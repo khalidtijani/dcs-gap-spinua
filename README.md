@@ -2,6 +2,25 @@
 
 SPINUA (Stable Point INterferometry even over Unurbanized Areas) is a PSI-like algorithm originally developed for detection and monitoring of coherent targets (CT) in non- or scarcely- urbanized areas, extended for applications involving densely urbanized areas, as well as to assure proper processing of high resolution X-band data from both CSK and TSX. SPINUA through GEP will be used to derive deformation maps in Indonesia over test sites.
 
+Available SPINUA processing Step
+--------------------------------
+
+* [SPINUA-Step X0: The Splitter](src/main/app-resources/SPINUA-Step-X0)
+* [SPINUA-Step 00: SLC data download](src/main/app-resources/SPINUA-Step-00)
+* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/SPINUA-Step-01)
+* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/SPINUA-Step-02)
+* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/SPINUA-Step-03)
+* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/SPINUA-Step-03)
+* [SPINUA-Step 04: Geocoding](src/main/app-resources/SPINUA-Step-04)
+* [SPINUA-Step 05: Crop Generation](src/main/app-resources/SPINUA-Step-05)
+* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/SPINUA-Step-06)
+* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/SPINUA-Step-07)
+* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/SPINUA-Step-08)
+* [SPINUA-Step FD: Final Delivery](src/main/app-resources/SPINUA-Step-08)
+
+
+
+
 ## Quick link
  
 * [Getting Started](#getting-started)
