@@ -78,7 +78,7 @@ Unzip the MATLAB Runtime installer at the terminal using the unzip command.
 if you are unzipping the R2016b MATLAB Runtime installer, at the Terminal, type:
 
 ```bash
-unzip MCR_R2016b_glnxa64_installer.zip
+unzip MCR_R2016b_glnxa64_installer.zip -d unzip MCR_R2016b_glnxa64_installer
 cd MCR_R2016b_glnxa64_installer
 ./install -destinationFolder /home/$USER/MCR_R2016b
 ```
