@@ -85,7 +85,7 @@ cd /home/${USER}
 rm -rf MCR_R2016b_glnxa64_installer*
 ```
 
-On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/{{$USER}/.bashrc
+On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/${USER}/.bashrc
 
 ```bash
 vi /home/${USER}/.bashrc
