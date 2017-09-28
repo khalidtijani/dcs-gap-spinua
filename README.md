@@ -82,7 +82,7 @@ unzip MCR_R2016b_glnxa64_installer.zip -d MCR_R2016b_glnxa64_installer
 cd MCR_R2016b_glnxa64_installer
 ./install -destinationFolder /home/$USER/MCR_R2016b
 cd /home/${USER}
-rm -rf MCR_R2016b_glnxa64_installer
+rm -rf MCR_R2016b_glnxa64_installer*
 ```
 
 On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/{{$USER}/.bashrc
