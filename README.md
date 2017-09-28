@@ -45,29 +45,54 @@ Used in Cluster mode (a set of master and slave nodes), it supports the deployme
 
 #### Pre-requisites
 
+##### MATLAB Runtime
+
+Run compiled MATLAB applications or components without installing MATLAB
+
+The MATLAB Runtime is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed.
+
+To download and install the MATLAB Runtime:
+
+The Release R2016b (MATLAB Runtime Version 9.1 and Linux platform that corresponds to the application or component you are using.
+
+```bash
+cd /home/{$USER}
+wget -c http://ssd.mathworks.com/supportfiles/downloads/R2016b/deployment_files/R2016b/installers/glnxa64/MCR_R2016b_glnxa64_installer.zip
+```
+
+Unzip the MATLAB Runtime installer at the terminal using the unzip command.
+if you are unzipping the R2016b MATLAB Runtime installer, at the Terminal, type:
+
+```bash
+unzip MCR_R2016b_glnxa64_installer.zip
+cd MCR_R2016b_glnxa64_installer
+./install -destinationFolder /home/$USER/MCR_R2016b
+```
+
+On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/{{$USER}/.bashrc
+
+```bash
+vi /home/{$USER}/.bashrc
+```
+
+Add two lines, Save and exit 
+
+export STORAGE=/home/{$USER}/dcs-cnr-issia-spinua/spinua/storage
+export SPINUA=/home/{$USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+
+```bash
+source /home/{$USER}/.bashrc
+```
+
 Put here the requirements of the application in terms of software packages. For example:
 
 * snap
-* idl
 
 To install these packages, run the simple steps below on the Developer Cloud Sandbox shell:
 
 ```bash
 sudo yum install -y snap
-sudo yum install -y idl
 ```
-
-##### Using the releases
-
-Log on the Developer Cloud Sandbox.
-
-Install the package by running this command in a shell:
-
-```bash
-sudo yum -y install <app-name>
-```
-
-> At this stage there are no releases yet
 
 #### Using the development version
 
@@ -76,8 +101,8 @@ Install the pre-requisites as instructed above.
 Log on the Developer Cloud Sandbox and run these commands in a shell:
 
 ```bash
-git clone <app-url>
-cd <app-name>
+git clone https://github.com/khalidtijani/dcs-cnr-issia-spinua.git
+cd dcs-cnr-issia-spinua
 mvn install
 ```
 
