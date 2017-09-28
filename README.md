@@ -56,7 +56,7 @@ To download and install the MATLAB Runtime:
 The Release R2016b (MATLAB Runtime Version 9.1 and Linux platform that corresponds to the application or component you are using.
 
 ```bash
-cd /home/{$USER}
+cd /home/${USER}
 wget -c http://ssd.mathworks.com/supportfiles/downloads/R2016b/deployment_files/R2016b/installers/glnxa64/MCR_R2016b_glnxa64_installer.zip
 ```
 
@@ -72,7 +72,7 @@ cd MCR_R2016b_glnxa64_installer
 On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/{{$USER}/.bashrc
 
 ```bash
-vi /home/{$USER}/.bashrc
+vi /home/${USER}/.bashrc
 ```
 
 Add two lines, Save and exit 
@@ -81,7 +81,7 @@ export STORAGE=/home/{$USER}/dcs-cnr-issia-spinua/spinua/storage
 export SPINUA=/home/{$USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
 ```bash
-source /home/{$USER}/.bashrc
+source /home/${USER}/.bashrc
 ```
 
 Put here the requirements of the application in terms of software packages. For example:
