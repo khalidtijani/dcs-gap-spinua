@@ -43,7 +43,21 @@ Used in Cluster mode (a set of master and slave nodes), it supports the deployme
 
 ### <a name="installation"></a>Installation
 
+#### Using the development version
+
+Install the pre-requisites as instructed above.
+
+Log on the Developer Cloud Sandbox and run these commands in a shell:
+
+```bash
+git clone https://github.com/khalidtijani/dcs-cnr-issia-spinua.git
+cd dcs-cnr-issia-spinua
+ls 
+Jenkinsfile  pom.xml  README.md  spinua  src
+```
+
 #### Pre-requisites
+
 
 ##### MATLAB Runtime
 
