@@ -1,0 +1,17 @@
+[START] Main_Spinua_Run
+1506631147
+HOST:[sb-10-15-34-145.gep.terradue.int]
+JOB_ID:[]
+*** PAR00: v2.0
+*** PAR01: GEP_data_1TB
+*** PAR02: LAT37.01_37.09LON14.20_14.35
+*** PAR03: 
+*** PAR04: 
+*** PAR05: 
+*** PAR06: 
+*** PAR07: 
+*** PAR08: 
+*** PAR09: 
+*** PAR10: 
+*** PAR11: 
+*** PAR12: 
