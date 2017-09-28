@@ -78,6 +78,7 @@ vi /home/${USER}/.bashrc
 Add two lines, Save and exit 
 
 export STORAGE=/home/{$USER}/dcs-cnr-issia-spinua/spinua/storage
+
 export SPINUA=/home/{$USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
 ```bash
