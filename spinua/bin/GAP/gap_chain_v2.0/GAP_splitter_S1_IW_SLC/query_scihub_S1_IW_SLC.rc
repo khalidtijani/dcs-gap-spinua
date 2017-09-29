@@ -1,1 +1,87 @@
-query_scihub_S1_IW_SLC.rc.x
+#!/bin/bash
+
+export x1=$1
+export y1=$2
+export x2=$3
+export y2=$4 
+export ORB_Dir=$5 
+export POL_MODE=$6 
+export outFolder=$7
+export REL_ORB_NUMBER=$8
+
+#---  Load input parameter
+#export DHUS_DEST="https://scihub.esa.int/dhus"
+export DHUS_DEST="https://scihub.copernicus.eu/dhus"
+export USERNAME="davosnitti"
+export PASSWORD="donESA1976"
+export PRODUCT_TYPE='SLC'
+export sensoroperationalmode='IW'
+
+#-----
+#export WC="wget -c --no-check-certificate"
+#export AUTH="--user=${USERNAME} --password=${PASSWORD}"
+
+#---- Prepare query polygon statement
+export GEO_SUBQUERY=`LC_NUMERIC=en_US.UTF-8; printf "footprint:\"Intersects(POLYGON((%.3f %.3f,%.3f %.3f,%.3f %.3f,%.3f %.3f,%.3f %.3f )))\"" $x1 $y1 $x2 $y1 $x2 $y2 $x1 $y2 $x1 $y1 `
+
+relOrb=`printf "%03d" ${REL_ORB_NUMBER}`
+
+export queryFile="echo_wget_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export queryOutput="scihub_query_result_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export productList_id="scihub_product_id_list_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export productList_title="scihub_product_title_list_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export productList_coord="scihub_product_coord_list_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export ingestionDate_list="scihub_product_ingestiondate_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}.txt"
+export flag="done_S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}"
+
+if [ -e "$outFolder/$flag" ]; then
+   echo $flag
+   exit
+fi
+
+#--- Prepare query statement
+export QUERY_STATEMENT="relativeorbitnumber:\"${REL_ORB_NUMBER}\" AND producttype:\"${PRODUCT_TYPE}\" AND sensoroperationalmode:\"${sensoroperationalmode}\" AND orbitdirection:${ORB_Dir} AND polarisationmode:\"${POL_MODE}\"&rows=100&start=0"
+
+#--- Execute query statement
+#set -x
+rm -f $outFolder/${queryOutput}
+for ANNO in 2014 2015 2016 2017;
+do
+   export TIME_SUBQUERY="ingestiondate:[${ANNO}-01-01T00:00:00.000Z TO ${ANNO}-12-31T23:59:59.999Z ]"
+   attemptID=0
+   while [ 1 ]; do 
+      echo "... [ATTEMPT n.${attemptID}] searching for S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}"
+      echo "wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 --continue --no-check-certificate --user=${USERNAME} --password=${PASSWORD} --output-file=$outFolder/Y${ANNO}.${queryOutput}.log_query.log -O $outFolder/Y${ANNO}.${queryOutput} \"${DHUS_DEST}/search?q=${GEO_SUBQUERY} AND ${TIME_SUBQUERY} AND ${QUERY_STATEMENT}\"" > $outFolder/Y${ANNO}.${queryFile}
+      wget --retry-connrefused --waitretry=1 --read-timeout=20 --timeout=15 -t 0 --continue --no-check-certificate --user=${USERNAME} --password=${PASSWORD} --output-file=$outFolder/Y${ANNO}.${queryOutput}.log_query.log -O $outFolder/Y${ANNO}.${queryOutput} "${DHUS_DEST}/search?q=${GEO_SUBQUERY} AND ${TIME_SUBQUERY} AND ${QUERY_STATEMENT}"
+      if [ $? = 0 ]; then
+         checkEnd=`cat $outFolder/Y${ANNO}.${queryOutput} | grep "<\/feed>" | wc -l`
+         if [ "$checkEnd" = "0" ]; then
+            rm -f $outFolder/Y${ANNO}.${queryOutput}
+            echo "[KO-PARTIAL_DOWNLOAD] Y${ANNO} S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}: [sleep 10sec and try again ...]"
+            sleep 10
+         else
+            echo "[OK] Y${ANNO} S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}"
+            cat $outFolder/Y${ANNO}.${queryOutput} >> $outFolder/${queryOutput}
+            break
+         fi
+      else
+         rm -f $outFolder/Y${ANNO}.${queryOutput}
+         echo "[KO] Y${ANNO} S1_IW_SLC_${ORB_Dir:0:1}_${POL_MODE}_orb${relOrb}: [sleep 10sec and try again ...]"
+         sleep 10
+      fi
+      let "attemptID=attemptID+1"
+   done
+done
+
+#set +x
+
+#sleep 5
+Nitems=`cat $outFolder/${queryOutput} | grep '<id>........-' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' | wc -l`
+Nitems=`printf "%03d" $Nitems`
+#echo $Nitems
+cat $outFolder/${queryOutput} | grep '<id>........-' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_id}
+cat $outFolder/${queryOutput} | grep '<title>S1' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_title}
+cat $outFolder/${queryOutput} | grep 'coordinates' | sed 's/&lt;gml:coordinates&gt;/ /g' | sed 's/&lt;\/gml:coordinates&gt;/ /g' | sed 's/,/ /g'    > $outFolder/N${Nitems}_${productList_coord}
+cat $outFolder/${queryOutput} | grep '<date name="ingestiondate">'  | sed 's/date name=\"ingestiondate\"//g' | sed 's/\/date//g' | sed 's/<>//g'    > $outFolder/N${Nitems}_${ingestionDate_list}
+
+touch $outFolder/$flag
