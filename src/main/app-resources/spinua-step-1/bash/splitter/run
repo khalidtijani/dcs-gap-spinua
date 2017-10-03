@@ -1,0 +1,136 @@
+#!/bin/bash
+
+# source the ciop functions (e.g. ciop-log, ciop-getparam)
+source ${ciop_job_include}
+
+# set the environment variables to use ESA BEAM toolbox
+export STORAGE=/home/${USER}/lustrehome/rsg01/storage
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+
+# define the exit codes
+SUCCESS=0
+#BEAM_REQUEST_ERROR=1
+ERR_BEAM=1
+ERR_NOEXPR=2
+#ERR_NOINPUT=4
+
+# add a trap to exit gracefully
+function cleanExit ()
+{
+
+    export STORAGE=/home/${USER}/lustrehome/rsg01/storage
+    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+    local retval=$?
+    local msg=""
+
+    case ${retval} in
+        ${SUCCESS})            msg="Processing successfully concluded";;
+ #       ${BEAM_REQUEST_ERROR}) msg="Could not create beam request file";;
+        ${ERR_BEAM})           msg="Beam_expr failed to process product ";;
+        ${ERR_NOEXPR})         msg="No expression provided";;
+ #       ${ERR_NOINPUT})        msg="No input provided";;
+        *)                     msg="Unknown error";;
+    esac
+
+   [ ${retval} -ne 0 ] && ciop-log "ERROR" "Error ${retval} - ${msg}, processing aborted" || ciop-log "INFO" "${msg}"
+   exit ${retval}
+}
+
+trap cleanExit EXIT
+
+function main() {
+
+    export STORAGE=/home/${USER}/lustrehome/rsg01/storage
+    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+    #defines the input
+    local ver
+    ver="v2.0"
+    local step
+    step="X0"
+
+    # retrieve the parameters value from workflow or job default value
+    outfoldername="`ciop-getparam out`"
+    LatMin="`ciop-getparam LatMin`"
+    LatMax="`ciop-getparam LatMax`"
+    LonMin="`ciop-getparam LonMin`"
+    LonMax="`ciop-getparam LonMax`"
+    
+    local bbox
+    bbox="LAT"$LatMin"_"$LatMax"LON"$LonMin"_"$LonMax
+
+    # run a check on the expression value, it can't be empty
+    [ -z "$outfoldername" ] && exit $ERR_NOEXPR
+    [ -z "$LatMin" ] && exit $ERR_NOEXPR
+    [ -z "$LatMax" ] && exit $ERR_NOEXPR
+    [ -z "$LonMin" ] && exit $ERR_NOEXPR
+    [ -z "$LonMax" ] && exit $ERR_NOEXPR
+    
+    # log the value, it helps debugging. 
+    # the log entry is available in the process stderr 
+    ciop-log "DEBUG" "The outfoldername used is: ${outfoldername}"
+    ciop-log "DEBUG" "The LatMin used is: ${LatMin}"
+    ciop-log "DEBUG" "The LatMax used is: ${LatMax}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMin}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMax}"
+
+
+    # report activity in log
+    ciop-log "INFO" "The version $ver for spinua chain"
+    ciop-log "INFO" "Th step $step for spinua chain"
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+
+
+    # retrieve the MER_RR__1P product to the local temporary folder TMPDIR provided by the framework (this folder is only used by this process)
+    # the ciop-copy utility will use one of online resource available in the metadata to copy it to the TMPDIR folder
+    # the utility returns the local path so the variable $retrieved contains the local path to the MERIS product
+    #if [[ ${inputfile:0:4} == "file" ]]; then
+    # enclosure=${step}
+    #else    
+     # enclosure="$( opensearch-client ${inputfile} enclosure )"
+    #fi 
+
+    #retrieved=$( ciop-copy -o $TMPDIR "${enclosure}" )
+
+    # check if the file was retrieved, if not exit with the error code $ERR_NOINPUT
+    #[ $? -eq 0 ] && [ -e "${retrieved}" ] || return ${ERR_NOINPUT}
+
+    #outputname=$( basename "$retrieved" )
+
+    # report activity in the log
+    #ciop-log "INFO" "Retrieved ${outputname}, moving on to expression"
+
+    # prepare the BEAM request
+
+    # invoke the ESA BEAM toolbox
+    /home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+
+    # check the exit code
+    [ $? -eq 0 ] || return $ERR_BEAM
+
+    # compress the ESA BEAM results
+    outputfolder="${STORAGE}/S1splitter/${outfoldername}/out"
+    
+
+    tar cfz ${OUTPUTDIR}/${outfoldername}.tgz ${OUTPUTDIR}/${outfoldername} ${OUTPUTDIR}/${outputfolder} &> /dev/null
+  
+    # publish the compressed results
+    ciop-log "INFO" "Publishing ${outputfolder} " 
+    ciop-publish $OUTPUTDIR/$outfoldername.tgz
+
+    # cleanup
+    #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
+
+    return ${SUCCESS}
+}
+
+# create the output folder to store the output products and export it
+TMPDIR=/tmp
+mkdir -p ${TMPDIR}/output
+export OUTPUTDIR=${TMPDIR}/output
+export STORAGE=/home/${USER}/lustrehome/rsg01/storage
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+#step="X0"
+main  
+res=$?
+[ ${res} -ne 0 ] && exit ${res}
+exit $SUCCESS
