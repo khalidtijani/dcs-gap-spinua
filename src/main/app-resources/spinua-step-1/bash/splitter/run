@@ -5,7 +5,7 @@ source ${ciop_job_include}
 
 # set the environment variables to use ESA BEAM toolbox
 export STORAGE=/home/${USER}/lustrehome/rsg01/storage
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
 # define the exit codes
 SUCCESS=0
@@ -19,7 +19,7 @@ function cleanExit ()
 {
 
     export STORAGE=/home/${USER}/lustrehome/rsg01/storage
-    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     local retval=$?
     local msg=""
 
@@ -41,7 +41,7 @@ trap cleanExit EXIT
 function main() {
 
     export STORAGE=/home/${USER}/lustrehome/rsg01/storage
-    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     #defines the input
     local ver
     ver="v2.0"
@@ -102,7 +102,9 @@ function main() {
     # prepare the BEAM request
 
     # invoke the ESA BEAM toolbox
-    /home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+    /home/${USER}/dcs-cnr-issia-spinua/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  
+
+#&> /dev/null
 
     # check the exit code
     [ $? -eq 0 ] || return $ERR_BEAM
@@ -128,7 +130,7 @@ TMPDIR=/tmp
 mkdir -p ${TMPDIR}/output
 export OUTPUTDIR=${TMPDIR}/output
 export STORAGE=/home/${USER}/lustrehome/rsg01/storage
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/src/main/app-resources/bin/GAP/gap_chain_v2.0
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 #step="X0"
 main  
 res=$?
