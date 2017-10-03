@@ -4,6 +4,8 @@
 source ${ciop_job_include}
 
 # set the environment variables to use ESA BEAM toolbox
+export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
 export STORAGE=/home/${USER}/lustrehome/rsg01/storage
 export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
@@ -17,6 +19,7 @@ ERR_NOEXPR=2
 # add a trap to exit gracefully
 function cleanExit ()
 {
+    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
     export STORAGE=/home/${USER}/lustrehome/rsg01/storage
     export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -39,6 +42,7 @@ function cleanExit ()
 trap cleanExit EXIT
 
 function main() {
+    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
     export STORAGE=/home/${USER}/lustrehome/rsg01/storage
     export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -49,7 +53,7 @@ function main() {
     step="X0"
 
     # retrieve the parameters value from workflow or job default value
-    outfoldername="`ciop-getparam out`"
+    outfoldername="`ciop-getparam outsplitter`"
     LatMin="`ciop-getparam LatMin`"
     LatMax="`ciop-getparam LatMax`"
     LonMin="`ciop-getparam LonMin`"
@@ -126,6 +130,8 @@ function main() {
 }
 
 # create the output folder to store the output products and export it
+export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
 TMPDIR=/tmp
 mkdir -p ${TMPDIR}/output
 export OUTPUTDIR=${TMPDIR}/output
