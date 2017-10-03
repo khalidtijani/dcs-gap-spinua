@@ -5,18 +5,18 @@ SPINUA (Stable Point INterferometry even over Unurbanized Areas) is a PSI-like a
 Available SPINUA processing Step
 --------------------------------
 
-* [SPINUA-Step X0: The Splitter](src/main/app-resources/SPINUA-Step-X0)
-* [SPINUA-Step 00: SLC data download](src/main/app-resources/SPINUA-Step-00)
-* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/SPINUA-Step-01)
-* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/SPINUA-Step-02)
-* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/SPINUA-Step-03)
-* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/SPINUA-Step-03)
-* [SPINUA-Step 04: Geocoding](src/main/app-resources/SPINUA-Step-04)
-* [SPINUA-Step 05: Crop Generation](src/main/app-resources/SPINUA-Step-05)
-* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/SPINUA-Step-06)
-* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/SPINUA-Step-07)
-* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/SPINUA-Step-08)
-* [SPINUA-Step FD: Final Delivery](src/main/app-resources/SPINUA-Step-08)
+* [SPINUA-Step X0: The Splitter](src/main/app-resources/spinua-step-1/)
+* [SPINUA-Step 00: SLC data download](src/main/app-resources/spinua-step-2)
+* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/spinua-step-01)
+* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-03)
+* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/spinua-step-04)
+* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/spinua-step-05)
+* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-06)
+* [SPINUA-Step 05: Crop Generation](src/main/app-resources/spinua-step-07)
+* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/spinua-step-08)
+* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/spinua-step-09)
+* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/spinua-step-10)
+* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-11)
 
 
 
@@ -93,7 +93,7 @@ vi /home/${USER}/.bashrc
 
 Add two lines, Save and exit 
 
-export STORAGE=/home/${USER}/dcs-cnr-issia-spinua/spinua/storage
+export STORAGE=/home/${USER}/storage
 
 export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
@@ -101,15 +101,74 @@ export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 source /home/${USER}/.bashrc
 ```
 
-Put here the requirements of the application in terms of software packages. For example:
+#### Install SPINUA-Step X0: The Splitter
+The Step-On installation is quite straightforward, and it is performed with the Maven tool:
+```bash
+cd dcs-cnr-issia-spinua/
+mvn clean install -D step.on=1 -P bash
+```
 
-* snap
+With the last command you installed the first step-on SPINUA Chain (option -D) using a bash profile (option -P). The profile represents the programming language used to implement the Hands-On run executables.
 
-To install these packages, run the simple steps below on the Developer Cloud Sandbox shell:
+
+Go to the application’s default location (/application), by typing:
+```bash
+cd $_CIOP_APPLICATION_PATH
+```
+Check for a file named application.xml
+Open it with a text editor (e.g. vi) and inspect its content. It will be similar to:
 
 ```bash
-sudo yum install -y snap
+vi application.xml
+<?xml version="1.0" encoding="us-ascii"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
+  <jobTemplates>
+    <jobTemplate id="splitter">
+      <streamingExecutable>/application/splitter/run</streamingExecutable>
+      <defaultParameters>
+        <parameter id="out">outdir</parameter>
+        <parameter id="LatMin">37.01</parameter>
+        <parameter id="LatMax">37.09</parameter>
+        <parameter id="LonMin">14.20</parameter>
+        <parameter id="LonMax">14.35</parameter>
+      </defaultParameters>
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="spinua-step-1" title="Using parameters" abstract="Test Splitter, using parameters">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node_splitter">
+      <job id="splitter"/>
+ <sources>
+ <source refid="cas:series">https://catalog.terradue.com/eo-samples/series/mer_rr__1p/description</source>
+</sources>
+<parameters>
+</parameters>
+</node>
+
+  </workflow>
+</application>
 ```
+A run executable is responsible for the execution of your application (or a step of it) by the Hadoop compute engine. In the application.xml we defined a workflow with a single node and the related run executable:
+
+* [vi /application/splitter/run](src/main/app-resources/spinua-step-1/bash/splitter/run)
+
+
+Run the node
+List the available node(s) with:
+
+```bash
+ciop-run -n
+```
+This returns:
+
+node_splitter
+
+Execute it by typing:
+
+```bash
+ciop-run node_splitter
+```
+
 
 #### Using the development version
 
@@ -120,7 +179,7 @@ Log on the Developer Cloud Sandbox and run these commands in a shell:
 ```bash
 git clone https://github.com/khalidtijani/dcs-cnr-issia-spinua.git
 cd dcs-cnr-issia-spinua
-mvn install
+mvn clean install -D step.on=-id- -P bash
 ```
 
 ### <a name="submit"></a>Submitting the workflow
