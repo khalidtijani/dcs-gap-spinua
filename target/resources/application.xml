@@ -17,7 +17,7 @@
     <node id="node_splitter">
       <job id="splitter"/>
  <sources>
- <source refid="string:list">v2.0,X0</source>      
+ <source refid="string:list">0</source>      
 </sources>
 <parameters>
 </parameters>

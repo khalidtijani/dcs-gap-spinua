@@ -2,12 +2,12 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
-
+source /home/khalidtijani/.bashrc
 # set the environment variables to use ESA BEAM toolbox
-export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+#export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
-export STORAGE=/home/${USER}/storage
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#export STORAGE=/home/${USER}/storage
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
 # define the exit codes
 SUCCESS=0
@@ -19,10 +19,12 @@ ERR_NOEXPR=2
 # add a trap to exit gracefully
 function cleanExit ()
 {
-    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+source /home/khalidtijani/.bashrc
 
-    export STORAGE=/home/${USER}/storage
-    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
+ #   export STORAGE=/home/${USER}/storage
+ #   export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     local retval=$?
     local msg=""
 
@@ -42,19 +44,20 @@ function cleanExit ()
 trap cleanExit EXIT
 
 function main() {
-    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+source /home/khalidtijani/.bashrc
+ #   export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
-    export STORAGE=/home/${USER}/storage
-    export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+  #  export STORAGE=/home/${USER}/storage
+  #  export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     #defines the input
     local ver
-    #ver="v2.0"
-    ver=$1
+    ver="v2.0"
+    #ver=$1
     local step
-    #step="X0"
-    step=$2
+    step="X0"
+  #  step=$1
     # retrieve the parameters value from workflow or job default value
-    outfoldername="`ciop-getparam outsplitter`"
+    outfoldername="`ciop-getparam out`"
     LatMin="`ciop-getparam LatMin`"
     LatMax="`ciop-getparam LatMax`"
     LonMin="`ciop-getparam LonMin`"
@@ -107,8 +110,8 @@ function main() {
     # prepare the BEAM request
 
     # invoke the ESA BEAM toolbox
-    /home/${USER}/dcs-cnr-issia-spinua/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
-
+    /home/khalidtijani/dcs-cnr-issia-spinua/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+#    /data/input/ciop/storage/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
     # check the exit code
     [ $? -eq 0 ] || return $ERR_BEAM
 
@@ -116,11 +119,11 @@ function main() {
     outputfolder="${STORAGE}/S1splitter/${outfoldername}/out"
     
 
-    tar cfz ${OUTPUTDIR}/${outfoldername}.tgz ${OUTPUTDIR}/${outfoldername} ${OUTPUTDIR}/${outputfolder} &> /dev/null
+    tar cfz ${STORAGE}/${outfoldername}.tgz ${STORAGE}/${outfoldername} ${STORAGE}/${outputfolder} &> /dev/null
   
     # publish the compressed results
     ciop-log "INFO" "Publishing ${outputfolder} " 
-    ciop-publish $OUTPUTDIR/$outfoldername.tgz
+    ciop-publish $STORAGE/$outfoldername.tgz
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
@@ -129,20 +132,22 @@ function main() {
 }
 
 # create the output folder to store the output products and export it
-export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-export STORAGE=/home/${USER}/storage
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-TMPDIR=$STORAGE
-mkdir -p ${TMPDIR}/output
-export OUTPUTDIR=${TMPDIR}/output
+source /home/khalidtijani/.bashrc
+#export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+#export STORAGE=/home/${USER}/storage
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#TMPDIR=$STORAGE
+#mkdir -p ${TMPDIR}/output
+#export OUTPUTDIR=${TMPDIR}/output
 #step="X0"
-while read ver,step; do
-    main "${ver}" "${step}"
-    res=$?
-    [ ${res} -ne 0 ] && exit ${res}
-done
+#while read step; do
+ #   step="X"$step 
+  #  main "${step}"
+   # res=$?
+    #[ ${res} -ne 0 ] && exit ${res}
+#done
 
-#main  
-#res=$?
-#[ ${res} -ne 0 ] && exit ${res}
+main  
+res=$?
+[ ${res} -ne 0 ] && exit ${res}
 exit $SUCCESS

@@ -27,6 +27,6 @@ else
 fi
 
 %files
-%defattr(664,root,ciop,775)
+%defattr(664,khalidtijani,ciop,775)
  "/application"
-%attr(775,root,ciop)  "/application/splitter/run"
+%attr(775,khalidtijani,ciop)  "/application/splitter/run"

@@ -69,13 +69,13 @@
 								<name>${project.artifactId}</name>
 								<defaultDirmode>775</defaultDirmode>
 								<defaultFilemode>664</defaultFilemode>
-								<defaultUsername>root</defaultUsername>
+								<defaultUsername>khalidtijani</defaultUsername>
 								<defaultGroupname>ciop</defaultGroupname>
 								<prefix>/application</prefix>
 								<autoRequires>false</autoRequires>
 					            	    <environmentVariables>
                       <!--For windows change LD_LIBRARY_PATH to PATH-->
-                        <LD_LIBRARY_PATH>${dependenciesDir}:{env.LD_LIBRARY_PATH}:${user.dir}</LD_LIBRARY_PATH>
+                        <LD_LIBRARY_PATH>${dependenciesDir}:{env.LD_LIBRARY_PATH}</LD_LIBRARY_PATH>
 
                     </environmentVariables>
 								<mappings>
@@ -296,11 +296,11 @@
 									<directory>${project.build.directory}/resources/</directory>
 								</resource>
 							</resources>
- <environmentVariables>
+ <!--environmentVariables-->
                       <!--For windows change LD_LIBRARY_PATH to PATH-->
-                        <LD_LIBRARY_PATH>${dependenciesDir}:{env.LD_LIBRARY_PATH}:${user.dir}</LD_LIBRARY_PATH>
+                        <!--LD_LIBRARY_PATH>${dependenciesDir}:{env.LD_LIBRARY_PATH}:${user.dir}</LD_LIBRARY_PATH>
 
-                    </environmentVariables>
+                   </environmentVariables-->
 
 						</configuration>
 					</execution>
