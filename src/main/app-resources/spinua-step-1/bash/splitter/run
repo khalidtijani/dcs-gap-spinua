@@ -48,11 +48,11 @@ function main() {
     export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     #defines the input
     local ver
-    #ver="v2.0"
-    ver=$1
+    ver="v2.0"
+    #ver=$1
     local step
     #step="X0"
-    step=$2
+    step=$1
     # retrieve the parameters value from workflow or job default value
     outfoldername="`ciop-getparam outsplitter`"
     LatMin="`ciop-getparam LatMin`"
@@ -136,8 +136,8 @@ TMPDIR=$STORAGE
 mkdir -p ${TMPDIR}/output
 export OUTPUTDIR=${TMPDIR}/output
 #step="X0"
-while read ver,step; do
-    main "${ver}" "${step}"
+while read step; do
+    main "${step}"
     res=$?
     [ ${res} -ne 0 ] && exit ${res}
 done
