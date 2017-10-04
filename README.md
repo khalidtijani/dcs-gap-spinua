@@ -157,7 +157,8 @@ tail -f $STORAGE/S1splitter/outdir/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04
 
 The result saved in this path $STORAGE/S1splitter/outdir/out 
 
-should choose your dataset to be download and precessed in the next Step
+Now we need to choose our dataset to be downloaded and used for the next Step of Spinua Chain.
+
 
 
 #### Using the development version
