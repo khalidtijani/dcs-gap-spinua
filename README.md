@@ -118,36 +118,8 @@ cd $_CIOP_APPLICATION_PATH
 Check for a file named application.xml
 Open it with a text editor (e.g. vi) and inspect its content. It will be similar to:
 
-```bash
-vi application.xml
-<?xml version="1.0" encoding="us-ascii"?>
-<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
-  <jobTemplates>
-    <jobTemplate id="splitter">
-      <streamingExecutable>/application/splitter/run</streamingExecutable>
-      <defaultParameters>
-        <parameter id="out">outdir</parameter>
-        <parameter id="LatMin">37.01</parameter>
-        <parameter id="LatMax">37.09</parameter>
-        <parameter id="LonMin">14.20</parameter>
-        <parameter id="LonMax">14.35</parameter>
-      </defaultParameters>
-    </jobTemplate>
-  </jobTemplates>
-    <workflow id="spinua-step-1" title="Using parameters" abstract="Test Splitter, using parameters">
-    <workflowVersion>1.0</workflowVersion>
-    <node id="node_splitter">
-      <job id="splitter"/>
- <sources>
- <source refid="cas:series">https://catalog.terradue.com/eo-samples/series/mer_rr__1p/description</source>
-</sources>
-<parameters>
-</parameters>
-</node>
+* [vi /application/application.xml](src/main/app-resources/spinua-step-1/application.xml)
 
-  </workflow>
-</application>
-```
 A run executable is responsible for the execution of your application (or a step of it) by the Hadoop compute engine. In the application.xml we defined a workflow with a single node and the related run executable:
 
 * [vi /application/splitter/run](src/main/app-resources/spinua-step-1/bash/splitter/run)
