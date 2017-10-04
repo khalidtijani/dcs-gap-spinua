@@ -144,7 +144,9 @@ ciop-run node_splitter
 ```
 
 ```bash
-cd $STORAGE/S1splitter/outdir/stdout/
+
+
+cd $STORAGE/S1splitter/outdir/stdout/    # outdir is the string that you choose as outfolder in application.xml  <parameter id="out">outdir</parameter>
 
 ls 
 
