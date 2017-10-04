@@ -97,6 +97,8 @@ export STORAGE=/home/${USER}/storage
 
 export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
+export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
 ```bash
 source /home/${USER}/.bashrc
 ```
@@ -140,6 +142,20 @@ Execute it by typing:
 ```bash
 ciop-run node_splitter
 ```
+
+```bash
+cd $STORAGE/S1splitter/outdir/stdout/
+
+ls 
+
+Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
+
+tail -f $STORAGE/S1splitter/outdir/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
+```
+
+The result saved in this path $STORAGE/S1splitter/outdir/out 
+
+should choose your dataset to be download and precessed in the next Step
 
 
 #### Using the development version

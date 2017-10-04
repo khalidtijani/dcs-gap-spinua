@@ -4,7 +4,7 @@
     <jobTemplate id="splitter">
       <streamingExecutable>/application/splitter/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="out">outdir</parameter>
+        <parameter id="out">outdir002</parameter>
         <parameter id="LatMin">37.01</parameter>
         <parameter id="LatMax">37.09</parameter>
         <parameter id="LonMin">14.20</parameter>

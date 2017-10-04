@@ -110,7 +110,7 @@ source /home/khalidtijani/.bashrc
     # prepare the BEAM request
 
     # invoke the ESA BEAM toolbox
-    /home/khalidtijani/dcs-cnr-issia-spinua/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
 #    /data/input/ciop/storage/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
     # check the exit code
     [ $? -eq 0 ] || return $ERR_BEAM
