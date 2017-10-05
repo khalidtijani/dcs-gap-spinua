@@ -50,44 +50,36 @@ source /home/khalidtijani/.bashrc
   #  export STORAGE=/home/${USER}/storage
   #  export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     #defines the input
+
     local ver
     ver="v2.0"
     #ver=$1
     local step
-    step="X0"
+    step="00"
+    
+    
   #  step=$1
     # retrieve the parameters value from workflow or job default value
-    splitterOutputFolder="`ciop-getparam splitterout`"
-    LatMin="`ciop-getparam LatMin`"
-    LatMax="`ciop-getparam LatMax`"
-    LonMin="`ciop-getparam LonMin`"
-    LonMax="`ciop-getparam LonMax`"
-    
-    local bbox
-    bbox="LAT"$LatMin"_"$LatMax"LON"$LonMin"_"$LonMax
+    rootFolder="`ciop-getparam rootFolder`"
+    splitterOutputFolder="`ciop-getparam splitterOutputFolder`"
+   
 
     # run a check on the expression value, it can't be empty
+    [ -z "$rootFolder" ] && exit $ERR_NOEXPR
+    [ -z "$step" ] && exit $ERR_NOEXPR
     [ -z "$splitterOutputFolder" ] && exit $ERR_NOEXPR
-    [ -z "$LatMin" ] && exit $ERR_NOEXPR
-    [ -z "$LatMax" ] && exit $ERR_NOEXPR
-    [ -z "$LonMin" ] && exit $ERR_NOEXPR
-    [ -z "$LonMax" ] && exit $ERR_NOEXPR
-    
+        
     # log the value, it helps debugging. 
     # the log entry is available in the process stderr 
-    ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
-    ciop-log "DEBUG" "The LatMin used is: ${LatMin}"
-    ciop-log "DEBUG" "The LatMax used is: ${LatMax}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMin}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMax}"
+    ciop-log "DEBUG" "The InputFolder which the same string of outfoldername used in step 1 of spinua chain : ${splitterOutputFolder}"
+    ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+    
 
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
-    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
-
-
+    
     # retrieve the MER_RR__1P product to the local temporary folder TMPDIR provided by the framework (this folder is only used by this process)
     # the ciop-copy utility will use one of online resource available in the metadata to copy it to the TMPDIR folder
     # the utility returns the local path so the variable $retrieved contains the local path to the MERIS product
@@ -110,20 +102,21 @@ source /home/khalidtijani/.bashrc
     # prepare the BEAM request
 
     # invoke the ESA BEAM toolbox
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox  &> /dev/null
+
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNR_ISSIA  &> /dev/null
 #    /data/input/ciop/storage/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
     # check the exit code
     [ $? -eq 0 ] || return $ERR_BEAM
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1splitter/${splitterOutputFolder}/out"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L0_InputData"
     
 
-    tar cfz ${STORAGE}/${splitterOutputFolder}.tgz ${STORAGE}/${splitterOutputFolder} ${STORAGE}/${outputfolder} &> /dev/null
+    #tar cfz ${STORAGE}/${outfoldername}.tgz ${STORAGE}/${outfoldername} ${STORAGE}/${outputfolder} &> /dev/null
   
     # publish the compressed results
     ciop-log "INFO" "Publishing ${outputfolder} " 
-    ciop-publish $STORAGE/$splitterOutputFolder.tgz
+    #ciop-publish $STORAGE/$outfoldername.tgz
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 

@@ -4,11 +4,8 @@
     <jobTemplate id="splitter">
       <streamingExecutable>/application/splitter/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="splitterout">StackDataset001</parameter>
-        <parameter id="LatMin">37.01</parameter>
-        <parameter id="LatMax">37.09</parameter>
-        <parameter id="LonMin">14.20</parameter>
-        <parameter id="LonMax">14.35</parameter>
+        <parameter id="splitterOutputFolder">StackDataset001</parameter>
+        <parameter id="rootFolder">rootFolder001</parameter>    
       </defaultParameters>
     </jobTemplate>
   </jobTemplates>

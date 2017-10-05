@@ -57,7 +57,7 @@ source /home/khalidtijani/.bashrc
     step="X0"
   #  step=$1
     # retrieve the parameters value from workflow or job default value
-    outfoldername="`ciop-getparam out`"
+    splitterOutputFolder="`ciop-getparam splitterout`"
     LatMin="`ciop-getparam LatMin`"
     LatMax="`ciop-getparam LatMax`"
     LonMin="`ciop-getparam LonMin`"
@@ -67,7 +67,7 @@ source /home/khalidtijani/.bashrc
     bbox="LAT"$LatMin"_"$LatMax"LON"$LonMin"_"$LonMax
 
     # run a check on the expression value, it can't be empty
-    [ -z "$outfoldername" ] && exit $ERR_NOEXPR
+    [ -z "$splitterOutputFolder" ] && exit $ERR_NOEXPR
     [ -z "$LatMin" ] && exit $ERR_NOEXPR
     [ -z "$LatMax" ] && exit $ERR_NOEXPR
     [ -z "$LonMin" ] && exit $ERR_NOEXPR
@@ -75,7 +75,7 @@ source /home/khalidtijani/.bashrc
     
     # log the value, it helps debugging. 
     # the log entry is available in the process stderr 
-    ciop-log "DEBUG" "The outfoldername used is: ${outfoldername}"
+    ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
     ciop-log "DEBUG" "The LatMin used is: ${LatMin}"
     ciop-log "DEBUG" "The LatMax used is: ${LatMax}"
     ciop-log "DEBUG" "The LatMax used is: ${LonMin}"
@@ -110,20 +110,20 @@ source /home/khalidtijani/.bashrc
     # prepare the BEAM request
 
     # invoke the ESA BEAM toolbox
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox  &> /dev/null
 #    /data/input/ciop/storage/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
     # check the exit code
     [ $? -eq 0 ] || return $ERR_BEAM
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1splitter/${outfoldername}/out"
+    outputfolder="${STORAGE}/S1splitter/${splitterOutputFolder}/out"
     
 
-    tar cfz ${STORAGE}/${outfoldername}.tgz ${STORAGE}/${outfoldername} ${STORAGE}/${outputfolder} &> /dev/null
+    tar cfz ${STORAGE}/${splitterOutputFolder}.tgz ${STORAGE}/${splitterOutputFolder} ${STORAGE}/${outputfolder} &> /dev/null
   
     # publish the compressed results
     ciop-log "INFO" "Publishing ${outputfolder} " 
-    ciop-publish $STORAGE/$outfoldername.tgz
+    ciop-publish $STORAGE/$splitterOutputFolder.tgz
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
