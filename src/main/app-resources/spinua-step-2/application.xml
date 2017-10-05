@@ -2,10 +2,10 @@
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
     <jobTemplate id="slcdatadownload">
-      <streamingExecutable>/application/splitter/run</streamingExecutable>
+      <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
       <defaultParameters>
         <parameter id="rootFolder">rootDataset001</parameter>
-        <parameter id="splitterOutputFolder">StackDataset001</parameter>
+        <parameter id="splitterOut">StackDataset001</parameter>
       </defaultParameters>
     </jobTemplate>
   </jobTemplates>

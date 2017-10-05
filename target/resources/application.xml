@@ -1,21 +1,18 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="splitter">
-      <streamingExecutable>/application/splitter/run</streamingExecutable>
+    <jobTemplate id="slcdatadownload">
+      <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="splitterout">StackDataset001</parameter>
-        <parameter id="LatMin">37.01</parameter>
-        <parameter id="LatMax">37.09</parameter>
-        <parameter id="LonMin">14.20</parameter>
-        <parameter id="LonMax">14.35</parameter>
+        <parameter id="rootFolder">rootDataset001</parameter>
+        <parameter id="splitterOut">StackDataset001</parameter>
       </defaultParameters>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-1" title="Using parameters" abstract="Test Splitter, using parameters">
+    <workflow id="spinua-step-2" title="SLC data download" abstract="Test SLC data download, using the string of the parameter named splitterOutputFolder in splitter application">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_splitter">
-      <job id="splitter"/>
+    <node id="node_slcdatadownload">
+      <job id="slcdatadownload"/>
  <sources>
  <source refid="string:list">0</source>      
 </sources>

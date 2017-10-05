@@ -61,7 +61,7 @@ source /home/khalidtijani/.bashrc
   #  step=$1
     # retrieve the parameters value from workflow or job default value
     rootFolder="`ciop-getparam rootFolder`"
-    splitterOutputFolder="`ciop-getparam splitterOutputFolder`"
+    splitterOutputFolder="`ciop-getparam splitterOut`"
    
 
     # run a check on the expression value, it can't be empty
