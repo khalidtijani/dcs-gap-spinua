@@ -1,20 +1,24 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="slcdatadownload">
-      <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
+    <jobTemplate id="splitter">
+      <streamingExecutable>/application/splitter/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="rootFolder">rootDataset001</parameter>
-        <parameter id="splitterOut">StackDataset001</parameter>
+        <parameter id="splitterout" title="The lists of Datasets Stack" abstract="Define the outfolder to save lists of stack of data" scope="runtime" maxOccurs="1">StackDataset002</parameter>
+        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">14.20</parameter>
+        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.01</parameter>
+        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">14.35</parameter>
+        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.09</parameter>
       </defaultParameters>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-2" title="SLC data download" abstract="Test SLC data download, using the string of the parameter named splitterOutputFolder in splitter application">
+    <workflow id="spinua-step-1" title="Using parameters" abstract="Test Splitter, using parameters">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_slcdatadownload">
-      <job id="slcdatadownload"/>
+    <node id="node_splitter">
+      <job id="splitter"/>
  <sources>
- <source refid="string:list">0</source>      
+
+ <source refid="string:list">ver2.0;X0</source>      
 </sources>
 <parameters>
 </parameters>
