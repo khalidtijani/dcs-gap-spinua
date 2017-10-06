@@ -44,11 +44,18 @@ function main() {
 source /home/khalidtijani/.bashrc
     
     #defines the input
-    local ver
-    ver="v2.0"
+    
+    ver=$( echo "${1}" | cut -d";" -f1 )
+    [ -z "${ver}" ] && return ${ERR_NOARG}
+
+    step=$( echo "${1}" | cut -d";" -f2 )
+    [ -z "${slaveref}" ] && return ${ERR_NOARG}
+
+ #   local ver
+ #   ver="v2.0"
     #ver=$1
-    local step
-    step="X0"
+ #   local step
+ #   step="X0"
   #  step=$1
     # retrieve the parameters value from workflow or job default value
     splitterOutputFolder="`ciop-getparam splitterout`"
@@ -109,14 +116,15 @@ source /home/khalidtijani/.bashrc
 # create the output folder to store the output products and export it
 source /home/khalidtijani/.bashrc
 #step="X0"
-#while read step; do
+while read arg; do
  #   step="X"$step 
-  #  main "${step}"
-   # res=$?
-    #[ ${res} -ne 0 ] && exit ${res}
-#done
+   main "${arg}"
+   res=$?
+   [ ${res} -ne 0 ] && exit ${res}
+done
 
-main  
-res=$?
-[ ${res} -ne 0 ] && exit ${res}
+#main  
+#res=$?
+#[ ${res} -ne 0 ] && exit ${res}
+
 exit $SUCCESS
