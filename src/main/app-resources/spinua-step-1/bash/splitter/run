@@ -12,9 +12,9 @@ export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa
 
 # define the exit codes
 SUCCESS=0
-#BEAM_REQUEST_ERROR=1
-ERR_BEAM=1
-ERR_NOEXPR=2
+#SNAP_REQUEST_ERROR=1
+ERR_SPINUA=1
+ERR_NOARG=2
 #ERR_NOINPUT=4
 
 # add a trap to exit gracefully
