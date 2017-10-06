@@ -48,21 +48,24 @@ source /home/khalidtijani/.bashrc
     #defines the input
     
     ver=$( echo "${1}" | cut -d";" -f1 )
-    ciop-log "INFO" "The version $ver for spinua chain"
-    [ -z "${ver}" ] && return ${ERR_NOARG}
+ #   ciop-log "INFO" "The version $ver for spinua chain"
+ #   [ -z "${ver}" ] && return ${ERR_NOARG}
 
     step=$( echo "${1}" | cut -d";" -f2 )
-    ciop-log "INFO" "Th step $step for spinua chain"
-    [ -z "${step}" ] && return ${ERR_NOARG}
+ #   ciop-log "INFO" "Th step $step for spinua chain"
+ #   [ -z "${step}" ] && return ${ERR_NOARG}
 
 
 
- #   local ver
- #   ver="v2.0"
+    #local ver
+    #ver="v2.0"
     #ver=$1
- #   local step
- #   step="X0"
-  #  step=$1
+    #local step
+    #step="X0"
+    ciop-log "INFO" "The version $ver for spinua chain"
+    ciop-log "INFO" "Th step $step for spinua chain"  
+
+#  step=$1
     # retrieve the parameters value from workflow or job default value
     splitterOutputFolder="`ciop-getparam splitterout`"
     LatMinIn="`ciop-getparam LatMin`"
@@ -72,13 +75,14 @@ source /home/khalidtijani/.bashrc
     
     local bbox
     bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
-
+    ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
     # run a check on the expression value, it can't be empty
     [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
-    [ -z "$LatMin" ] && exit $ERR_NOARG
-    [ -z "$LatMax" ] && exit $ERR_NOARG
-    [ -z "$LonMin" ] && exit $ERR_NOARG
-    [ -z "$LonMax" ] && exit $ERR_NOARG
+    [ -z "$LatMinIn" ] && exit $ERR_NOARG
+    [ -z "$LatMaxIn" ] && exit $ERR_NOARG
+    [ -z "$LonMinIn" ] && exit $ERR_NOARG
+    [ -z "$LonMaxIn" ] && exit $ERR_NOARG
     
     # log the value, it helps debugging. 
     # the log entry is available in the process stderr 
@@ -123,12 +127,12 @@ source /home/khalidtijani/.bashrc
 source /home/khalidtijani/.bashrc
 #step="X0"
 while read arg; do
- #   step="X"$step 
+#   step="X"$step 
+   ciop-log "INFO" "Arguments ${arg} "
    main "${arg}"
    res=$?
-   [ ${res} -ne 0 ] && exit ${res}
+  [ ${res} -ne 0 ] && exit ${res}
 done
-
 #main  
 #res=$?
 #[ ${res} -ne 0 ] && exit ${res}

@@ -17,8 +17,7 @@
     <node id="node_splitter">
       <job id="splitter"/>
  <sources>
-
- <source refid="string:list">ver2.0;X0</source>      
+        <source scope="runtime" id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;X0</source>
 </sources>
 <parameters>
 </parameters>
