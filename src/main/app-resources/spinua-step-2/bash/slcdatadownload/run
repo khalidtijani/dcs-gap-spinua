@@ -3,17 +3,18 @@
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
 source /home/khalidtijani/.bashrc
-# set the environment variables to use ESA BEAM toolbox
-#export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+# set the environment variables to use MATLAB Runtime v91 release R2016b 
+#export MCR_ROOT=/opt/MCR_R2016b
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 
 # define the exit codes
 SUCCESS=0
-#BEAM_REQUEST_ERROR=1
-ERR_BEAM=1
-ERR_NOEXPR=2
+#SNAP_REQUEST_ERROR=1
+ERR_SPINUA=1
+ERR_NOARG=2
 #ERR_NOINPUT=4
 
 # add a trap to exit gracefully
@@ -21,18 +22,16 @@ function cleanExit ()
 {
 source /home/khalidtijani/.bashrc
 
-#    export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-
- #   export STORAGE=/home/${USER}/storage
- #   export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
     local retval=$?
     local msg=""
 
     case ${retval} in
         ${SUCCESS})            msg="Processing successfully concluded";;
- #       ${BEAM_REQUEST_ERROR}) msg="Could not create beam request file";;
-        ${ERR_BEAM})           msg="Beam_expr failed to process product ";;
-        ${ERR_NOEXPR})         msg="No expression provided";;
+ #       ${SNAP_REQUEST_ERROR}) msg="Could not create snap request file";;
+        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step X0 : Splitter ";;
+        
+        
+        ${ERR_NOARG})         msg="No Input Argument provided";;
  #       ${ERR_NOINPUT})        msg="No input provided";;
         *)                     msg="Unknown error";;
     esac
@@ -45,78 +44,63 @@ trap cleanExit EXIT
 
 function main() {
 source /home/khalidtijani/.bashrc
- #   export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-
-  #  export STORAGE=/home/${USER}/storage
-  #  export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+    
     #defines the input
+    
+    ver=$( echo "${1}" | cut -d";" -f1 )
+    ciop-log "INFO" "The version $ver for spinua chain"
+    [ -z "${ver}" ] && return ${ERR_NOARG}
 
-    local ver
-    ver="v2.0"
+    step=$( echo "${1}" | cut -d";" -f2 )
+    ciop-log "INFO" "Th step $step for spinua chain"
+   [ -z "${step}" ] && return ${ERR_NOARG}
+
+
+
+    #local ver
+    #ver="v2.0"
     #ver=$1
-    local step
-    step="00"
-    
-    
-  #  step=$1
+    #local step
+    #step="X0"
+    #ciop-log "INFO" "The version $ver for spinua chain"
+    #ciop-log "INFO" "Th step $step for spinua chain"  
+
+#  step=$1
     # retrieve the parameters value from workflow or job default value
+
     rootFolder="`ciop-getparam rootFolder`"
     splitterOutputFolder="`ciop-getparam splitterOut`"
-   
-
-    # run a check on the expression value, it can't be empty
-    [ -z "$rootFolder" ] && exit $ERR_NOEXPR
-    [ -z "$step" ] && exit $ERR_NOEXPR
-    [ -z "$splitterOutputFolder" ] && exit $ERR_NOEXPR
-        
-    # log the value, it helps debugging. 
-    # the log entry is available in the process stderr 
     ciop-log "DEBUG" "The InputFolder which the same string of outfoldername used in step 1 of spinua chain : ${splitterOutputFolder}"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
-    
+
+    # run a check on the expression value, it can't be empty
+    [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$step" ] && exit $ERR_NOARG
+    [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
 
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
-    
-    # retrieve the MER_RR__1P product to the local temporary folder TMPDIR provided by the framework (this folder is only used by this process)
-    # the ciop-copy utility will use one of online resource available in the metadata to copy it to the TMPDIR folder
-    # the utility returns the local path so the variable $retrieved contains the local path to the MERIS product
-    #if [[ ${inputfile:0:4} == "file" ]]; then
-    # enclosure=${step}
-    #else    
-     # enclosure="$( opensearch-client ${inputfile} enclosure )"
-    #fi 
 
-    #retrieved=$( ciop-copy -o $TMPDIR "${enclosure}" )
 
-    # check if the file was retrieved, if not exit with the error code $ERR_NOINPUT
-    #[ $? -eq 0 ] && [ -e "${retrieved}" ] || return ${ERR_NOINPUT}
+    # prepare the SPINUA Step request
 
-    #outputname=$( basename "$retrieved" )
-
-    # report activity in the log
-    #ciop-log "INFO" "Retrieved ${outputname}, moving on to expression"
-
-    # prepare the BEAM request
-
-    # invoke the ESA BEAM toolbox
-
+    # invoke the Main SPINUA run binary
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNR_ISSIA  &> /dev/null
-#    /data/input/ciop/storage/spinua/Main_Spinua_Run $ver $step $outfoldername $bbox  &> /dev/null
+    
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_BEAM
+    [ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
     outputfolder="${STORAGE}/S1Data/$rootFolder/L0_InputData"
-    
 
-    #tar cfz ${STORAGE}/${outfoldername}.tgz ${STORAGE}/${outfoldername} ${STORAGE}/${outputfolder} &> /dev/null
+    
   
     # publish the compressed results
+    ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
     ciop-log "INFO" "Publishing ${outputfolder} " 
-    #ciop-publish $STORAGE/$outfoldername.tgz
+    
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
@@ -126,21 +110,16 @@ source /home/khalidtijani/.bashrc
 
 # create the output folder to store the output products and export it
 source /home/khalidtijani/.bashrc
-#export LD_LIBRARY_PATH=/home/${USER}/MCR_R2016b/v91/runtime/glnxa64:/home/${USER}/MCR_R2016b/v91/bin/glnxa64:/home/${USER}/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-#export STORAGE=/home/${USER}/storage
-#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-#TMPDIR=$STORAGE
-#mkdir -p ${TMPDIR}/output
-#export OUTPUTDIR=${TMPDIR}/output
 #step="X0"
-#while read step; do
- #   step="X"$step 
-  #  main "${step}"
-   # res=$?
-    #[ ${res} -ne 0 ] && exit ${res}
-#done
+while read arg; do
+#   step="X"$step 
+   ciop-log "INFO" "Arguments ${arg} "
+   main "${arg}"
+   res=$?
+  [ ${res} -ne 0 ] && exit ${res}
+done
+#main  
+#res=$?
+#[ ${res} -ne 0 ] && exit ${res}
 
-main  
-res=$?
-[ ${res} -ne 0 ] && exit ${res}
 exit $SUCCESS

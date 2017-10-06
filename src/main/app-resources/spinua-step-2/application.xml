@@ -4,8 +4,8 @@
     <jobTemplate id="slcdatadownload">
       <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="rootFolder">rootDataset001</parameter>
-        <parameter id="splitterOut">StackDataset001</parameter>
+        <parameter id="rootFolder">rootDataset</parameter>
+        <parameter id="splitterOut">StackDataset</parameter>
       </defaultParameters>
     </jobTemplate>
   </jobTemplates>
@@ -14,7 +14,7 @@
     <node id="node_slcdatadownload">
       <job id="slcdatadownload"/>
  <sources>
- <source refid="string:list">0</source>      
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;00</source>  
 </sources>
 <parameters>
 </parameters>
