@@ -1,0 +1,27 @@
+UPDATE_FLAG = 'y';
+
+busy_nsecWait=60;
+busy_nAttempts=0;
+
+MinPercNewImg2UpdateSM=0; %1000; 
+
+iniWindowBperp=15; %meters
+iniWindowBtemp=12*3; %days
+
+NiterSearchBP=3;
+NiterSearchBT=2;
+
+selIW=2; % selected swath (for supermaster identification: center swath is preferred)
+
+% ---------------------
+% --- DEBUG CARDS ---
+% ---------------------
+
+flag_step01_extract_metadata = 1; 
+flag_step02_xml_parsing = 1;
+flag_step03_kml_coverage = 1;
+flag_step04_resfile_generation = 1;
+flag_step05_compute_baseline = 1;
+flag_step06_SM_selection = 1;
+
+flag_remove_tmp_files = 1;

@@ -1,0 +1,125 @@
+#!/bin/bash
+
+# source the ciop functions (e.g. ciop-log, ciop-getparam)
+source ${ciop_job_include}
+source /home/khalidtijani/.bashrc
+# set the environment variables to use MATLAB Runtime v91 release R2016b 
+#export MCR_ROOT=/opt/MCR_R2016b
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
+#export STORAGE=/home/${USER}/storage
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+
+# define the exit codes
+SUCCESS=0
+#SNAP_REQUEST_ERROR=1
+ERR_SPINUA=1
+ERR_NOARG=2
+#ERR_NOINPUT=4
+
+# add a trap to exit gracefully
+function cleanExit ()
+{
+source /home/khalidtijani/.bashrc
+
+    local retval=$?
+    local msg=""
+
+    case ${retval} in
+        ${SUCCESS})            msg="Processing successfully concluded";;
+ #       ${SNAP_REQUEST_ERROR}) msg="Could not create snap request file";;
+        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step X0 : Splitter ";;
+        
+        
+        ${ERR_NOARG})         msg="No Input Argument provided";;
+ #       ${ERR_NOINPUT})        msg="No input provided";;
+        *)                     msg="Unknown error";;
+    esac
+
+   [ ${retval} -ne 0 ] && ciop-log "ERROR" "Error ${retval} - ${msg}, processing aborted" || ciop-log "INFO" "${msg}"
+   exit ${retval}
+}
+
+trap cleanExit EXIT
+
+function main() {
+source /home/khalidtijani/.bashrc
+    
+    #defines the input
+    
+    ver=$( echo "${1}" | cut -d";" -f1 )
+    ciop-log "INFO" "The version $ver for spinua chain"
+    [ -z "${ver}" ] && return ${ERR_NOARG}
+
+    step=$( echo "${1}" | cut -d";" -f2 )
+    ciop-log "INFO" "Th step $step for spinua chain"
+   [ -z "${step}" ] && return ${ERR_NOARG}
+
+
+
+    #local ver
+    #ver="v2.0"
+    #ver=$1
+    #local step
+    #step="X0"
+    #ciop-log "INFO" "The version $ver for spinua chain"
+    #ciop-log "INFO" "Th step $step for spinua chain"  
+
+#  step=$1
+    # retrieve the parameters value from workflow or job default value
+
+    rootFolder="`ciop-getparam rootFolder`"
+    splitterOutputFolder="`ciop-getparam splitterOut`"
+    ciop-log "DEBUG" "The InputFolder which the same string of outfoldername used in step 1 of spinua chain : ${splitterOutputFolder}"
+    ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+
+    # run a check on the expression value, it can't be empty
+    [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$step" ] && exit $ERR_NOARG
+    [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
+
+
+    # report activity in log
+    ciop-log "INFO" "The version $ver for spinua chain"
+    ciop-log "INFO" "Th step $step for spinua chain"
+
+
+    # prepare the SPINUA Step request
+
+    # invoke the Main SPINUA run binary
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNR_ISSIA  &> /dev/null
+    
+    # check the exit code
+    [ $? -eq 0 ] || return $ERR_SPINUA
+
+    # compress the ESA BEAM results
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L0_InputData"
+
+    
+  
+    # publish the compressed results
+    ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
+    ciop-log "INFO" "Publishing ${outputfolder} " 
+    
+
+    # cleanup
+    #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
+
+    return ${SUCCESS}
+}
+
+# create the output folder to store the output products and export it
+source /home/khalidtijani/.bashrc
+#step="X0"
+while read arg; do
+#   step="X"$step 
+   ciop-log "INFO" "Arguments ${arg} "
+   main "${arg}"
+   res=$?
+  [ ${res} -ne 0 ] && exit ${res}
+done
+#main  
+#res=$?
+#[ ${res} -ne 0 ] && exit ${res}
+
+exit $SUCCESS
