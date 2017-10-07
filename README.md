@@ -7,16 +7,16 @@ Available SPINUA processing Step
 
 * [SPINUA-Step X0: The Splitter](src/main/app-resources/spinua-step-1/)
 * [SPINUA-Step 00: SLC data download](src/main/app-resources/spinua-step-2)
-* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/spinua-step-01)
-* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-03)
-* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/spinua-step-04)
-* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/spinua-step-05)
-* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-06)
-* [SPINUA-Step 05: Crop Generation](src/main/app-resources/spinua-step-07)
-* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/spinua-step-08)
-* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/spinua-step-09)
-* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/spinua-step-10)
-* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-11)
+* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/spinua-step-03)
+* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-04)
+* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/spinua-step-05)
+* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/spinua-step-06)
+* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-07)
+* [SPINUA-Step 05: Crop Generation](src/main/app-resources/spinua-step-08)
+* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/spinua-step-09)
+* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/spinua-step-10)
+* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/spinua-step-11)
+* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-12)
 
 
 
