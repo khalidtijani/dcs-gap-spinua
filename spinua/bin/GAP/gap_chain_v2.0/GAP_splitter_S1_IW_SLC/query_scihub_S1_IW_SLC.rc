@@ -79,9 +79,10 @@ done
 Nitems=`cat $outFolder/${queryOutput} | grep '<id>........-' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' | wc -l`
 Nitems=`printf "%03d" $Nitems`
 #echo $Nitems
-cat $outFolder/${queryOutput} | grep '<id>........-' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_id}
-cat $outFolder/${queryOutput} | grep '<title>S1' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_title}
-cat $outFolder/${queryOutput} | grep 'coordinates' | sed 's/&lt;gml:coordinates&gt;/ /g' | sed 's/&lt;\/gml:coordinates&gt;/ /g' | sed 's/,/ /g'    > $outFolder/N${Nitems}_${productList_coord}
-cat $outFolder/${queryOutput} | grep '<date name="ingestiondate">'  | sed 's/date name=\"ingestiondate\"//g' | sed 's/\/date//g' | sed 's/<>//g'    > $outFolder/N${Nitems}_${ingestionDate_list}
+cat $outFolder/${queryOutput} | grep -A36 -B4 '<id>' > $outFolder/${queryOutput}.vaf
+cat $outFolder/${queryOutput}.vaf | grep '<id>........-' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_id}
+cat $outFolder/${queryOutput}.vaf | grep '<title>S1' | cut -f2 -d'>' | cut -f1 -d'<' | sed 's/[",:]/ /g' > $outFolder/N${Nitems}_${productList_title}
+cat $outFolder/${queryOutput}.vaf | grep 'coordinates' | sed 's/&lt;gml:coordinates&gt;/ /g' | sed 's/&lt;\/gml:coordinates&gt;/ /g' | sed 's/,/ /g'    > $outFolder/N${Nitems}_${productList_coord}
+cat $outFolder/${queryOutput}.vaf | grep '<date name="ingestiondate">'  | sed 's/date name=\"ingestiondate\"//g' | sed 's/\/date//g' | sed 's/<>//g'    > $outFolder/N${Nitems}_${ingestionDate_list}
 
 touch $outFolder/$flag
