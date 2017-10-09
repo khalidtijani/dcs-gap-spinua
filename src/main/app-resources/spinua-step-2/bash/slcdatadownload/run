@@ -82,8 +82,11 @@ source /home/khalidtijani/.bashrc
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
-
     
+    busyfile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/busy
+    donefile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/done
+    [ -f "${busyfile}" ] && rm -rf ${busyfile} && touch $donefile   
+    #rm ${STORAGE}/S1Data/$rootFolder/L0_InputData/out/S1A_IW_SLC__1SDV_20161201T170412_20161201T170439_014189_016EC6_908B.zip
     #outputfolder=${STORAGE}/S1Data/$rootFolder
     # cleanup
     #[ -d "$outputfolder" ] && rm -rf $outputfolder  

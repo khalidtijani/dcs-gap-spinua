@@ -14,8 +14,8 @@ export REL_ORB_NUMBER=${10}
 #---  Load input parameter
 #export DHUS_DEST="https://scihub.esa.int/dhus"
 export DHUS_DEST="https://scihub.copernicus.eu/dhus"
-export USERNAME="davosnitti"
-export PASSWORD="donESA1976"
+export USERNAME="gep.cnrissia"
+export PASSWORD="Gep2017Spinua"
 export PRODUCT_TYPE='SLC'
 export sensoroperationalmode='IW'
 
