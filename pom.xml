@@ -67,9 +67,9 @@
 								<summary>Developer Cloud Sandbox SPINUA application Step ${step.on}</summary>
 								<description>Developer Cloud Sandbox SPINUA application Step ${step.on}</description>
 								<name>${project.artifactId}</name>
-								<defaultDirmode>775</defaultDirmode>
-								<defaultFilemode>664</defaultFilemode>
-								<defaultUsername>khalidtijani</defaultUsername>
+								<defaultDirmode>777</defaultDirmode>
+								<defaultFilemode>777</defaultFilemode>
+								<defaultUsername>root</defaultUsername>
 								<defaultGroupname>ciop</defaultGroupname>
 								<prefix>/application</prefix>
 								<autoRequires>false</autoRequires>
@@ -97,7 +97,7 @@
 												</includes>
 											</source>
 										</sources>
-										<filemode>775</filemode>
+										<filemode>777</filemode>
 									</mapping>
 								</mappings>
 								<provides>

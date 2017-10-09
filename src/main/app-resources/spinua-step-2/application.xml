@@ -7,7 +7,10 @@
         <parameter id="rootFolder">rootDataset</parameter>
         <parameter id="splitterOut">StackDataset</parameter>
       </defaultParameters>
-    </jobTemplate>
+       <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000</property>
+      </defaultJobconf>  
+  </jobTemplate>
   </jobTemplates>
     <workflow id="spinua-step-2" title="SLC data download" abstract="Test SLC data download, using the string of the parameter named splitterOutputFolder in splitter application">
     <workflowVersion>1.0</workflowVersion>

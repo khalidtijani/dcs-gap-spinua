@@ -83,11 +83,15 @@ source /home/khalidtijani/.bashrc
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
 
+    
+    #outputfolder=${STORAGE}/S1Data/$rootFolder
+    # cleanup
+    #[ -d "$outputfolder" ] && rm -rf $outputfolder  
 
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNR_ISSIA  &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNRISSIA  &> /dev/null
     
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
