@@ -68,6 +68,9 @@ source /home/khalidtijani/.bashrc
 #  step=$1
     # retrieve the parameters value from workflow or job default value
     splitterOutputFolder="`ciop-getparam splitterout`"
+    
+    startDATEIn="`ciop-getparam startDATE`"
+    endDATEIn="`ciop-getparam endDATEIn`"
     LatMinIn="`ciop-getparam LatMin`"
     LatMaxIn="`ciop-getparam LatMax`"
     LonMinIn="`ciop-getparam LonMin`"
@@ -77,8 +80,16 @@ source /home/khalidtijani/.bashrc
     bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
     ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+    ciop-log "INFO" "The Start Day argument used is $startDATEIn for this run"
+    ciop-log "INFO" "The End Day argument used is $endDATEIn for this run"
+
     # run a check on the expression value, it can't be empty
     [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
+    
+    [ -z "$startDATEIn" ] && exit $ERR_NOARG
+    [ -z "$endDATEIn" ] && exit $ERR_NOARG
+
+
     [ -z "$LatMinIn" ] && exit $ERR_NOARG
     [ -z "$LatMaxIn" ] && exit $ERR_NOARG
     [ -z "$LonMinIn" ] && exit $ERR_NOARG
@@ -97,6 +108,9 @@ source /home/khalidtijani/.bashrc
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+    ciop-log "INFO" "The Start Day argument used is $startDATEIn for this run"
+    ciop-log "INFO" "The End Day argument used is $endDATEIn for this run"
+
     
     #outputfolder=${STORAGE}/S1splitter/${splitterOutputFolder}
     # cleanup
@@ -104,7 +118,7 @@ source /home/khalidtijani/.bashrc
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox  &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox $startDATEIn $endDATEIn    &> /dev/null
     
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
