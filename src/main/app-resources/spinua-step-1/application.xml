@@ -6,7 +6,7 @@
       <defaultParameters>
         <parameter id="splitterout" title="Output Folder of stack of datasets" abstract="Define the outfolder to save lists of stack of data">StackDataset</parameter>
         <!--parameter id="splitterout" title="Output Folder of stack of datasets" abstract="Define the outfolder to save lists of stack of data" scope="runtime" maxOccurs="1">StackDataset</parameter-->
-        <parameter id="startDATE" title="Start Date yyyy-mm-dd" abstract="Define the Start Day" scope="runtime" maxOccurs="1">2016-01-01</parameter>
+        <parameter id="startDATE" title="Start Date yyyy-mm-dd" abstract="Define the Start Day" scope="runtime" maxOccurs="1">2015-01-01</parameter>
         <parameter id="endDATE" title="End Day yyyy-mm-dd" abstract="Define the End Day" scope="runtime" maxOccurs="1">2016-12-31</parameter>
 
         <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">14.20</parameter>
