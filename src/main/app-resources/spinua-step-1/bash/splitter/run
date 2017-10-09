@@ -70,7 +70,7 @@ source /home/khalidtijani/.bashrc
     splitterOutputFolder="`ciop-getparam splitterout`"
     
     startDATEIn="`ciop-getparam startDATE`"
-    endDATEIn="`ciop-getparam endDATEIn`"
+    endDATEIn="`ciop-getparam endDATE`"
     LatMinIn="`ciop-getparam LatMin`"
     LatMaxIn="`ciop-getparam LatMax`"
     LonMinIn="`ciop-getparam LonMin`"
@@ -112,9 +112,9 @@ source /home/khalidtijani/.bashrc
     ciop-log "INFO" "The End Day argument used is $endDATEIn for this run"
 
     
-    #outputfolder=${STORAGE}/S1splitter/${splitterOutputFolder}
+    outputfolder=${STORAGE}/S1splitter/${splitterOutputFolder}
     # cleanup
-    #[ -d "$outputfolder" ] && rm -rf $outputfolder  
+    [ -d "$outputfolder" ] && rm -rf $outputfolder  
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
