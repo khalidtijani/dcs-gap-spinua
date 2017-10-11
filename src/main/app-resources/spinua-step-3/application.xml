@@ -6,6 +6,9 @@
       <defaultParameters>
         <parameter id="rootFolder">rootDataset</parameter>
       </defaultParameters>
+    <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000</property>
+      </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
     <workflow id="spinua-step-3" title="Supermaster Selection" abstract="Test Supermaster Selection">

@@ -4,8 +4,9 @@
 source ${ciop_job_include}
 source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
-#export MCR_ROOT=/opt/MCR_R2016b
-#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+export PATH=${PATH}:/usr/local/bin:/usr/bin
+export MCR_ROOT=/opt/MCR_R2016b
+export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -84,8 +85,12 @@ source /home/khalidtijani/.bashrc
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
+
+
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0  &> /dev/null
-    
+
+    ciop-log "INFO" "check the exit code $? for spinua chain"
+
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
 

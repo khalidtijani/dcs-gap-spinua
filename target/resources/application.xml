@@ -1,23 +1,22 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="slcdatadownload">
-      <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
+    <jobTemplate id="supermaster">
+      <streamingExecutable>/application/supermaster/run</streamingExecutable>
       <defaultParameters>
         <parameter id="rootFolder">rootDataset</parameter>
-        <parameter id="splitterOut">StackDataset</parameter>
       </defaultParameters>
-       <defaultJobconf>
+    <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>
-      </defaultJobconf>  
-  </jobTemplate>
+      </defaultJobconf>
+    </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-2" title="SLC data download" abstract="Test SLC data download, using the string of the parameter named splitterOutputFolder in splitter application">
+    <workflow id="spinua-step-3" title="Supermaster Selection" abstract="Test Supermaster Selection">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_slcdatadownload">
-      <job id="slcdatadownload"/>
+    <node id="node_supermaster">
+      <job id="supermaster"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;00</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;01</source>  
 </sources>
 <parameters>
 </parameters>
