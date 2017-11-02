@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
+  <jobTemplates>
+    <jobTemplate id="dem">
+      <streamingExecutable>/application/dem/run</streamingExecutable>
+      <defaultParameters>
+        <parameter id="rootFolder">rootDataset</parameter>
+      </defaultParameters>
+    <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000</property>
+      </defaultJobconf>
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="spinua-step-4" title="DEM pre-processing" abstract="Test DEM pre-processing">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node_dem">
+      <job id="dem"/>
+ <sources>
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;02</source>  
+</sources>
+<parameters>
+</parameters>
+</node>
+
+  </workflow>
+</application>
