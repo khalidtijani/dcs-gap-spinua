@@ -93,9 +93,13 @@ source /home/khalidtijani/.bashrc
  
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg  &> /dev/null
 
+    rm -rf /data/input/storage2/S1Data/rootDataset/L1_SM_selection/*
+
+    rsync -Pav /data/input/storage3/S1Data/rootDataset/L1_SM_selection/* /data/input/storage2/S1Data/rootDataset/L1_SM_selection
+
     chmod -R 777 /data/input/storage2/S1Data/rootDataset/L1_SM_selection   
         
-    unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
+    #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
