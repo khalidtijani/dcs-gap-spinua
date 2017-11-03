@@ -1,20 +1,35 @@
 busy_nsecWait=60;
 busy_nAttempts=60*3;
-
+flag_checkfolder=0;
 flag_geoid2ellipsoid=1; % do not modify!
 flag_bin2geotiff=0;
 
 % --- debug --- 
 flag_step01_DEM_mosaicking = 1;
 flag_step02_DEM_oversampling = 1;
+flag_step03_visibility_map = 1;
 % ------------- 
 
-OVS_FACT=2; % 2^OVS_FACT
+OVS_FACT=1; % 2^OVS_FACT
 EXTRA_COVERAGE_PERC = 5;
 
 OUTPUT_PRECISION='float32'; % do not modify!
 OUTPUT_ENDIANNESS='l'; % do not modify!
-SRTM_NODATA=-32768; % do not modify!
+SRTM_NODATA=-32768; % do not modify! Aggiungere -9999
 SEA_HEIGHT = NaN; % do not modify!
 
+FLAT_SLOPE_ANG_TH= 8;
+AZI_ASPECT_ANG_TH=10;
+LAY_ASPECT_ANG_TH=30;
+SHA_ASPECT_ANG_TH=30;
+
+HEADING=[350 190]; % in degrees
+INC_ANG=[34 39 44]; % in degrees
+
 flag_remove_tmp_files = 1;
+
+% layerID==1 % along track
+% layerID==2 % cross-track (foreshortening)
+% layerID==3 % cross-track (layover)
+% layerID==4 % cross-track (shadowing)
+% layerID==5 % cross-track (modest foreshortening)
