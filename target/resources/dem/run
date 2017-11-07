@@ -11,7 +11,7 @@ export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
 export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
-export JAVA_HOME=/usr/lib/jvm/java-1.7.0
+export JAVA_HOME=/usr/java/jdk1.6.0_35/jre
 export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:${PATH}
 
 export MCR_ROOT=/opt/MCR_R2016b
