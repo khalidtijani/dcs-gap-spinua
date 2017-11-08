@@ -16,6 +16,11 @@ export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:${PATH}
 
 export MCR_ROOT=/opt/MCR_R2016b
 export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+echo $CLASSPATH
+export CLASSPATH=${MCR_ROOT}/v91/toolbox/javabuilder/jar:$CLASSPATH
+echo $CLASSPATH
+export _JAVA_OPTIONS="-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m"
+#-Xmx1024M -XX:MaxPermSize=512m
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
