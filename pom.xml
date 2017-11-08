@@ -76,6 +76,7 @@
 					            	    <environmentVariables>
                       <!--For windows change LD_LIBRARY_PATH to PATH-->
                         <LD_LIBRARY_PATH>${dependenciesDir}:{env.LD_LIBRARY_PATH}</LD_LIBRARY_PATH>
+                        <PATH>${dependenciesDir}:{env.PATH}</PATH>
 
                     </environmentVariables>
 								<mappings>
