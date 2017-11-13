@@ -1,0 +1,25 @@
+#!/bin/bash
+# Author: don
+# INFO: - the command reports 0 files monitored in case you have just one file into the directory
+#       - the command does not inspect into nested symbolic links 
+#       - the command is not capable to identify broken links
+folder=$1
+currentPath=`pwd`
+
+cd $folder
+if [ "$?" = 0 ]; then 
+   #pwd
+   TimeStamp=`date +%Y%m%d%H%M%S%N`
+   find ./* -type f -print0 | xargs -0 head -q --bytes=1 > /tmp/.checkfolder_${TimeStamp}.log 2> /tmp/.checkfolder_${TimeStamp}.err
+   Nfiles=`du -b /tmp/.checkfolder_${TimeStamp}.log | awk '{print $1}'`
+   Nerr=`cat /tmp/.checkfolder_${TimeStamp}.err | wc -l`
+   echo "[DONE] $Nfiles files monitored - $Nerr errors (Folder: $folder)"
+   #ls -l /tmp/.checkfolder_${TimeStamp}.*
+   #rm -f /tmp/.checkfolder_${TimeStamp}.*
+else
+   echo "[ERR] 0 files monitored - 1 error (Folder '$folder' does not exist)"
+   Nerr=1
+fi
+cd $currentPath
+
+exit $Nerr

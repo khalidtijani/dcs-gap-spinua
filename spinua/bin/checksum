@@ -1,0 +1,16 @@
+#!/bin/bash
+
+folder=$1
+
+#find $folder -type f -print0 | xargs -0 md5sum > /dev/null
+#exit $?
+
+TimeStamp=`date +%Y%m%d%H%M%S`
+find $folder -type f -print0 | xargs -0 md5sum > ./checksum_${TimeStamp}.log 2> ./checksum_${TimeStamp}.err
+exitstatus=$?
+
+Nfiles=`cat ./checksum_${TimeStamp}.log | wc -l`
+Nerr=`cat ./checksum_${TimeStamp}.err | wc -l`
+echo "[DONE] $Nfiles files monitored - $Nerr errors"
+
+exit $exitstatus
