@@ -1,0 +1,38 @@
+UPDATE_FLAG = 'y';
+
+busy_nsecWait=60;
+busy_nAttempts=0;
+flag_checkfolder=1;
+% ---------------------
+% --- DEBUG CARDS ---
+flag_step01_configure_XML_s1tbx_v1_1_1 = 1; 
+flag_step01_configure_XML_snap_v3_0 = 1; 
+flag_step01_configure_XML_snap_v4_0 = 1; 
+flag_step01_configure_XML_snap_v5_0 = 1; 
+flag_step02_execute_s1tbx_v1_1_1 = 0; 
+flag_step02_execute_snap_v3_0 = 0; 
+flag_step02_execute_snap_v4_0 = 0; 
+flag_step02_execute_snap_v5_0 = 0; 
+% ---------------------
+%class_DTM='SRTM 3Sec';
+class_DTM='SRTM 1Sec HGT';
+flag_subtract_flatearthphase_s1tbx_v1_1_1 = 0;
+flag_subtract_flatearthphase_snap_v3_0 = 0;
+flag_subtract_flatearthphase_snap_v4_0 = 0;
+flag_subtract_flatearthphase_snap_v5_0 = 0;
+
+flag_ESD = 0;
+flag_radarcoding=1;
+flag_geocode=0;
+firstBurstIndex = NaN; % 1
+lastBurstIndex = NaN; % 9999
+
+srpPolynomialDegree = 5;
+srpNumberPoints = 1001;
+orbitDegree = 3;
+
+externalDEMNoDataValue = -32767;
+if strcmp(class_DTM,'SRTM 3Sec'); externalDEMNoDataValue = -32768; end
+if strcmp(class_DTM,'SRTM 1Sec HGT'); externalDEMNoDataValue = -32767; end
+
+flag_remove_tmp_files = 1;
