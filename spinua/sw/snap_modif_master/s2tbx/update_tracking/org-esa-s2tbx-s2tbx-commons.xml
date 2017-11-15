@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.commons">
+    <module_version install_time="1480940744708" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2017590245" name="config/Modules/org-esa-s2tbx-s2tbx-commons.xml"/>
+        <file crc="937643154" name="modules/ext/org.esa.s2tbx.s2tbx-commons/commons-io/commons-io.jar"/>
+        <file crc="2022118606" name="modules/ext/org.esa.s2tbx.s2tbx-commons/org-jvnet-jaxb2_commons/jaxb2-basics-runtime.jar"/>
+        <file crc="2760464381" name="modules/ext/org.esa.s2tbx.s2tbx-commons/org-jvnet-ogc/gml-v_3_1_1-schema.jar"/>
+        <file crc="838202300" name="modules/ext/org.esa.s2tbx.s2tbx-commons/org-jvnet-ogc/ogc-tools-gml-jts.jar"/>
+        <file crc="523098442" name="modules/ext/org.esa.s2tbx.s2tbx-commons/org-xeustechnologies/jtar.jar"/>
+        <file crc="3988462620" name="modules/org-esa-s2tbx-s2tbx-commons.jar"/>
+    </module_version>
+</module>

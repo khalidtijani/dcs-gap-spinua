@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.jlinda.jlinda.nest.ui">
+    <module_version install_time="1480940699547" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="452599927" name="config/Modules/org-jlinda-jlinda-nest-ui.xml"/>
+        <file crc="1447882994" name="modules/org-jlinda-jlinda-nest-ui.jar"/>
+    </module_version>
+</module>

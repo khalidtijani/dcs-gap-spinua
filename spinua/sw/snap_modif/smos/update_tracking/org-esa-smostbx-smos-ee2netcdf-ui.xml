@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.ee2netcdf.ui">
+    <module_version install_time="1480940974589" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="3576630880" name="config/Modules/org-esa-smostbx-smos-ee2netcdf-ui.xml"/>
+        <file crc="1812639168" name="modules/org-esa-smostbx-smos-ee2netcdf-ui.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.meris.radiometry.ui">
+    <module_version install_time="1480940868906" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1651312784" name="config/Modules/org-esa-s3tbx-s3tbx-meris-radiometry-ui.xml"/>
+        <file crc="2557119335" name="modules/org-esa-s3tbx-s3tbx-meris-radiometry-ui.jar"/>
+    </module_version>
+</module>

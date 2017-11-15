@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.csa.rstb.rstb.op.polarimetric.tools">
+    <module_version install_time="1480940691629" last="true" origin="installer" specification_version="7.3.0">
+        <file crc="3655575954" name="config/Modules/org-csa-rstb-rstb-op-polarimetric-tools.xml"/>
+        <file crc="341865595" name="modules/ext/org.csa.rstb.rstb-op-polarimetric-tools/org-jblas/jblas.jar"/>
+        <file crc="4016954880" name="modules/org-csa-rstb-rstb-op-polarimetric-tools.jar"/>
+    </module_version>
+</module>

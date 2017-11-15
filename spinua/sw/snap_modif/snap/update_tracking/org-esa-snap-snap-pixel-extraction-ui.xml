@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.pixel.extraction.ui">
+    <module_version install_time="1480940632181" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4008138588" name="config/Modules/org-esa-snap-snap-pixel-extraction-ui.xml"/>
+        <file crc="183747955" name="modules/org-esa-snap-snap-pixel-extraction-ui.jar"/>
+    </module_version>
+</module>

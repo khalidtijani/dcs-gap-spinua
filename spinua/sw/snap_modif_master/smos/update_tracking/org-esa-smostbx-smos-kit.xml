@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.kit">
+    <module_version install_time="1480940981488" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="3679645080" name="config/Modules/org-esa-smostbx-smos-kit.xml"/>
+        <file crc="3153242933" name="modules/org-esa-smostbx-smos-kit.jar"/>
+        <file crc="775909037" name="update_tracking/org-esa-smostbx-smos-kit.xml"/>
+    </module_version>
+</module>

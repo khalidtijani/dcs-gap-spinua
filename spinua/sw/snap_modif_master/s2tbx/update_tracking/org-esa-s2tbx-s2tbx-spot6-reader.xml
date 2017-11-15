@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.spot6.reader">
+    <module_version install_time="1480940774585" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2139756811" name="config/Modules/org-esa-s2tbx-s2tbx-spot6-reader.xml"/>
+        <file crc="1666069541" name="modules/ext/org.esa.s2tbx.s2tbx-spot6-reader/com-github-relaxng/relaxngDatatype.jar"/>
+        <file crc="2486503428" name="modules/ext/org.esa.s2tbx.s2tbx-spot6-reader/com-sun-xsom/xsom.jar"/>
+        <file crc="1049092013" name="modules/ext/org.esa.s2tbx.s2tbx-spot6-reader/commons-lang/commons-lang.jar"/>
+        <file crc="3711624524" name="modules/ext/org.esa.s2tbx.s2tbx-spot6-reader/javax-xml-parsers/jaxp-api.jar"/>
+        <file crc="1263300550" name="modules/ext/org.esa.s2tbx.s2tbx-spot6-reader/relaxngDatatype/relaxngDatatype.jar"/>
+        <file crc="3080788097" name="modules/org-esa-s2tbx-s2tbx-spot6-reader.jar"/>
+    </module_version>
+</module>

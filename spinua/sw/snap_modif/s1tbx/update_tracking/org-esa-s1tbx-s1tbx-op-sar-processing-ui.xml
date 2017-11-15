@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.sar.processing.ui">
+    <module_version install_time="1480940720268" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1143852607" name="config/Modules/org-esa-s1tbx-s1tbx-op-sar-processing-ui.xml"/>
+        <file crc="10088702" name="modules/org-esa-s1tbx-s1tbx-op-sar-processing-ui.jar"/>
+    </module_version>
+</module>

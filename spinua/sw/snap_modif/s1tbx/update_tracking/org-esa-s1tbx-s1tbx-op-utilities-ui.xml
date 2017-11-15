@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.utilities.ui">
+    <module_version install_time="1480940672853" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1436250314" name="config/Modules/org-esa-s1tbx-s1tbx-op-utilities-ui.xml"/>
+        <file crc="4006379110" name="modules/org-esa-s1tbx-s1tbx-op-utilities-ui.jar"/>
+    </module_version>
+</module>

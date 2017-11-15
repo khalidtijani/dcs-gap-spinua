@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.s2msi.aerosol.retrieval">
+    <module_version install_time="1480940765873" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1113303061" name="config/Modules/org-esa-s2tbx-s2tbx-s2msi-aerosol-retrieval.xml"/>
+        <file crc="3839814645" name="modules/org-esa-s2tbx-s2tbx-s2msi-aerosol-retrieval.jar"/>
+    </module_version>
+</module>

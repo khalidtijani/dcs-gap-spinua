@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.reader">
+    <module_version install_time="1480940947711" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="2356574214" name="config/Modules/org-esa-smostbx-smos-reader.xml"/>
+        <file crc="938660682" name="modules/ext/org.esa.smostbx.smos-reader/com-lexicalscope-jewelcli/jewelcli.jar"/>
+        <file crc="1314577782" name="modules/ext/org.esa.smostbx.smos-reader/joda-time/joda-time.jar"/>
+        <file crc="3771856038" name="modules/ext/org.esa.smostbx.smos-reader/net-jcip/jcip-annotations.jar"/>
+        <file crc="2110843376" name="modules/ext/org.esa.smostbx.smos-reader/org-jdom/jdom2.jar"/>
+        <file crc="1898328484" name="modules/ext/org.esa.smostbx.smos-reader/org-slf4j/slf4j-api.jar"/>
+        <file crc="605361746" name="modules/org-esa-smostbx-smos-reader.jar"/>
+    </module_version>
+</module>

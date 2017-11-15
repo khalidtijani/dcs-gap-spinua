@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.sta.adapters.help">
+    <module_version install_time="1480940747542" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4165731229" name="config/Modules/org-esa-s2tbx-s2tbx-sta-adapters-help.xml"/>
+        <file crc="1949510594" name="modules/org-esa-s2tbx-s2tbx-sta-adapters-help.jar"/>
+    </module_version>
+</module>

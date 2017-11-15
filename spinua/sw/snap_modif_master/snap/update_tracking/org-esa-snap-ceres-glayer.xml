@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.ceres.glayer">
+    <module_version install_time="1480940624379" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="25536441" name="config/Modules/org-esa-snap-ceres-glayer.xml"/>
+        <file crc="3039966682" name="modules/org-esa-snap-ceres-glayer.jar"/>
+    </module_version>
+</module>

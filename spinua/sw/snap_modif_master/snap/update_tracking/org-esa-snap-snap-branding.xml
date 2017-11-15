@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.branding">
+    <module_version install_time="1480940624074" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3931444483" name="config/Modules/org-esa-snap-snap-branding.xml"/>
+        <file crc="513193357" name="core/locale/core_snap.jar"/>
+        <file crc="1964727227" name="modules/locale/org-netbeans-core-io-ui_snap.jar"/>
+        <file crc="617970664" name="modules/locale/org-netbeans-core-windows_snap.jar"/>
+        <file crc="263901684" name="modules/locale/org-netbeans-core_snap.jar"/>
+        <file crc="744586495" name="modules/org-esa-snap-snap-branding.jar"/>
+    </module_version>
+</module>

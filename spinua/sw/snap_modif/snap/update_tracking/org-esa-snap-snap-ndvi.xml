@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.ndvi">
+    <module_version install_time="1480940628742" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2953031994" name="config/Modules/org-esa-snap-snap-ndvi.xml"/>
+        <file crc="3676615875" name="modules/docs/org-esa-snap-snap-ndvi.jar"/>
+        <file crc="2934696800" name="modules/org-esa-snap-snap-ndvi.jar"/>
+    </module_version>
+</module>

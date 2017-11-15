@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<module codename="jcl.over.slf4j">
+    <module_version install_time="1480940633339" last="true" origin="installer" specification_version="1.7.5">
+        <file crc="3986432676" name="config/Modules/jcl-over-slf4j.xml"/>
+        <file crc="190292762" name="modules/jcl-over-slf4j.jar"/>
+    </module_version>
+</module>

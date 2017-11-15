@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.sentinel1">
+    <module_version install_time="1480940711468" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1229710555" name="config/Modules/org-esa-s1tbx-s1tbx-op-sentinel1.xml"/>
+        <file crc="2981256057" name="modules/org-esa-s1tbx-s1tbx-op-sentinel1.jar"/>
+    </module_version>
+</module>

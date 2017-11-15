@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.seadas.seadas.reader">
+    <module_version install_time="1480940869138" last="true" origin="installer" specification_version="1.6">
+        <file crc="2954178730" name="config/Modules/org-esa-snap-seadas-seadas-reader.xml"/>
+        <file crc="3605917632" name="modules/org-esa-snap-seadas-seadas-reader.jar"/>
+    </module_version>
+</module>

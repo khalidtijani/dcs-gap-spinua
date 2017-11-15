@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.sar.processing">
+    <module_version install_time="1480940712838" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1387361817" name="config/Modules/org-esa-s1tbx-s1tbx-op-sar-processing.xml"/>
+        <file crc="2576222882" name="modules/org-esa-s1tbx-s1tbx-op-sar-processing.jar"/>
+    </module_version>
+</module>

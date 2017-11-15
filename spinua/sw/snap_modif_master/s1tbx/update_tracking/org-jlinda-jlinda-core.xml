@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.jlinda.jlinda.core">
+    <module_version install_time="1480940672245" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2824328238" name="config/Modules/org-jlinda-jlinda-core.xml"/>
+        <file crc="2940920719" name="modules/ext/org.jlinda.jlinda-core/colt/colt.jar"/>
+        <file crc="3315777451" name="modules/ext/org.jlinda.jlinda-core/com-google-guava/guava.jar"/>
+        <file crc="844828639" name="modules/ext/org.jlinda.jlinda-core/com-googlecode-efficient-java-matrix-library/ejml.jar"/>
+        <file crc="340195383" name="modules/ext/org.jlinda.jlinda-core/com-winvector/wvlpsolver.jar"/>
+        <file crc="2325472648" name="modules/ext/org.jlinda.jlinda-core/concurrent/concurrent.jar"/>
+        <file crc="2639224830" name="modules/ext/org.jlinda.jlinda-core/edu-emory-mathcs/jtransforms.jar"/>
+        <file crc="257218013" name="modules/ext/org.jlinda.jlinda-core/net-sf-trove4j/trove4j.jar"/>
+        <file crc="1200174112" name="modules/ext/org.jlinda.jlinda-core/org-apache-commons/commons-lang3.jar"/>
+        <file crc="341865595" name="modules/ext/org.jlinda.jlinda-core/org-jblas/jblas.jar"/>
+        <file crc="2803580873" name="modules/ext/org.jlinda.jlinda-core/org-perf4j/perf4j.jar"/>
+        <file crc="1645454149" name="modules/ext/org.jlinda.jlinda-core/scpsolver/scpsolver.jar"/>
+        <file crc="173401005" name="modules/org-jlinda-jlinda-core.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.gui">
+    <module_version install_time="1480940968333" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="3060634499" name="config/Modules/org-esa-smostbx-smos-gui.xml"/>
+        <file crc="3198608152" name="modules/docs/org-esa-smostbx-smos-gui.jar"/>
+        <file crc="3866254164" name="modules/ext/org.esa.smostbx.smos-gui/jfree/jcommon.jar"/>
+        <file crc="3281100986" name="modules/ext/org.esa.smostbx.smos-gui/jfree/jfreechart.jar"/>
+        <file crc="922709248" name="modules/org-esa-smostbx-smos-gui.jar"/>
+    </module_version>
+</module>

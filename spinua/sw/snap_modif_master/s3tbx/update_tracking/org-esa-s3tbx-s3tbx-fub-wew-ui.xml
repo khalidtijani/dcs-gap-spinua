@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.fub.wew.ui">
+    <module_version install_time="1480940864926" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="817455458" name="config/Modules/org-esa-s3tbx-s3tbx-fub-wew-ui.xml"/>
+        <file crc="1624041716" name="modules/org-esa-s3tbx-s3tbx-fub-wew-ui.jar"/>
+    </module_version>
+</module>

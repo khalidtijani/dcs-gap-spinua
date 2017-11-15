@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.modis.reader">
+    <module_version install_time="1480940848150" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1299222968" name="config/Modules/org-esa-s3tbx-s3tbx-modis-reader.xml"/>
+        <file crc="726498037" name="modules/org-esa-s3tbx-s3tbx-modis-reader.jar"/>
+    </module_version>
+</module>

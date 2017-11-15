@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.cluster.analysis">
+    <module_version install_time="1480940627681" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3609927404" name="config/Modules/org-esa-snap-snap-cluster-analysis.xml"/>
+        <file crc="3732144573" name="modules/docs/org-esa-snap-snap-cluster-analysis.jar"/>
+        <file crc="844828639" name="modules/ext/org.esa.snap.snap-cluster-analysis/com-googlecode-efficient-java-matrix-library/ejml.jar"/>
+        <file crc="1333648702" name="modules/org-esa-snap-snap-cluster-analysis.jar"/>
+    </module_version>
+</module>

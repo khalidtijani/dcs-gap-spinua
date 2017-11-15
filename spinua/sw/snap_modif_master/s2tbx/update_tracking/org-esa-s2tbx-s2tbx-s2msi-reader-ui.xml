@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.s2msi.reader.ui">
+    <module_version install_time="1480940794597" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="611641987" name="config/Modules/org-esa-s2tbx-s2tbx-s2msi-reader-ui.xml"/>
+        <file crc="3281421761" name="modules/org-esa-s2tbx-s2tbx-s2msi-reader-ui.jar"/>
+    </module_version>
+</module>

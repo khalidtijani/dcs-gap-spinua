@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.idepix">
+    <module_version install_time="1480940874912" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1410320436" name="config/Modules/org-esa-s3tbx-s3tbx-idepix.xml"/>
+        <file crc="3352675223" name="modules/org-esa-s3tbx-s3tbx-idepix.jar"/>
+    </module_version>
+</module>

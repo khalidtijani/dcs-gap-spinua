@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.utilities">
+    <module_version install_time="1480940667816" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="816508448" name="config/Modules/org-esa-s1tbx-s1tbx-op-utilities.xml"/>
+        <file crc="2639224830" name="modules/ext/org.esa.s1tbx.s1tbx-op-utilities/edu-emory-mathcs/jtransforms.jar"/>
+        <file crc="108562164" name="modules/org-esa-s1tbx-s1tbx-op-utilities.jar"/>
+    </module_version>
+</module>

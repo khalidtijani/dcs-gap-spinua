@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.dgg">
+    <module_version install_time="1480940914357" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="3464681262" name="config/Modules/org-esa-smostbx-smos-dgg.xml"/>
+        <file crc="131301135" name="modules/org-esa-smostbx-smos-dgg.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.rcp">
+    <module_version install_time="1480940630846" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="458777000" name="config/Modules/org-esa-snap-snap-rcp.xml"/>
+        <file crc="1478889953" name="modules/ext/org.esa.snap.snap-rcp/org-esa-snap/snap-main.jar"/>
+        <file crc="3781951909" name="modules/ext/org.esa.snap.snap-rcp/org-esa-snap/snap-runtime.jar"/>
+        <file crc="1361364200" name="modules/ext/org.esa.snap.snap-rcp/org-netbeans-external/beansbinding-1.2.1.jar"/>
+        <file crc="2275067241" name="modules/org-esa-snap-snap-rcp.jar"/>
+    </module_version>
+</module>

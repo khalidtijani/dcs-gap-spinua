@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.feature.extraction.ui">
+    <module_version install_time="1480940717790" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1627578805" name="config/Modules/org-esa-s1tbx-s1tbx-op-feature-extraction-ui.xml"/>
+        <file crc="2765976698" name="modules/org-esa-s1tbx-s1tbx-op-feature-extraction-ui.jar"/>
+    </module_version>
+</module>

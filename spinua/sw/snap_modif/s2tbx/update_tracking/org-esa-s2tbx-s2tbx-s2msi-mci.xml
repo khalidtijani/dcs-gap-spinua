@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.s2msi.mci">
+    <module_version install_time="1480940747352" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="680825751" name="config/Modules/org-esa-s2tbx-s2tbx-s2msi-mci.xml"/>
+        <file crc="4023675566" name="modules/org-esa-s2tbx-s2tbx-s2msi-mci.jar"/>
+    </module_version>
+</module>

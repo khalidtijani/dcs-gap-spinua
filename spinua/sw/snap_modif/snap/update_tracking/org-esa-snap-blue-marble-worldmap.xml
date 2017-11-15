@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.blue.marble.worldmap">
+    <module_version install_time="1480940629789" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1781286235" name="config/Modules/org-esa-snap-blue-marble-worldmap.xml"/>
+        <file crc="3231942417" name="modules/org-esa-snap-blue-marble-worldmap.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.landsat.reader">
+    <module_version install_time="1480940841510" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1501207147" name="config/Modules/org-esa-s3tbx-s3tbx-landsat-reader.xml"/>
+        <file crc="1270409307" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/c3p0/c3p0.jar"/>
+        <file crc="3836529458" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/com-google-protobuf/protobuf-java.jar"/>
+        <file crc="291165397" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/com-sleepycat/je.jar"/>
+        <file crc="851042957" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/com-sun-jna/jna.jar"/>
+        <file crc="2758999489" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/commons-codec/commons-codec.jar"/>
+        <file crc="1640872803" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/commons-httpclient/commons-httpclient.jar"/>
+        <file crc="3337886769" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/edu-ucar/netcdf.jar"/>
+        <file crc="2362415134" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/edu-ucar/udunits.jar"/>
+        <file crc="1314577782" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/joda-time/joda-time.jar"/>
+        <file crc="3771856038" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/net-jcip/jcip-annotations.jar"/>
+        <file crc="37478872" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/net-sf-ehcache/ehcache-core.jar"/>
+        <file crc="193794076" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/org-quartz-scheduler/quartz.jar"/>
+        <file crc="1898328484" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/org-slf4j/slf4j-api.jar"/>
+        <file crc="523098442" name="modules/ext/org.esa.s3tbx.s3tbx-landsat-reader/org-xeustechnologies/jtar.jar"/>
+        <file crc="803109329" name="modules/org-esa-s3tbx-s3tbx-landsat-reader.jar"/>
+    </module_version>
+</module>

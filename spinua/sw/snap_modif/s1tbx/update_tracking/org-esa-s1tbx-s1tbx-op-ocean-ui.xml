@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.ocean.ui">
+    <module_version install_time="1480940669260" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4254793638" name="config/Modules/org-esa-s1tbx-s1tbx-op-ocean-ui.xml"/>
+        <file crc="714560384" name="modules/org-esa-s1tbx-s1tbx-op-ocean-ui.jar"/>
+    </module_version>
+</module>

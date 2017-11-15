@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.classification">
+    <module_version install_time="1480940626133" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1983297666" name="config/Modules/org-esa-snap-snap-classification.xml"/>
+        <file crc="2853351417" name="modules/ext/org.esa.snap.snap-classification/be-abeel/ajt.jar"/>
+        <file crc="2250598882" name="modules/ext/org.esa.snap.snap-classification/com-github-fommil-netlib/core.jar"/>
+        <file crc="3315777451" name="modules/ext/org.esa.snap.snap-classification/com-google-guava/guava.jar"/>
+        <file crc="3863791237" name="modules/ext/org.esa.snap.snap-classification/com-googlecode-matrix-toolkits-java/mtj.jar"/>
+        <file crc="1736008316" name="modules/ext/org.esa.snap.snap-classification/com-googlecode-netlib-java/netlib-java.jar"/>
+        <file crc="3618374091" name="modules/ext/org.esa.snap.snap-classification/net-sf/javaml.jar"/>
+        <file crc="3433447400" name="modules/ext/org.esa.snap.snap-classification/net-sourceforge-f2j/arpack_combined_all.jar"/>
+        <file crc="725614428" name="modules/ext/org.esa.snap.snap-classification/nz-ac-waikato-cms-weka-thirdparty/bounce.jar"/>
+        <file crc="3984444497" name="modules/ext/org.esa.snap.snap-classification/nz-ac-waikato-cms-weka-thirdparty/java-cup-11b-runtime.jar"/>
+        <file crc="2668152492" name="modules/ext/org.esa.snap.snap-classification/nz-ac-waikato-cms-weka-thirdparty/java-cup-11b.jar"/>
+        <file crc="1576810034" name="modules/ext/org.esa.snap.snap-classification/nz-ac-waikato-cms-weka/LibSVM.jar"/>
+        <file crc="2848000357" name="modules/ext/org.esa.snap.snap-classification/nz-ac-waikato-cms-weka/weka-dev.jar"/>
+        <file crc="63260968" name="modules/ext/org.esa.snap.snap-classification/tw-edu-ntu-csie/libsvm.jar"/>
+        <file crc="1706174363" name="modules/org-esa-snap-snap-classification.jar"/>
+    </module_version>
+</module>

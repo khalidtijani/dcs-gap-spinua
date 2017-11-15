@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.ceres.metadata">
+    <module_version install_time="1480940626730" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2816369407" name="config/Modules/org-esa-snap-ceres-metadata.xml"/>
+        <file crc="594972166" name="modules/org-esa-snap-ceres-metadata.jar"/>
+    </module_version>
+</module>

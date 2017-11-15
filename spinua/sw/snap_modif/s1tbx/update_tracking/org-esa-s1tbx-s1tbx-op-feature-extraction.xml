@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.feature.extraction">
+    <module_version install_time="1480940706113" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2721532676" name="config/Modules/org-esa-s1tbx-s1tbx-op-feature-extraction.xml"/>
+        <file crc="2639224830" name="modules/ext/org.esa.s1tbx.s1tbx-op-feature-extraction/edu-emory-mathcs/jtransforms.jar"/>
+        <file crc="2293889183" name="modules/org-esa-s1tbx-s1tbx-op-feature-extraction.jar"/>
+    </module_version>
+</module>

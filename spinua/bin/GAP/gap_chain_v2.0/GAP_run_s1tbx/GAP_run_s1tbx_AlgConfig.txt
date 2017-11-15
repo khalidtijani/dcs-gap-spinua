@@ -1,0 +1,10 @@
+busy_nsecWait=60;
+busy_nAttempts=60;
+flag_checkfolder=1;
+% --- select only one flag ---
+flag_execute_s1tbx_v1_1_1 = 0; 
+flag_execute_snap_v3_0 = 0; 
+flag_execute_snap_v4_0 = 0; 
+flag_execute_snap_v5_0 = 1; 
+% ---------------------
+

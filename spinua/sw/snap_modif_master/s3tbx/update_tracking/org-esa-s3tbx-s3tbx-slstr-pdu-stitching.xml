@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.slstr.pdu.stitching">
+    <module_version install_time="1480940870219" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4017995836" name="config/Modules/org-esa-s3tbx-s3tbx-slstr-pdu-stitching.xml"/>
+        <file crc="495577133" name="modules/org-esa-s3tbx-s3tbx-slstr-pdu-stitching.jar"/>
+    </module_version>
+</module>

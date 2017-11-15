@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.s2msi.reader">
+    <module_version install_time="1480940789513" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3639965888" name="config/Modules/org-esa-s2tbx-s2tbx-s2msi-reader.xml"/>
+        <file crc="470882901" name="modules/docs/org-esa-s2tbx-s2tbx-s2msi-reader.jar"/>
+        <file crc="2486503428" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/com-sun-xsom/xsom.jar"/>
+        <file crc="937643154" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/commons-io/commons-io.jar"/>
+        <file crc="1049092013" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/commons-lang/commons-lang.jar"/>
+        <file crc="3711624524" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/javax-xml-parsers/jaxp-api.jar"/>
+        <file crc="4042499722" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/org-xerial/sqlite-jdbc.jar"/>
+        <file crc="1263300550" name="modules/ext/org.esa.s2tbx.s2tbx-s2msi-reader/relaxngDatatype/relaxngDatatype.jar"/>
+        <file crc="1194623467" name="modules/org-esa-s2tbx-s2tbx-s2msi-reader.jar"/>
+    </module_version>
+</module>

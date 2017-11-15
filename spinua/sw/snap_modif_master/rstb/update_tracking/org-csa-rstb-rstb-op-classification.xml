@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.csa.rstb.rstb.op.classification">
+    <module_version install_time="1480940698341" last="true" origin="installer" specification_version="7.3.0">
+        <file crc="2813613642" name="config/Modules/org-csa-rstb-rstb-op-classification.xml"/>
+        <file crc="1114597348" name="modules/org-csa-rstb-rstb-op-classification.jar"/>
+    </module_version>
+</module>

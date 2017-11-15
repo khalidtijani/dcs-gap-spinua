@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.graph.builder">
+    <module_version install_time="1480940630360" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1307101713" name="config/Modules/org-esa-snap-snap-graph-builder.xml"/>
+        <file crc="3912025146" name="modules/org-esa-snap-snap-graph-builder.jar"/>
+    </module_version>
+</module>

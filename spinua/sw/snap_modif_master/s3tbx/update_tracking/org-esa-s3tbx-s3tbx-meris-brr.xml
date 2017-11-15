@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.meris.brr">
+    <module_version install_time="1480940858734" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4134028638" name="config/Modules/org-esa-s3tbx-s3tbx-meris-brr.xml"/>
+        <file crc="1376509351" name="modules/org-esa-s3tbx-s3tbx-meris-brr.jar"/>
+    </module_version>
+</module>

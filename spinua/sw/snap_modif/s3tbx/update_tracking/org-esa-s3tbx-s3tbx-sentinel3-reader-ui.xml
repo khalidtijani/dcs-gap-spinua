@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.sentinel3.reader.ui">
+    <module_version install_time="1480940868369" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1722808229" name="config/Modules/org-esa-s3tbx-s3tbx-sentinel3-reader-ui.xml"/>
+        <file crc="4110803518" name="modules/org-esa-s3tbx-s3tbx-sentinel3-reader-ui.jar"/>
+    </module_version>
+</module>

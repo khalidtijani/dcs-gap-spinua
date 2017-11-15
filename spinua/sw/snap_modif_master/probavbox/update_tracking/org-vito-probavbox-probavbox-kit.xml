@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.vito.probavbox.probavbox.kit">
+    <module_version install_time="1480941000321" last="true" origin="installer" specification_version="1.0.0">
+        <file crc="1698090974" name="config/Modules/org-vito-probavbox-probavbox-kit.xml"/>
+        <file crc="3678805160" name="modules/org-vito-probavbox-probavbox-kit.jar"/>
+        <file crc="1508733115" name="update_tracking/org-vito-probavbox-probavbox-kit.xml"/>
+    </module_version>
+</module>

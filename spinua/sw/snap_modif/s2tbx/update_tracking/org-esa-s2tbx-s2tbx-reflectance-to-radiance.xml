@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s2tbx.s2tbx.reflectance.to.radiance">
+    <module_version install_time="1480940763450" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3654880051" name="config/Modules/org-esa-s2tbx-s2tbx-reflectance-to-radiance.xml"/>
+        <file crc="2155733520" name="modules/org-esa-s2tbx-s2tbx-reflectance-to-radiance.jar"/>
+    </module_version>
+</module>

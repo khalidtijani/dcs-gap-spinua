@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.rcp">
+    <module_version install_time="1480940693418" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="475756243" name="config/Modules/org-esa-s1tbx-s1tbx-rcp.xml"/>
+        <file crc="4268722381" name="modules/org-esa-s1tbx-s1tbx-rcp.jar"/>
+    </module_version>
+</module>

@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.unmix">
+    <module_version install_time="1480940629569" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4242876253" name="config/Modules/org-esa-snap-snap-unmix.xml"/>
+        <file crc="1590582504" name="modules/org-esa-snap-snap-unmix.jar"/>
+    </module_version>
+</module>

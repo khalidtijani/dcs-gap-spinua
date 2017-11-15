@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.raster.ui">
+    <module_version install_time="1480940630690" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="56761740" name="config/Modules/org-esa-snap-snap-raster-ui.xml"/>
+        <file crc="2472081357" name="modules/org-esa-snap-snap-raster-ui.jar"/>
+    </module_version>
+</module>

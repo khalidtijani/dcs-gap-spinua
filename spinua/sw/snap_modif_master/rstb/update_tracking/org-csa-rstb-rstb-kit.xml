@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.csa.rstb.rstb.kit">
+    <module_version install_time="1480940716908" last="true" origin="installer" specification_version="7.3.0">
+        <file crc="2585838484" name="config/Modules/org-csa-rstb-rstb-kit.xml"/>
+        <file crc="621705432" name="modules/org-csa-rstb-rstb-kit.jar"/>
+    </module_version>
+</module>

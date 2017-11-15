@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.dem.ui">
+    <module_version install_time="1480940626530" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1683788535" name="config/Modules/org-esa-snap-snap-dem-ui.xml"/>
+        <file crc="2713891820" name="modules/org-esa-snap-snap-dem-ui.jar"/>
+    </module_version>
+</module>

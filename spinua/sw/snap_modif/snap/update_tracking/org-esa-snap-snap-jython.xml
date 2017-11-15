@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.jython">
+    <module_version install_time="1480940628570" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3381654539" name="config/Modules/org-esa-snap-snap-jython.xml"/>
+        <file crc="1153031859" name="modules/ext/org.esa.snap.snap-jython/org-python/jython-standalone.jar"/>
+        <file crc="2281359963" name="modules/org-esa-snap-snap-jython.jar"/>
+    </module_version>
+</module>

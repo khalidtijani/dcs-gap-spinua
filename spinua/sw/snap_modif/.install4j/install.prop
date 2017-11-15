@@ -1,0 +1,7 @@
+#
+#Sat Feb 11 16:08:35 CET 2017
+launcher3=/lustrehome/rsg01/sw/snap/snap_v5_0/snap_modif/bin/snap-conf-optimiser
+launcher2=/lustrehome/rsg01/sw/snap/snap_v5_0/snap_modif/bin/smos-grid-point-exporter
+launcher1=/lustrehome/rsg01/sw/snap/snap_v5_0/snap_modif/bin/gpt
+launcher0=/lustrehome/rsg01/sw/snap/snap_v5_0/snap_modif/bin/pconvert
+languageId=en

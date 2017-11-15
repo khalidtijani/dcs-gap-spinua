@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.kit">
+    <module_version install_time="1480940727094" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2629561637" name="config/Modules/org-esa-s1tbx-s1tbx-kit.xml"/>
+        <file crc="1490292749" name="modules/org-esa-s1tbx-s1tbx-kit.jar"/>
+        <file crc="2024953261" name="update_tracking/org-esa-s1tbx-s1tbx-kit.xml"/>
+    </module_version>
+</module>

@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.op.sentinel1.ui">
+    <module_version install_time="1480940719806" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="630624598" name="config/Modules/org-esa-s1tbx-s1tbx-op-sentinel1-ui.xml"/>
+        <file crc="2089997325" name="modules/ext/org.esa.s1tbx.s1tbx-op-sentinel1-ui/de-sciss/prefuse-core.jar"/>
+        <file crc="997030388" name="modules/ext/org.esa.s1tbx.s1tbx-op-sentinel1-ui/lucene/lucene.jar"/>
+        <file crc="3626651237" name="modules/org-esa-s1tbx-s1tbx-op-sentinel1-ui.jar"/>
+    </module_version>
+</module>

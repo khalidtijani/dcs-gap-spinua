@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.ceres.jai">
+    <module_version install_time="1480940624690" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="4146066769" name="config/Modules/org-esa-snap-ceres-jai.xml"/>
+        <file crc="803556989" name="modules/ext/org.esa.snap.ceres-jai/com-sun-media/clibwrapper-jiio.jar"/>
+        <file crc="3630654271" name="modules/ext/org.esa.snap.ceres-jai/com-sun-media/jai-imageio.jar"/>
+        <file crc="3131742226" name="modules/ext/org.esa.snap.ceres-jai/it-geosolutions-imageio-ext/imageio-ext-geocore.jar"/>
+        <file crc="924097602" name="modules/ext/org.esa.snap.ceres-jai/it-geosolutions-imageio-ext/imageio-ext-streams.jar"/>
+        <file crc="2101096345" name="modules/ext/org.esa.snap.ceres-jai/it-geosolutions-imageio-ext/imageio-ext-tiff.jar"/>
+        <file crc="1361839089" name="modules/ext/org.esa.snap.ceres-jai/it-geosolutions-imageio-ext/imageio-ext-utilities.jar"/>
+        <file crc="831470086" name="modules/ext/org.esa.snap.ceres-jai/javax-media-jai/jai-codec.jar"/>
+        <file crc="1342344976" name="modules/ext/org.esa.snap.ceres-jai/javax-media-jai/jai-core.jar"/>
+        <file crc="3476756956" name="modules/ext/org.esa.snap.ceres-jai/javax-media-jai/mlibwrapper-jai.jar"/>
+        <file crc="2110843376" name="modules/ext/org.esa.snap.ceres-jai/org-jdom/jdom2.jar"/>
+        <file crc="3730529240" name="modules/ext/org.esa.snap.ceres-jai/rhino/js.jar"/>
+        <file crc="2371392032" name="modules/org-esa-snap-ceres-jai.jar"/>
+    </module_version>
+</module>

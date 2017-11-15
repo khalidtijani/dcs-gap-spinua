@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.envi.reader">
+    <module_version install_time="1480940627903" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2483725327" name="config/Modules/org-esa-snap-snap-envi-reader.xml"/>
+        <file crc="27619710" name="modules/docs/org-esa-snap-snap-envi-reader.jar"/>
+        <file crc="1944088462" name="modules/org-esa-snap-snap-envi-reader.jar"/>
+    </module_version>
+</module>

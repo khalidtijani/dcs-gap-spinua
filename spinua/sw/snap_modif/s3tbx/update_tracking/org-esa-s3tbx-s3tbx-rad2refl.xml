@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.rad2refl">
+    <module_version install_time="1480940825326" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="934596189" name="config/Modules/org-esa-s3tbx-s3tbx-rad2refl.xml"/>
+        <file crc="3662535243" name="modules/org-esa-s3tbx-s3tbx-rad2refl.jar"/>
+    </module_version>
+</module>

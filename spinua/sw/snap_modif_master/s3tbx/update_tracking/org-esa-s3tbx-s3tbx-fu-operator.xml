@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s3tbx.s3tbx.fu.operator">
+    <module_version install_time="1480940836025" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="3657695788" name="config/Modules/org-esa-s3tbx-s3tbx-fu-operator.xml"/>
+        <file crc="172855714" name="modules/docs/org-esa-s3tbx-s3tbx-fu-operator.jar"/>
+        <file crc="3886308798" name="modules/org-esa-s3tbx-s3tbx-fu-operator.jar"/>
+    </module_version>
+</module>

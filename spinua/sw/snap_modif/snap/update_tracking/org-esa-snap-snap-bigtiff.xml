@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.snap.snap.bigtiff">
+    <module_version install_time="1480940627617" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="1571507740" name="config/Modules/org-esa-snap-snap-bigtiff.xml"/>
+        <file crc="1305357312" name="modules/org-esa-snap-snap-bigtiff.jar"/>
+    </module_version>
+</module>

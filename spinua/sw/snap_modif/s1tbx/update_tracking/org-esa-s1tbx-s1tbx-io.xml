@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.s1tbx.s1tbx.io">
+    <module_version install_time="1480940685093" last="true" origin="installer" specification_version="5.0.0">
+        <file crc="2100241122" name="config/Modules/org-esa-s1tbx-s1tbx-io.xml"/>
+        <file crc="1674368458" name="modules/docs/org-esa-s1tbx-s1tbx-io.jar"/>
+        <file crc="385986361" name="modules/ext/org.esa.s1tbx.s1tbx-io/org-apache-commons/commons-math3.jar"/>
+        <file crc="3136358475" name="modules/ext/org.esa.s1tbx.s1tbx-io/org-jsoup/jsoup.jar"/>
+        <file crc="3243956773" name="modules/org-esa-s1tbx-s1tbx-io.jar"/>
+    </module_version>
+</module>

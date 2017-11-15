@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?><module codename="org.esa.smostbx.smos.lsmask">
+    <module_version install_time="1480940908962" last="true" origin="installer" specification_version="5.3.0">
+        <file crc="3004706081" name="config/Modules/org-esa-smostbx-smos-lsmask.xml"/>
+        <file crc="3899463829" name="modules/org-esa-smostbx-smos-lsmask.jar"/>
+    </module_version>
+</module>
