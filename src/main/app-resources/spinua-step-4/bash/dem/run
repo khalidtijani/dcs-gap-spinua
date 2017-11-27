@@ -2,6 +2,9 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
+
+export MATLAB_SHELL=
+
 source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
 export USER=khalidtijani

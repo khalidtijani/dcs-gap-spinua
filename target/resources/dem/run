@@ -2,10 +2,28 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
+
+export MATLAB_SHELL=
+
 source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
-#export MCR_ROOT=/opt/MCR_R2016b
-#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+export USER=khalidtijani
+export STORAGE=/data/input/storage2
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+export JAVA_HOME=/usr/java/jdk1.6.0_35/jre
+export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:${PATH}
+
+export MCR_ROOT=/opt/MCR_R2016b
+export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+echo $CLASSPATH
+export CLASSPATH=${MCR_ROOT}/v91/toolbox/javabuilder/jar:$CLASSPATH
+echo $CLASSPATH
+export _JAVA_OPTIONS="-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m"
+#-Xmx1024M -XX:MaxPermSize=512m
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -48,12 +66,12 @@ source /home/khalidtijani/.bashrc
     #defines the input
     
     ver=$( echo "${1}" | cut -d";" -f1 )
- #   ciop-log "INFO" "The version $ver for spinua chain"
- #   [ -z "${ver}" ] && return ${ERR_NOARG}
+    ciop-log "INFO" "The version $ver for spinua chain"
+    [ -z "${ver}" ] && return ${ERR_NOARG}
 
     step=$( echo "${1}" | cut -d";" -f2 )
- #   ciop-log "INFO" "Th step $step for spinua chain"
- #   [ -z "${step}" ] && return ${ERR_NOARG}
+    ciop-log "INFO" "Th step $step for spinua chain"
+   [ -z "${step}" ] && return ${ERR_NOARG}
 
 
 
@@ -62,38 +80,49 @@ source /home/khalidtijani/.bashrc
     #ver=$1
     #local step
     #step="X0"
-    ciop-log "INFO" "The version $ver for spinua chain"
-    ciop-log "INFO" "Th step $step for spinua chain"  
+    #ciop-log "INFO" "The version $ver for spinua chain"
+    #ciop-log "INFO" "Th step $step for spinua chain"  
 
 #  step=$1
     # retrieve the parameters value from workflow or job default value
-    stringin="`ciop-getparam stringarg`"
-    
-    ciop-log "DEBUG" "The Input String for echo using system cmd of matlab is: ${stringin}"
-      # run a check on the expression value, it can't be empty
-    [ -z "$stringin" ] && exit $ERR_NOARG
-    
-    # log the value, it helps debugging. 
-    # the log entry is available in the process stderr 
-    ciop-log "DEBUG" "The Input String for echo using system cmd of matlab is: ${stringin}"
 
+    rootFolder="`ciop-getparam rootFolder`"
+    ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+
+    # run a check on the expression value, it can't be empty
+    [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$step" ] && exit $ERR_NOARG
+
+
+    # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
 
-    
-    # prepare the SPINUA Step request
 
-    # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Fun_callsystem  $stringin    &> /tmp/log.txt 
+    # prepare the SPINUA Step request
     
+    # invoke the Main SPINUA run binary
+    #export PATH=/usr/local/bin:/usr/bin:${PATH} 
+    #unzip --version 
+    #which unzip
+     
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - GAP_DEM_preprocessing_AlgConfig.txt  &> /dev/null
+
+         
+    #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
+    ciop-log "INFO" "check the exit code $? for spinua chain"
+
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L1_SM_selection"
+
+    
   
     # publish the compressed results
-    ciop-log "INFO" "The Result is saved as namedataset.list01 namedataset.list02 namedataset.list03 in this path ${outputfolder} "
-    ciop-log "INFO" "Publishing ${stringin} " 
+    ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
+    ciop-log "INFO" "Publishing ${outputfolder} " 
     
 
     # cleanup
