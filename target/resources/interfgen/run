@@ -2,6 +2,9 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
+
+source $_CIOP_APPLICATION_PATH/gpt/snap_include.sh
+
 export MATLAB_SHELL=
 
 source /home/khalidtijani/.bashrc
