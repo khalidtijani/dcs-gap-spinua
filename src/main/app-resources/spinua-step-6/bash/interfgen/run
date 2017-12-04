@@ -87,9 +87,13 @@ source /home/khalidtijani/.bashrc
 
     rootFolder="`ciop-getparam rootFolder`"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
-
+    
+    numifg="`ciop-getparam numifg`"
+    ciop-log "DEBUG" "The Interferogram Generation number : ${numifg}"
+     
     # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$numifg" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
 
 
@@ -104,8 +108,13 @@ source /home/khalidtijani/.bashrc
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-     
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
+   rm -rf /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/status/busy* 
+   touch /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/status/done0000
+   # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
+
+    $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
+
+    #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
 
 
          
