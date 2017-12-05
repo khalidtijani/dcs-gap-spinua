@@ -1,0 +1,14 @@
+% --- debug --- 
+flag_step01_SNAP_geocoding = 0;
+flag_step02_DORIS_geocoding = 1; % 0=disable; 1=enable only DORIS geocoding (DTM radarcoded imported from SNAP); 2=enable DEM radarcoding + geocoding with DORIS
+flag_step03_link_geocoding = 0; % select 0 for DORIS, 1 for SNAP
+% ------------- 
+
+busy_nsecWait=60;
+busy_nAttempts=0;
+flag_checkfolder=1;
+ENDIANNESS = 'l'; % do not modify
+PRECISION = 'float32'; % do not modify
+skipPix=2; % for kmlfile
+
+flag_remove_tmp_files=0;

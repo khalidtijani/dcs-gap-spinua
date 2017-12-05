@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
+  <jobTemplates>
+    <jobTemplate id="geocoding">
+      <streamingExecutable>/application/geocoding/run</streamingExecutable>
+      <defaultParameters>
+        <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
+      </defaultParameters>
+    <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000</property>
+      </defaultJobconf>
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="spinua-step-7" title="Geocoding" abstract="Test Geocoding">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node_geocoding">
+      <job id="geocoding"/>
+ <sources>
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;04</source>  
+</sources>
+<parameters>
+</parameters>
+</node>
+
+  </workflow>
+</application>
