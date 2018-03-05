@@ -5,7 +5,7 @@
       <streamingExecutable>/application/interfgen/run</streamingExecutable>
       <defaultParameters>
         <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
-        <parameter id="numifg" title="The Interferogram Generation number" abstract="Define number of the Interferogram " scope="runtime" maxOccurs="1">1</parameter>
+        <parameter id="numifg" title="The Interferogram Generation number" abstract="Define number of the Interferogram " scope="runtime" maxOccurs="1">10</parameter>
       </defaultParameters>
     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>

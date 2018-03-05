@@ -111,11 +111,6 @@ source /home/khalidtijani/.bashrc
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-   rm -rf /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/status/busy* 
-   rm -rf /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/status/error*
-   touch /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/status/done0000
-   rm -rf /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/out/*.dim*
-   rm -rf /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/out/*.data.*
    # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
 
     $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
