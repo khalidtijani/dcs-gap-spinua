@@ -1,2 +1,2 @@
 InstallationFolder='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0/GAP_SAR_geocoding';
-MainOutFolder='/data/input/storage3/S1Data';
+MainOutFolder='/data/input/storage2/S1Data';

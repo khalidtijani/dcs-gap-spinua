@@ -2,9 +2,6 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
-
-source $_CIOP_APPLICATION_PATH/gpt/snap_include.sh
-
 export MATLAB_SHELL=
 
 source /home/khalidtijani/.bashrc
@@ -16,16 +13,10 @@ export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
 export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
-#export JAVA_HOME=/usr/java/jdk1.6.0_35/jre
-#export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:/opt/snap-5.0/bin:${PATH}
+export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
 export MCR_ROOT=/opt/MCR_R2016b
 export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-#echo $CLASSPATH
-#export CLASSPATH=${MCR_ROOT}/v91/toolbox/javabuilder/jar:$CLASSPATH
-#echo $CLASSPATH
-#export _JAVA_OPTIONS="-Xms512m -Xmx1024m -XX:PermSize=128m -XX:MaxPermSize=256m"
-#-Xmx1024M -XX:MaxPermSize=512m
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -90,13 +81,9 @@ source /home/khalidtijani/.bashrc
 
     rootFolder="`ciop-getparam rootFolder`"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
-    
-    numifg="`ciop-getparam numifg`"
-    ciop-log "DEBUG" "The Interferogram Generation number : ${numifg}"
-     
+
     # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
-    [ -z "$numifg" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
 
 
@@ -111,11 +98,8 @@ source /home/khalidtijani/.bashrc
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-   # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
-
-    $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
-
-    #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
+    
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV GAP_SAR_geocoding_AlgConfig.txt &> /dev/null
 
 
          
