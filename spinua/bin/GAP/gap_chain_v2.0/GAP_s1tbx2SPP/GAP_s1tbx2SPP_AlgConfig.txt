@@ -1,0 +1,47 @@
+UPDATE_FLAG = 'y';
+
+busy_nsecWait=60;
+busy_nAttempts=0;
+flag_checkfolder=1;
+latlon_decimL=5*2;
+latlon_decimP=20*2;
+
+extra_lin=50;
+extra_pix=200;
+
+skipPix=2; % for kmlfile
+
+% --- debug --- 
+flag_step01_convert_IQ2CPX = 1;
+flag_step02_resfile_generation = 1;
+flag_step03_compute_baseline = 1;
+flag_step04_make_SPINUA_DB = 1;
+flag_step05_remove_linear_trend = 0;
+flag_step06_remove_APS_master = 0;
+flag_step07_remove_delta_linear_trend = 0;
+flag_step08_remove_delta_APS_master = 0;
+flag_step09_high_pass_filter = 0; %1;
+flag_step10_high_pass_filter_unmasked = 0;
+% ------------- 
+
+flag_include_RESORB=1;
+
+flag_exportCPX=0;
+flag_exportAmplPhase=1;
+flag_compute_statistics=0;
+AntiPS_sizeDiskErosion = 0; % 51;
+boundaryDecFact = 0; % 100;
+
+COH_sizeP=11;
+COH_sizeL=11;
+NpixHighCoh_THperc=10;
+thCOH=NaN;
+
+HPfilterL=101;
+HPfilterP=401;
+
+ENDIANNESS = 'l'; % do not modify
+PRECISION = 'float32'; % do not modify
+
+flag_remove_tmp_files = 1;
+flag_move_tmp_files_previous_steps = 0;
