@@ -1,0 +1,20 @@
+#!/bin/bash  
+
+# Step 1 - Parameters
+pathrunLinkL5ToL9_SPINUA_GEP=/home/khalidtijani/Spinua/bin/GAP/gap_chain_v2.0/SPINUA_GEP_v3/runLinkL5ToL9_SPINUA_GEP
+L5RootDir=/data/input/storage/S1Data/datasetN073VVorb124_ID01/L5_SPP/786ee3b5-0dfe-4513-8558-8ab8c0c542f2/IW2_VV/LAT37.01_37.09LON14.20_14.35/out
+PatchGeoCoordTxtFile=/home/khalidtijani/Spinua/bin/GAP/gap_chain_v2.0/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt
+inPrmFileName=/home/khalidtijani/Spinua/bin/GAP/gap_chain_v2.0/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/Prm_SPINUA_GEP_TemplateLinkL5ToL9.m
+outPrmFileName=/data/input/storage/S1Data/datasetN073VVorb124_ID01/L5_SPP/786ee3b5-0dfe-4513-8558-8ab8c0c542f2/IW2_VV/LAT37.01_37.09LON14.20_14.35/out/Prm_SPINUA_GEP_OperationalLinkL5ToL9.m
+ 
+# Step 2 - Parameters
+pathrunSPINUA_L7ToL13_GEP=/home/khalidtijani/Spinua/bin/GAP/gap_chain_v2.0/SPINUA_GEP_v3/SPINUA_Main_GEP
+
+# Step 1 - Execution
+echo $pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileName  $outPrmFileName
+$pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileName  $outPrmFileName
+
+# Step 2 - Execution
+cd $L5RootDir
+echo $pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 
+$pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 

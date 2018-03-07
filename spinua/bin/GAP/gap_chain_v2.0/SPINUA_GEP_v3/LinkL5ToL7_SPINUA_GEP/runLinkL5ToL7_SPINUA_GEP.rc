@@ -1,0 +1,33 @@
+#!/bin/bash  
+
+overwriteFlag=$1
+datasetID=$2
+smID=$3
+swathID=$4
+cropID=$5
+inPrmFileName=$6
+debugFlag=$7
+
+inPrmFileNameff=$pathrunLinkL5ToL7_SPINUA_GEP/$inPrmFileName
+
+
+SM_UUID=`less ${STORAGE}/S1Data/${datasetID}/L1_SM_selection/log/sm_uuid.txt`
+
+# Step 1 - Parameters
+pathrunLinkL5ToL7_SPINUA_GEP=${SPINUA}/SPINUA_GEP_v3/runLinkL5ToL7_SPINUA_GEP
+L5RootDir=${STORAGE}/S1Data/${datasetID}/L5_SPP/${SM_UUID}/${swathID}/${cropID}/out
+outPrmFileName=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/Prm_SPINUA_GEP_OperationalLinkL5ToL7.m"
+enableMvDirs=1
+ 
+# Step 2 - Parameters
+pathrunSPINUA_L7ToL13_GEP=${SPINUA}/SPINUA_GEP_v3/SPINUA_Main_GEP
+
+
+# Step 1 - Execution
+echo $pathrunLinkL5ToL7_SPINUA_GEP/runLinkL5ToL7_SPINUA_GEP  $L5RootDir  $inPrmFileNameff  $outPrmFileName $enableMvDirs 
+cd ${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP"
+$pathrunLinkL5ToL7_SPINUA_GEP/runLinkL5ToL7_SPINUA_GEP  $L5RootDir  $inPrmFileNameff  $outPrmFileName $enableMvDirs 
+
+# Step 2 - Execution
+echo $pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 
+$pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 

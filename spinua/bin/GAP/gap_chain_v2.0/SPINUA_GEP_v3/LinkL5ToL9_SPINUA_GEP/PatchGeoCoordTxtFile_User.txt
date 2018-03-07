@@ -1,0 +1,43 @@
+% Notes:
+% Comments can be included in this file by using "%" special characters.
+% Comments must be placed in a dedicated line, i.e. it is not allowed to insert comments at the end of an instruction line.
+
+% --- Patch Coordinates. ---
+% tmpCntPatches = tmpCntPatches + 1;
+% AOILatCellArray{tmpCntPatches} = [46.59296166738396,46.59069414400982,46.5880094677181,46.58595916053559,46.58573803312788,46.58523214199802,46.58502348855733];
+% AOILonCellArray{tmpCntPatches} = [13.0698016831932,13.06783785285701,13.06763412511073,13.06835516423454,13.06950975271381,13.07416445608975,13.08015471178942];
+% AOILatCellArray and AOILonCellArray specify the area or point of interest.
+
+tmpCntPatches = 0;
+
+% Add one or more of the following section:
+% tmpCntPatches = tmpCntPatches + 1;
+% AOILatCellArray{tmpCntPatches} = [46.59296166738396,46.59069414400982,46.5880094677181,46.58595916053559,46.58573803312788,46.58523214199802,46.58502348855733];
+% AOILonCellArray{tmpCntPatches} = [13.0698016831932,13.06783785285701,13.06763412511073,13.06835516423454,13.06950975271381,13.07416445608975,13.08015471178942];
+tmpCntPatches = tmpCntPatches + 1;
+AOILatCellArray{tmpCntPatches} = [37.041,37.056];
+AOILonCellArray{tmpCntPatches} = [14.286,14.308];
+
+
+% This is another section...
+% tmpCntPatches = tmpCntPatches + 1;
+% AOILatCellArray{tmpCntPatches} = [46.5385922709909,46.53853650669299,46.53850144152163,46.53845154862553,46.53833217392846,46.53829284830908,46.5382486092902,46.53814984530569,46.53808635751426,46.53803269807246];
+% AOILonCellArray{tmpCntPatches} = [13.07042058360368,13.07042255752286,13.07044584103083,13.07049168556328,13.0706280276433,13.07070297350118,13.07078526846443,13.07094304665938,13.0710848428313,13.07121154861768];
+tmpCntPatches = tmpCntPatches + 1;
+AOILatCellArray{tmpCntPatches} = [37.041,37.056]-0.01;
+AOILonCellArray{tmpCntPatches} = [14.286,14.308]-0.01;
+% --- End Patch Coordinates. ---
+
+
+% --- Processing Optimization. ---
+SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = 'OFF'; 
+SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = 'ON'; 
+% --- End Processing Optimization. ---
+
+% --- Output refinement. ---
+SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = 0; 
+IIPSTE_SettingStr.PSReports.PSCohTh = 0.77; 
+IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = [0 0 0 0 0];
+IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = [0 -10 10];
+IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = 5; 
+% --- End Output refinement. ---
