@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="us-ascii"?>
+<application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
+  <jobTemplates>
+    <jobTemplate id="cropgeneration">
+      <streamingExecutable>/application/cropgeneration/run</streamingExecutable>
+      <defaultParameters>
+        <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
+        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">15.194</parameter>
+        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.725</parameter>
+        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">15.213</parameter>
+        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.737</parameter>
+      </defaultParameters>
+    <defaultJobconf>
+        <property id="mapred.task.timeout">9900000000</property>
+      </defaultJobconf>
+    </jobTemplate>
+  </jobTemplates>
+    <workflow id="spinua-step-8" title="Crop Generation" abstract="Test Crop Generation">
+    <workflowVersion>1.0</workflowVersion>
+    <node id="node_cropgeneration">
+      <job id="cropgeneration"/>
+ <sources>
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05</source>  
+</sources>
+<parameters>
+</parameters>
+</node>
+
+  </workflow>
+</application>
