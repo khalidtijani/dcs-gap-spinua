@@ -1,5 +1,11 @@
 #!/bin/bash  
 
+
+export MATLAB_SHELL=
+
+
+
+
 overwriteFlag=$1
 datasetID=$2
 smID=$3
@@ -13,7 +19,7 @@ inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/"${inPrmFileName}
 
 echo "datasetID="  $datasetID
 
-SM_UUID=`less ${STORAGE}/S1Data/${datasetID}/L1_SM_selection/log/sm_uuid.txt`
+SM_UUID=$(less ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt")
 
 echo "SM_UUID=" $SM_UUID
 
