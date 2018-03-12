@@ -31,18 +31,18 @@ SM_UUID=`cat ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
 echo "SM_UUID=" $SM_UUID
 
 
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_SPEA"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_PSC"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_SPEA"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_PSC"
 
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_SPP"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L7_PSC_Map"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L8_SPSC_COH"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L9_SPSC_RP"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L10_SPP2VDE"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L11_DSC"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L12_APSR"
-rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L13_IIPSTE"
-mv ${STORAGE}"/S1Data/"${datasetID}"/L5_SPP"   ${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L6_SPP"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L7_PSC_Map"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L8_SPSC_COH"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L9_SPSC_RP"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L10_SPP2VDE"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L11_DSC"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L12_APSR"
+#rm -rf ${STORAGE}"/S1Data/"${datasetID}"/L13_IIPSTE"
+#mv ${STORAGE}"/S1Data/"${datasetID}"/L5_SPP"   ${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map"
 
 
 
@@ -66,7 +66,7 @@ pathrunSPINUA_L7ToL13_GEP=${SPINUA}/SPINUA_GEP_v3/SPINUA_Main_GEP
 
 # Step 1 - Execution
 echo $pathrunLinkL5ToL7_SPINUA_GEP/runLinkL5ToL7_SPINUA_GEP  $L5RootDir  $inPrmFileNameff  $outPrmFileName $enableMvDirs 
-cd $L5RootDir/out
+cd $L5RootDir
 $pathrunLinkL5ToL7_SPINUA_GEP/runLinkL5ToL7_SPINUA_GEP  $L5RootDir  $inPrmFileNameff  $outPrmFileName $enableMvDirs 
 
 # Step 2 - Execution
