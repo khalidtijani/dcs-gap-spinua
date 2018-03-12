@@ -120,7 +120,7 @@ source /home/khalidtijani/.bashrc
     #unzip --version 
     #which unzip
     
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
 
 
          

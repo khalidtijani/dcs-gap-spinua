@@ -12,16 +12,6 @@ export STORAGE=/data/input/storage2
 export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
 export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
-export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
-
-export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
-
-export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
-export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
-
-
-
-
 
 overwriteFlag=$1
 datasetID=$2
@@ -38,14 +28,14 @@ echo "datasetID="  $datasetID
 
 SM_UUID=`cat ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
 
-echo "1 SM_UUID=" $SM_UUID
+echo "SM_UUID=" $SM_UUID
 
 
-Filename=${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"
-echo "Filename=" $Filename
-cat $Filename | while read line; do 
-   echo "2 SM_UUID=" $line # or whaterver you want to do with the $line variable
-done
+#Filename=${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"
+#echo "Filename=" $Filename
+#cat $Filename | while read line; do 
+#   echo "2 SM_UUID=" $line # or whaterver you want to do with the $line variable
+#done
 
 
 # Step 1 - Parameters
