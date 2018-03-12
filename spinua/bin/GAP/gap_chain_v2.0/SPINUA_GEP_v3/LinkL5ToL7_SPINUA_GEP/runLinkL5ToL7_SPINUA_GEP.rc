@@ -1,7 +1,24 @@
 #!/bin/bash  
 
 
+# source the ciop functions (e.g. ciop-log, ciop-getparam)
+source ${ciop_job_include}
 export MATLAB_SHELL=
+
+source /home/khalidtijani/.bashrc
+# set the environment variables to use MATLAB Runtime v91 release R2016b 
+export USER=khalidtijani
+export STORAGE=/data/input/storage2
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
+
+export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
+export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
 
 
 
@@ -19,7 +36,7 @@ inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/"${inPrmFileName}
 
 echo "datasetID="  $datasetID
 
-SM_UUID=$(less ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt")
+SM_UUID=`less ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
 
 echo "SM_UUID=" $SM_UUID
 
