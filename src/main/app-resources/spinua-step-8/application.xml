@@ -5,10 +5,10 @@
       <streamingExecutable>/application/cropgeneration/run</streamingExecutable>
       <defaultParameters>
         <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
-        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">15.0</parameter>
-        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.70</parameter>
-        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">15.05</parameter>
-        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.76</parameter>
+        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">15.194</parameter>
+        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.725</parameter>
+        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">15.213</parameter>
+        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.737</parameter>
       </defaultParameters>
     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>
