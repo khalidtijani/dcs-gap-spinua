@@ -36,7 +36,7 @@ inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/"${inPrmFileName}
 
 echo "datasetID="  $datasetID
 
-SM_UUID=`less ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
+SM_UUID=`cat ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
 
 echo "1 SM_UUID=" $SM_UUID
 
