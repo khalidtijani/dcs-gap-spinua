@@ -38,7 +38,14 @@ echo "datasetID="  $datasetID
 
 SM_UUID=`less ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
 
-echo "SM_UUID=" $SM_UUID
+echo "1 SM_UUID=" $SM_UUID
+
+
+Filename=${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"
+cat Filename | while read line; do 
+   echo "2 SM_UUID=" $line # or whaterver you want to do with the $line variable
+done
+
 
 # Step 1 - Parameters
 pathrunLinkL5ToL7_SPINUA_GEP=${SPINUA}/SPINUA_GEP_v3/runLinkL5ToL7_SPINUA_GEP
