@@ -57,7 +57,7 @@ echo "SM_UUID=" $SM_UUID
 # Step 1 - Parameters
 pathrunLinkL5ToL7_SPINUA_GEP=${SPINUA}/SPINUA_GEP_v3/runLinkL5ToL7_SPINUA_GEP
 L5RootDir=${STORAGE}/S1Data/${datasetID}/L5_PSC_Map/${SM_UUID}/${swathID}/${cropID}/out
-outPrmFileName=$L5RootDir"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL7.m"
+outPrmFileName=${STORAGE}/S1Data/${datasetID}/L5_PSC_Map/${SM_UUID}/${swathID}/${cropID}/"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL7.m"
 enableMvDirs=1
  
 # Step 2 - Parameters
