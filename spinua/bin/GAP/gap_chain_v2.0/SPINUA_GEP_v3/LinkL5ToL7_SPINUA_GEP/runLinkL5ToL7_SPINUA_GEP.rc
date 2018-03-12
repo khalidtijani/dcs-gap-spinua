@@ -13,16 +13,18 @@ inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/"${inPrmFileName}
 
 SM_UUID=`less ${STORAGE}/S1Data/${datasetID}/L1_SM_selection/log/sm_uuid.txt`
 
+echo $SM_UUID
+
 # Step 1 - Parameters
 pathrunLinkL5ToL7_SPINUA_GEP=${SPINUA}/SPINUA_GEP_v3/runLinkL5ToL7_SPINUA_GEP
 L5RootDir=${STORAGE}/S1Data/${datasetID}/L5_SPP/${SM_UUID}/${swathID}/${cropID}/out
-L6RootDir=${STORAGE}/S1Data/${datasetID}/L6_SPP/${SM_UUID}/${swathID}/${cropID}
-mkdir -p $L6RootDir/log
-mkdir -p $L6RootDir/out  
-mkdir -p $L6RootDir/status
-mkdir -p $L6RootDir/stdout
-mkdir -p $L6RootDir/tmp
-outPrmFileName=$L6RootDir/tmp"/Prm_SPINUA_GEP_OperationalLinkL5ToL7.m"
+L6RootDir=${STORAGE}/S1Data/${datasetID}/L6_PSC/${SM_UUID}/${swathID}/${cropID}
+mkdir -p $L6RootDir"/log"
+mkdir -p $L6RootDir"/out"  
+mkdir -p $L6RootDir"/status"
+mkdir -p $L6RootDir"/stdout"
+mkdir -p $L6RootDir"/tmp"
+outPrmFileName=$L6RootDir"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL7.m"
 enableMvDirs=1
  
 # Step 2 - Parameters
