@@ -1,0 +1,49 @@
+#!/bin/bash  
+
+# source the ciop functions (e.g. ciop-log, ciop-getparam)
+source ${ciop_job_include}
+export MATLAB_SHELL=
+
+source /home/khalidtijani/.bashrc
+# set the environment variables to use MATLAB Runtime v91 release R2016b
+export USER=khalidtijani
+export STORAGE=/data/input/storage2
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+overwriteFlag=$1
+datasetID=$2
+smID=$3
+swathID=$4
+cropID=$5
+inPrmFileName=$6
+debugFlag=$7
+
+inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/"${inPrmFileName}
+
+
+echo "datasetID="  $datasetID
+
+SM_UUID=`cat ${STORAGE}"/S1Data/"${datasetID}"/L1_SM_selection/log/sm_uuid.txt"`
+
+echo "SM_UUID=" $SM_UUID
+
+
+# Step 1 - Parameters
+pathrunLinkL5ToL9_SPINUA_GEP=${SPINUA}"/SPINUA_GEP_v3/runLinkL5ToL9_SPINUA_GEP"
+L5RootDir=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/out"
+PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/PatchGeoCoordTxtFile_User.txt"
+outPrmFileName=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL9.m"
+
+ 
+# Step 2 - Parameters
+pathrunSPINUA_L7ToL13_GEP=${SPINUA}/SPINUA_GEP_v3/SPINUA_Main_GEP
+
+# Step 1 - Execution
+echo $pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileNameff  $outPrmFileName
+$pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileNameff  $outPrmFileName
+
+# Step 2 - Execution
+cd $L5RootDir
+echo $pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 
+$pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 

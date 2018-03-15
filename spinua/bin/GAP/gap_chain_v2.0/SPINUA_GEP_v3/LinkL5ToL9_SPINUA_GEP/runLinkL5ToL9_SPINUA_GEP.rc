@@ -19,7 +19,7 @@ cropID=$5
 inPrmFileName=$6
 debugFlag=$7
 
-inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL7_SPINUA_GEP/"${inPrmFileName}
+inPrmFileNameff=${SPINUA}"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/"${inPrmFileName}
 
 
 echo "datasetID="  $datasetID
@@ -30,24 +30,18 @@ echo "SM_UUID=" $SM_UUID
 
 
 # Step 1 - Parameters
-pathrunLinkL5ToL9_SPINUA_GEP=${SPINUA}/SPINUA_GEP_v3/runLinkL5ToL9_SPINUA_GEP
-L5RootDir=${STORAGE}/S1Data/${datasetID}/L5_SPP/${SM_UUID}/${swathID}/${cropID}/out
-PatchGeoCoordTxtFile=${SPINUA}/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt
-L7RootDir=${STORAGE}/S1Data/${datasetID}/L7_Processing/${SM_UUID}/${swathID}/${cropID}
-mkdir -p $L7RootDir"/log"
-mkdir -p $L7RootDir"/out"
-mkdir -p $L7RootDir"/status"
-mkdir -p $L7RootDir"/stdout"
-mkdir -p $L7RootDir"/tmp"
-outPrmFileName=$L7RootDir"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL9.m"
+pathrunLinkL5ToL9_SPINUA_GEP=${SPINUA}"/SPINUA_GEP_v3/runLinkL5ToL9_SPINUA_GEP"
+L5RootDir=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/out"
+PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/PatchGeoCoordTxtFile_User.txt"
+outPrmFileName=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL9.m"
 
  
 # Step 2 - Parameters
 pathrunSPINUA_L7ToL13_GEP=${SPINUA}/SPINUA_GEP_v3/SPINUA_Main_GEP
 
 # Step 1 - Execution
-echo $pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileName  $outPrmFileName
-$pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileName  $outPrmFileName
+echo $pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileNameff  $outPrmFileName
+$pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoordTxtFile $inPrmFileNameff  $outPrmFileName
 
 # Step 2 - Execution
 cd $L5RootDir

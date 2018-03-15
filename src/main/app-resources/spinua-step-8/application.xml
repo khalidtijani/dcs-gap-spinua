@@ -9,7 +9,10 @@
         <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.725</parameter>
         <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">15.213</parameter>
         <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.737</parameter>
-      </defaultParameters>
+      
+<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime">15.200,37.729,15.210,37.735</parameter>
+
+</defaultParameters>
     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
@@ -20,7 +23,7 @@
     <node id="node_pscandidate">
       <job id="pscandidate"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05;06</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05;06;07</source>  
 </sources>
 <parameters>
 </parameters>

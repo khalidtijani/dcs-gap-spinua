@@ -15,10 +15,10 @@ export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
 export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
-export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
-export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
-#export MCR_ROOT=/opt/MCR_R2016b
-#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+#export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
+export MCR_ROOT=/opt/MCR_R2016b
+export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -73,6 +73,9 @@ source /home/khalidtijani/.bashrc
    [ -z "${step2}" ] && return ${ERR_NOARG}
 
 
+   step3=$( echo "${1}" | cut -d";" -f4 )
+    ciop-log "INFO" "Th step $step3 for spinua chain"
+   [ -z "${step3}" ] && return ${ERR_NOARG}
 
     #local ver
     #ver="v2.0"
@@ -92,6 +95,14 @@ source /home/khalidtijani/.bashrc
     LatMaxIn="`ciop-getparam LatMax`"
     LonMinIn="`ciop-getparam LonMin`"
     LonMaxIn="`ciop-getparam LonMax`"
+    
+    extentPatchIn="`ciop-getparam extentPatch`"
+    
+    LonMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f1 )
+    LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
+    LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
+    LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
+
 
     local bbox
     bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
@@ -101,16 +112,24 @@ source /home/khalidtijani/.bashrc
     [ -z "$rootFolder" ] && exit $ERR_NOARG
     [ -z "$step1" ] && exit $ERR_NOARG
     [ -z "$step2" ] && exit $ERR_NOARG
+    [ -z "$step3" ] && exit $ERR_NOARG
 
     [ -z "$LatMinIn" ] && exit $ERR_NOARG
     [ -z "$LatMaxIn" ] && exit $ERR_NOARG
     [ -z "$LonMinIn" ] && exit $ERR_NOARG
     [ -z "$LonMaxIn" ] && exit $ERR_NOARG
+    
+    [ -z "$LatMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LatMaxInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMaxInPatch" ] && exit $ERR_NOARG
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step1 for spinua chain"
     ciop-log "INFO" "Th step $step2 for spinua chain"
+    ciop-log "INFO" "Th step $step3 for spinua chain"
+
     ciop-log "DEBUG" "The LatMin used is: ${LatMinIn}"
     ciop-log "DEBUG" "The LatMax used is: ${LatMaxIn}"
     ciop-log "DEBUG" "The LatMax used is: ${LonMinIn}"
@@ -118,6 +137,10 @@ source /home/khalidtijani/.bashrc
 
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
 
+    ciop-log "DEBUG" "The LatMin used is: ${LatMinInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LatMaxInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMinInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMaxInPatch}"
 
     # prepare the SPINUA Step request
     
@@ -125,12 +148,14 @@ source /home/khalidtijani/.bashrc
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-    
+    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/LAT37* 
 
     ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - IW2_VV $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
-
+    cp $SPINUA"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt"   $STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/"$bbox"/tmp"
+    
     ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
 
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
          
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
