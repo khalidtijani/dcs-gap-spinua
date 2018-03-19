@@ -18,6 +18,15 @@
       
 <parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
 
+<parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
+<parameter id="SPSC_SettingStr2" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BTEMP " scope="runtime" maxOccurs="1">ON</parameter>
+<parameter id="SPSC_SettingStr3" title="SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns" abstract="Define the SkipLAPSRBBFLTERuns" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr1" title="IIPSTE_SettingStr.PSReports.PSCohTh" abstract="Define the PSCohTh" scope="runtime" maxOccurs="1">0.77</parameter>
+<parameter id="IIPSTE_SettingStr2" title="IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon" abstract="Define the OffsetsVelDEMErrAzPosLatLon" scope="runtime" maxOccurs="1">[0 0 0 0 0]</parameter>
+<parameter id="IIPSTE_SettingStr3" title="IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity" abstract="Define the ThMinMaxVelocity" scope="runtime" maxOccurs="1">[0 -10 10]</parameter>
+<parameter id="IIPSTE_SettingStr4" title="IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh" abstract="Define the VelAbsTh" scope="runtime" maxOccurs="1">5</parameter>
+
+
 </defaultParameters>
     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>
