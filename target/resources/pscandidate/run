@@ -90,11 +90,14 @@ source /home/khalidtijani/.bashrc
 
     rootFolder="`ciop-getparam rootFolder`"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
-    
-    LatMinIn="`ciop-getparam LatMin`"
-    LatMaxIn="`ciop-getparam LatMax`"
-    LonMinIn="`ciop-getparam LonMin`"
-    LonMaxIn="`ciop-getparam LonMax`"
+    SubswathIn="`ciop-getparam subswath`"
+    PolarizationIn="`ciop-getparam polarization`"
+    extentCropIn="`ciop-getparam extentCrop`"
+
+    LonMinIn=$( echo "${extentCropIn}" | cut -d"," -f1 )
+    LatMinIn=$( echo "${extentCropIn}" | cut -d"," -f2 )
+    LonMaxIn=$( echo "${extentCropIn}" | cut -d"," -f3 )
+    LatMaxIn=$( echo "${extentCropIn}" | cut -d"," -f4 )
     
     extentPatchIn="`ciop-getparam extentPatch`"
     
@@ -102,12 +105,14 @@ source /home/khalidtijani/.bashrc
     LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
     LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
     LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
-
+    
 
     local bbox
     bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
 
+    local Subswath_POl
+    Subswath_POl=${SubswathIn}"_"${PolarizationIn}
     # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
     [ -z "$step1" ] && exit $ERR_NOARG
@@ -124,6 +129,7 @@ source /home/khalidtijani/.bashrc
     [ -z "$LonMinInPatch" ] && exit $ERR_NOARG
     [ -z "$LonMaxInPatch" ] && exit $ERR_NOARG
 
+    [ -z "$Subswath_POl" ] && exit $ERR_NOARG
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step1 for spinua chain"
@@ -142,20 +148,32 @@ source /home/khalidtijani/.bashrc
     ciop-log "DEBUG" "The LatMax used is: ${LonMinInPatch}"
     ciop-log "DEBUG" "The LatMax used is: ${LonMaxInPatch}"
 
+    ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
+
+    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+
+    ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
+
+
     # prepare the SPINUA Step request
     
     # invoke the Main SPINUA run binary
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/LAT37* 
+    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
 
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - IW2_VV $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
-    cp $SPINUA"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt"   $STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/"$bbox"/tmp"
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - ${Subswath_POl} $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
     
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
+    
+    PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
+    echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
 
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - IW2_VV $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
+#    cp $SPINUA"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt"   $STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/"$bbox"/tmp"
+    
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
+
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
          
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
