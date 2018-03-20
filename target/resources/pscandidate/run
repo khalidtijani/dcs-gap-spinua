@@ -106,13 +106,21 @@ function main() {
     LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
     LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
     LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
+
+    SPSC_SettingStrIn1="OFF"
+    SPSC_SettingStrIn2="ON"
+    SPSC_SettingStrIn3="0"
     
-    SPSC_SettingStrIn1="`ciop-getparam SPSC_SettingStr1`"
-    SPSC_SettingStrIn2="`ciop-getparam SPSC_SettingStr2`"
-    SPSC_SettingStrIn3="`ciop-getparam SPSC_SettingStr3`"
+#    SPSC_SettingStrIn1="`ciop-getparam SPSC_SettingStr1`"
+#    SPSC_SettingStrIn2="`ciop-getparam SPSC_SettingStr2`"
+#    SPSC_SettingStrIn3="`ciop-getparam SPSC_SettingStr3`"
 
     IIPSTE_SettingStrIn1="`ciop-getparam IIPSTE_SettingStr1`"
-    IIPSTE_SettingStrIn2="`ciop-getparam IIPSTE_SettingStr2`"
+    IIPSTE_SettingStrIn21="`ciop-getparam IIPSTE_SettingStr21`"
+    IIPSTE_SettingStrIn22="`ciop-getparam IIPSTE_SettingStr22`"
+    IIPSTE_SettingStrIn23="`ciop-getparam IIPSTE_SettingStr23`"
+    IIPSTE_SettingStrIn24="`ciop-getparam IIPSTE_SettingStr24`"
+    
     IIPSTE_SettingStrIn3="`ciop-getparam IIPSTE_SettingStr3`"
     IIPSTE_SettingStrIn4="`ciop-getparam IIPSTE_SettingStr4`"
      
@@ -124,13 +132,17 @@ function main() {
     Subswath_POl=${SubswathIn}"_"${PolarizationIn}
 
     ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.PSCohTh = $IIPSTE_SettingStrIn1"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = $IIPSTE_SettingStrIn2"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = $IIPSTE_SettingStrIn3"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = $IIPSTE_SettingStrIn4"
+#    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
+#    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
+#    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
+    ciop-log "DEBUG" "Inter-Image Coherence Threshold = $IIPSTE_SettingStrIn1"
+    ciop-log "DEBUG" "Mean Velocity Offset = $IIPSTE_SettingStrIn21"
+    ciop-log "DEBUG" "Height Offset = $IIPSTE_SettingStrIn22"
+    ciop-log "DEBUG" "Latitude Offset = $IIPSTE_SettingStrIn23"
+    ciop-log "DEBUG" "Longitude Offset = $IIPSTE_SettingStrIn24"
+
+    ciop-log "DEBUG" "Maximum Velocity Value for palette saturation of KML maps = $IIPSTE_SettingStrIn3"
+    ciop-log "DEBUG" "Threshold on the Mean Velocity for Displacement Trend Generation = $IIPSTE_SettingStrIn4"
 
     
      # run a check on the expression value, it can't be empty
@@ -174,17 +186,6 @@ function main() {
     ciop-log "DEBUG" "The LatMax used is: ${LonMinInPatch}"
     ciop-log "DEBUG" "The LatMax used is: ${LonMaxInPatch}"
 
-    ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
-    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.PSCohTh = $IIPSTE_SettingStrIn1"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = $IIPSTE_SettingStrIn2"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = $IIPSTE_SettingStrIn3"
-    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = $IIPSTE_SettingStrIn4"
-
-
-
     SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
 
     ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
@@ -212,8 +213,8 @@ echo "" >>  $PatchGeoCoordTxtFile
 echo "% --- Output refinement. ---" >>  $PatchGeoCoordTxtFile
 echo "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = "$SPSC_SettingStrIn3";" >>  $PatchGeoCoordTxtFile
 echo "IIPSTE_SettingStr.PSReports.PSCohTh = "$IIPSTE_SettingStrIn1"; "  >>  $PatchGeoCoordTxtFile
-echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = "$IIPSTE_SettingStrIn2";"   >>  $PatchGeoCoordTxtFile
-echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = "$IIPSTE_SettingStrIn3";"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = ["$IIPSTE_SettingStrIn21" "$IIPSTE_SettingStrIn22" 0 "$IIPSTE_SettingStrIn23" "$IIPSTE_SettingStrIn24"];"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = [0 -"$IIPSTE_SettingStrIn3" "$IIPSTE_SettingStrIn3"];"   >>  $PatchGeoCoordTxtFile
 echo "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = "$IIPSTE_SettingStrIn4";"  >>  $PatchGeoCoordTxtFile
 echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
 

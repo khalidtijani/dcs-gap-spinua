@@ -42,13 +42,18 @@
       
 <parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
 
+<!--
 <parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
 <parameter id="SPSC_SettingStr2" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BTEMP " scope="runtime" maxOccurs="1">ON</parameter>
-<parameter id="SPSC_SettingStr3" title="SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns" abstract="Define the SkipLAPSRBBFLTERuns" scope="runtime" maxOccurs="1">0</parameter>
-<parameter id="IIPSTE_SettingStr1" title="IIPSTE_SettingStr.PSReports.PSCohTh" abstract="Define the PSCohTh" scope="runtime" maxOccurs="1">0.77</parameter>
-<parameter id="IIPSTE_SettingStr2" title="IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon" abstract="Define the OffsetsVelDEMErrAzPosLatLon" scope="runtime" maxOccurs="1">[0 0 0 0 0]</parameter>
-<parameter id="IIPSTE_SettingStr3" title="IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity" abstract="Define the ThMinMaxVelocity" scope="runtime" maxOccurs="1">[0 -10 10]</parameter>
-<parameter id="IIPSTE_SettingStr4" title="IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh" abstract="Define the VelAbsTh" scope="runtime" maxOccurs="1">5</parameter>
+<parameter id="SPSC_SettingStr3" title="SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns" abstract="Define the SkipLAPSRBBFLTERuns" scope="runtime" maxOccurs="1">0</parameter> 
+-->
+<parameter id="IIPSTE_SettingStr1" title="Inter-Image Coherence Threshold" abstract="Define the minimum coherence for targets to be included in the final product" scope="runtime" maxOccurs="1">0.77</parameter>
+<parameter id="IIPSTE_SettingStr21" title="Mean Velocity Offset" abstract="Offset in mm/yr to be added to the mean velocity of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr22" title="Height Offset" abstract="Offset in meters to be added to the height of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr23" title="Latitude Offset" abstract="Offset in decimal degrees to be added to the latitude of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr24" title="Longitude Offset" abstract="Offset in decimal degrees to be added to the longitude of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr3" title="Maximum Velocity Value for palette saturation of KML maps" abstract="Define the maximum velocity (in mm/yr, in absolute value) for colorbar saturation of KML velocity maps" scope="runtime" maxOccurs="1">10</parameter>
+<parameter id="IIPSTE_SettingStr4" title="Threshold on the Mean Velocity for Displacement Trend Generation" abstract="Displacement trends will be generated only for coherent targets with mean velocity higher than the threshold specified by the user (in absolute value), expressed in mm/yr" scope="runtime" maxOccurs="1">5</parameter>
 
 
 </defaultParameters>
