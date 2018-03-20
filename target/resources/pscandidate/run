@@ -1,0 +1,265 @@
+#!/bin/bash
+
+# source the ciop functions (e.g. ciop-log, ciop-getparam)
+source ${ciop_job_include}
+source $_CIOP_APPLICATION_PATH/env/env_include.sh
+export MATLAB_SHELL=
+
+#source /home/khalidtijani/.bashrc
+# set the environment variables to use MATLAB Runtime v91 release R2016b 
+#export USER=khalidtijani
+#export STORAGE=/data/input/storage2
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+#export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
+
+#export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
+
+#export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
+#export MCR_ROOT=/opt/MCR_R2016b
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
+#export STORAGE=/home/${USER}/storage
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+
+# define the exit codes
+SUCCESS=0
+#SNAP_REQUEST_ERROR=1
+ERR_SPINUA=1
+ERR_NOARG=2
+#ERR_NOINPUT=4
+
+# add a trap to exit gracefully
+function cleanExit ()
+{
+#source /home/khalidtijani/.bashrc
+
+    local retval=$?
+    local msg=""
+
+    case ${retval} in
+        ${SUCCESS})            msg="Processing successfully concluded";;
+ #       ${SNAP_REQUEST_ERROR}) msg="Could not create snap request file";;
+        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step X0 : Splitter ";;
+        
+        
+        ${ERR_NOARG})         msg="No Input Argument provided";;
+ #       ${ERR_NOINPUT})        msg="No input provided";;
+        *)                     msg="Unknown error";;
+    esac
+
+   [ ${retval} -ne 0 ] && ciop-log "ERROR" "Error ${retval} - ${msg}, processing aborted" || ciop-log "INFO" "${msg}"
+   exit ${retval}
+}
+
+trap cleanExit EXIT
+
+function main() {
+#source /home/khalidtijani/.bashrc
+    
+    #defines the input
+    
+    ver=$( echo "${1}" | cut -d";" -f1 )
+    ciop-log "INFO" "The version $ver for spinua chain"
+    [ -z "${ver}" ] && return ${ERR_NOARG}
+
+    step1=$( echo "${1}" | cut -d";" -f2 )
+    ciop-log "INFO" "Th step1 $step1 for spinua chain"
+   [ -z "${step1}" ] && return ${ERR_NOARG}
+    
+    step2=$( echo "${1}" | cut -d";" -f3 )
+    ciop-log "INFO" "Th step $step2 for spinua chain"
+   [ -z "${step2}" ] && return ${ERR_NOARG}
+
+
+   step3=$( echo "${1}" | cut -d";" -f4 )
+    ciop-log "INFO" "Th step $step3 for spinua chain"
+   [ -z "${step3}" ] && return ${ERR_NOARG}
+
+    #local ver
+    #ver="v2.0"
+    #ver=$1
+    #local step
+    #step="X0"
+    #ciop-log "INFO" "The version $ver for spinua chain"
+    #ciop-log "INFO" "Th step $step for spinua chain"  
+
+#  step=$1
+    # retrieve the parameters value from workflow or job default value
+
+    rootFolder="`ciop-getparam rootFolder`"
+    ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+    SubswathIn="`ciop-getparam subswath`"
+    PolarizationIn="`ciop-getparam polarization`"
+    extentCropIn="`ciop-getparam extentCrop`"
+
+    LonMinIn=$( echo "${extentCropIn}" | cut -d"," -f1 )
+    LatMinIn=$( echo "${extentCropIn}" | cut -d"," -f2 )
+    LonMaxIn=$( echo "${extentCropIn}" | cut -d"," -f3 )
+    LatMaxIn=$( echo "${extentCropIn}" | cut -d"," -f4 )
+    
+    extentPatchIn="`ciop-getparam extentPatch`"
+    
+    LonMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f1 )
+    LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
+    LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
+    LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
+    
+    SPSC_SettingStrIn1="`ciop-getparam SPSC_SettingStr1`"
+    SPSC_SettingStrIn2="`ciop-getparam SPSC_SettingStr2`"
+    SPSC_SettingStrIn3="`ciop-getparam SPSC_SettingStr3`"
+
+    IIPSTE_SettingStrIn1="`ciop-getparam IIPSTE_SettingStr1`"
+    IIPSTE_SettingStrIn2="`ciop-getparam IIPSTE_SettingStr2`"
+    IIPSTE_SettingStrIn3="`ciop-getparam IIPSTE_SettingStr3`"
+    IIPSTE_SettingStrIn4="`ciop-getparam IIPSTE_SettingStr4`"
+     
+    local bbox
+    bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+     
+    local Subswath_POl
+    Subswath_POl=${SubswathIn}"_"${PolarizationIn}
+
+    ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.PSCohTh = $IIPSTE_SettingStrIn1"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = $IIPSTE_SettingStrIn2"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = $IIPSTE_SettingStrIn3"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = $IIPSTE_SettingStrIn4"
+
+    
+     # run a check on the expression value, it can't be empty
+    [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$step1" ] && exit $ERR_NOARG
+    [ -z "$step2" ] && exit $ERR_NOARG
+    [ -z "$step3" ] && exit $ERR_NOARG
+
+    [ -z "$LatMinIn" ] && exit $ERR_NOARG
+    [ -z "$LatMaxIn" ] && exit $ERR_NOARG
+    [ -z "$LonMinIn" ] && exit $ERR_NOARG
+    [ -z "$LonMaxIn" ] && exit $ERR_NOARG
+    
+    [ -z "$LatMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LatMaxInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMaxInPatch" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn1" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn2" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn3" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn1" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn2" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn3" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn4" ] && exit $ERR_NOARG
+    [ -z "$Subswath_POl" ] && exit $ERR_NOARG
+    # report activity in log
+    ciop-log "INFO" "The version $ver for spinua chain"
+    ciop-log "INFO" "Th step $step1 for spinua chain"
+    ciop-log "INFO" "Th step $step2 for spinua chain"
+    ciop-log "INFO" "Th step $step3 for spinua chain"
+
+    ciop-log "DEBUG" "The LatMin used is: ${LatMinIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LatMaxIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMinIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMaxIn}"
+
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+
+    ciop-log "DEBUG" "The LatMin used is: ${LatMinInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LatMaxInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMinInPatch}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMaxInPatch}"
+
+    ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
+    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.PSCohTh = $IIPSTE_SettingStrIn1"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = $IIPSTE_SettingStrIn2"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = $IIPSTE_SettingStrIn3"
+    ciop-log "DEBUG" "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = $IIPSTE_SettingStrIn4"
+
+
+
+    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+
+    ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
+
+
+    # prepare the SPINUA Step request
+    
+    # invoke the Main SPINUA run binary
+    #export PATH=/usr/local/bin:/usr/bin:${PATH} 
+    #unzip --version 
+    #which unzip
+    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
+
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - ${Subswath_POl} $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
+    
+    
+    PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
+    echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
+
+echo "% --- Processing Optimization. --- " >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = '"$SPSC_SettingStrIn1"';" >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = '"$SPSC_SettingStrIn2"';" >>  $PatchGeoCoordTxtFile
+echo "% --- End Processing Optimization. --- "  >>  $PatchGeoCoordTxtFile
+echo "" >>  $PatchGeoCoordTxtFile
+echo "% --- Output refinement. ---" >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = "$SPSC_SettingStrIn3";" >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.PSCohTh = "$IIPSTE_SettingStrIn1"; "  >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = "$IIPSTE_SettingStrIn2";"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = "$IIPSTE_SettingStrIn3";"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = "$IIPSTE_SettingStrIn4";"  >>  $PatchGeoCoordTxtFile
+echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
+
+
+
+#    cp $SPINUA"/SPINUA_GEP_v3/LinkL5ToL9_SPINUA_GEP/PatchGeoCoordTxtFile_User.txt"   $STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/"$bbox"/tmp"
+    
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
+
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
+
+         
+    #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
+    ciop-log "INFO" "check the exit code $? for spinua chain"
+
+    # check the exit code
+    [ $? -eq 0 ] || return $ERR_SPINUA
+
+    # compress the ESA BEAM results
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map"
+
+    
+  
+    # publish the compressed results
+    ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
+    ciop-log "INFO" "Publishing ${outputfolder} " 
+    
+
+    # cleanup
+    #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
+
+    return ${SUCCESS}
+}
+
+# create the output folder to store the output products and export it
+#source /home/khalidtijani/.bashrc
+#step="X0"
+while read arg; do
+#   step="X"$step 
+   ciop-log "INFO" "Arguments ${arg} "
+   main "${arg}"
+   res=$?
+  [ ${res} -ne 0 ] && exit ${res}
+done
+#main  
+#res=$?
+#[ ${res} -ne 0 ] && exit ${res}
+
+exit $SUCCESS

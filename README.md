@@ -9,14 +9,10 @@ Available SPINUA processing Step
 * [SPINUA-Step 00: SLC data download](src/main/app-resources/spinua-step-2)
 * [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/spinua-step-3)
 * [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-4)
-* [SPINUA-Step 03: Substep Configuration](src/main/app-resources/spinua-step-5)
-* [SPINUA-Step 03: Substep Interferogram Generation](src/main/app-resources/spinua-step-6)
-* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-7)
-* [SPINUA-Step 05: Crop Generation](src/main/app-resources/spinua-step-8)
-* [SPINUA-Step 06: PSC - Persistent Scatterers Candidate](src/main/app-resources/spinua-step-9)
-* [SPINUA-Step 07: Substep Configuration](src/main/app-resources/spinua-step-10)
-* [SPINUA-Step 08: Substep Patch Processing](src/main/app-resources/spinua-step-11)
-* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-12)
+* [SPINUA-Step 03: Configuration and Interferogram Generation](src/main/app-resources/spinua-step-5)
+* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-6)
+* [SPINUA-Step 05: Crop and Persistent Scatterers Candidate with Patch Processing](src/main/app-resources/spinua-step-7)
+* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-8)
 
 
 
@@ -59,49 +55,44 @@ Jenkinsfile  pom.xml  README.md  spinua  src
 #### Pre-requisites
 
 
-##### MATLAB Runtime
+##### MATLAB Runtime 9.1
 
 Run compiled MATLAB applications or components without installing MATLAB
 
 The MATLAB Runtime is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed.
 
-To download and install the MATLAB Runtime:
 
-The Release R2016b (MATLAB Runtime Version 9.1 and Linux platform that corresponds to the application or component you are using.
+Installation
+
+Install the package:
+```bash
+sudo yum install -y matlab-9.1
+```
+Usage
+Configure the environment:  
+
+export LD_LIBRARY_PATH=/opt/MCR_R2016b/v91/runtime/glnxa64:/opt/MCR_R2016b/v91/bin/glnxa64:/opt/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+
+
+On the target computer, append the following to your STORAGE and SPINUA environment variable in the files
+
+~/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-$step.on/bash/env/env_include.sh  with step.on=1 (from 1 to 7) 
 
 ```bash
-cd /home/${USER}
-wget -c http://ssd.mathworks.com/supportfiles/downloads/R2016b/deployment_files/R2016b/installers/glnxa64/MCR_R2016b_glnxa64_installer.zip
+vi ~/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-1/bash/env/env_include.sh 
 ```
 
-Unzip the MATLAB Runtime installer at the terminal using the unzip command.
-if you are unzipping the R2016b MATLAB Runtime installer, at the Terminal, type:
+set the environment variables to use SPINUA sw and Storage Path  
+export STORAGE=/data/input/storage2
+export SPINUA=~/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=~/dcs-cnr-issia-spinua/spinua
+export COMMADS=~/dcs-cnr-issia-spinua/spinua
+export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
-```bash
-unzip MCR_R2016b_glnxa64_installer.zip -d MCR_R2016b_glnxa64_installer
-cd MCR_R2016b_glnxa64_installer
-./install -destinationFolder /home/$USER/MCR_R2016b
-cd /home/${USER}
-rm -rf MCR_R2016b_glnxa64_installer*
-```
+set the environment variables to use MATLAB Runtime v91 release R2016b
+export MCR_ROOT=/opt/MCR_R2016b
+export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
-On the target computer, append the following to your STORAGE and SPINUA environment variable in the file /home/${USER}/.bashrc
-
-```bash
-vi /home/${USER}/.bashrc
-```
-
-Add two lines, Save and exit 
-
-export STORAGE=/home/${USER}/storage
-
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-
-export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
-
-```bash
-source /home/${USER}/.bashrc
-```
 
 #### Install SPINUA-Step X0: The Splitter
 The Step-On installation is quite straightforward, and it is performed with the Maven tool:
@@ -190,13 +181,31 @@ To learn more and find information go to
 
 ### <a name="authors"></a>Authors (alphabetically)
 
-* Author
+* Fabio Bovenga
+* Raffaele Nutricato
+* Davide Oscar Nitti
+* Khalid Tijani
 
 ### <a name="questions"></a>Questions, bugs, and suggestions
 
-Please file any bugs or questions as [issues](<app-url>) or send in a pull request if you corrected any.
+Please file any bugs or questions as [issues](<app-url>) or send in a email to:
+raffaele.nutricato@gapsrl.eu
+khalid.tijani@gapsrl.eu
 
 ### <a name="license"></a>License
+
+Software : SPINUA (Stable Point INterferometry even over Unurbanized Areas)
+Project: Indonesia Alcantara      
+Release Date: <YYYYMMDD>=20180320                   
+
+Copyright (c) 2018, GAP srl and CNR-ISSIA 
+
+Geophysical Applications Processing - GAP srl       
+c/o Dipartimento Interateneo di Fisica "M. Merlin"
+Via Amendola 173, 70126 Bari, ITALY
+
+CNR-ISSIA 
+Via Amendola 122/D, 70126 Bari (BA) Italy                     
 
 Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
 

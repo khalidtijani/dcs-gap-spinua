@@ -15,7 +15,7 @@
         <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.737</parameter>
      -->
 
-         <parameter id="subswath" title="Product subswath" abstract="Define the subswath of the product to be processed with SNAP" scope="test" maxOccurs="1">
+         <parameter id="subswath" title="Product subswath" abstract="Define the subswath of the product to be processed with SNAP" scope="runtime" maxOccurs="1">
 	         <options>
         	         <option>IW1</option>
                          <option>IW2</option>
