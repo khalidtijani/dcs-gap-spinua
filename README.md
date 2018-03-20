@@ -189,13 +189,14 @@ To learn more and find information go to
 ### <a name="questions"></a>Questions, bugs, and suggestions
 
 Please file any bugs or questions as [issues](<app-url>) or send in a email to:
-raffaele.nutricato@gapsrl.eu
-khalid.tijani@gapsrl.eu
+raffaele.nutricato@gapsrl.eu or khalid.tijani@gapsrl.eu
 
 ### <a name="license"></a>License
 
-Software : SPINUA (Stable Point INterferometry even over Unurbanized Areas)
+Software: SPINUA (Stable Point INterferometry even over Unurbanized Areas)
+
 Project: Indonesia Alcantara      
+
 Release Date: <YYYYMMDD>=20180320                   
 
 Copyright (c) 2018, GAP srl and CNR-ISSIA 
