@@ -95,9 +95,9 @@ function main() {
     ciop-log "DEBUG" "The Interferogram Generation number : ${numifg}"
     
     SubswathIn="`ciop-getparam subswath`"
-    PolarizationIn="`ciop-getparam polarization`"
+    PolarisationIn="`ciop-getparam polarisation`"
     local Subswath_POl
-    Subswath_POl=${SubswathIn}"_"${PolarizationIn}
+    Subswath_POl=${SubswathIn}"_"${PolarisationIn}
 
     ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
  

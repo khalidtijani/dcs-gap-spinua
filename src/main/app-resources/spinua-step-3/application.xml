@@ -4,9 +4,10 @@
     <jobTemplate id="supermaster">
       <streamingExecutable>/application/supermaster/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="rootFolder">rootDataset</parameter>
+       <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>        
       </defaultParameters>
     <defaultJobconf>
+         <property id="ciop.job.max.tasks">1</property>
         <property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
     </jobTemplate>

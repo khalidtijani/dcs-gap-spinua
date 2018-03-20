@@ -4,7 +4,7 @@
     <jobTemplate id="pscandidate">
       <streamingExecutable>/application/pscandidate/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
+        <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>
     <!--    
         <parameter id="subswath" title="Sub-swath name" abstract="Define the sub-swath name" scope="runtime" maxOccurs="1">IW2</parameter>
         <parameter id="polarization" title="polarization name" abstract="Define the polarization name" scope="runtime" maxOccurs="1">VV</parameter> 

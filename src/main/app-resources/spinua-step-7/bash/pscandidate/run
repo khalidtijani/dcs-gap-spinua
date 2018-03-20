@@ -58,7 +58,8 @@ trap cleanExit EXIT
 
 function main() {
 #source /home/khalidtijani/.bashrc
-    
+#source $_CIOP_APPLICATION_PATH/env/env_include.sh
+   
     #defines the input
     
     ver=$( echo "${1}" | cut -d";" -f1 )
@@ -92,7 +93,7 @@ function main() {
     rootFolder="`ciop-getparam rootFolder`"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
     SubswathIn="`ciop-getparam subswath`"
-    PolarizationIn="`ciop-getparam polarization`"
+    PolarisationIn="`ciop-getparam polarisation`"
     extentCropIn="`ciop-getparam extentCrop`"
 
     LonMinIn=$( echo "${extentCropIn}" | cut -d"," -f1 )
@@ -129,7 +130,7 @@ function main() {
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
      
     local Subswath_POl
-    Subswath_POl=${SubswathIn}"_"${PolarizationIn}
+    Subswath_POl=${SubswathIn}"_"${PolarisationIn}
 
     ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
 #    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
@@ -164,7 +165,10 @@ function main() {
     [ -z "$SPSC_SettingStrIn2" ] && exit $ERR_NOARG
     [ -z "$SPSC_SettingStrIn3" ] && exit $ERR_NOARG
     [ -z "$IIPSTE_SettingStrIn1" ] && exit $ERR_NOARG
-    [ -z "$IIPSTE_SettingStrIn2" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn21" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn22" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn23" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn24" ] && exit $ERR_NOARG
     [ -z "$IIPSTE_SettingStrIn3" ] && exit $ERR_NOARG
     [ -z "$IIPSTE_SettingStrIn4" ] && exit $ERR_NOARG
     [ -z "$Subswath_POl" ] && exit $ERR_NOARG
@@ -181,10 +185,14 @@ function main() {
 
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
 
-    ciop-log "DEBUG" "The LatMin used is: ${LatMinInPatch}"
-    ciop-log "DEBUG" "The LatMax used is: ${LatMaxInPatch}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMinInPatch}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMaxInPatch}"
+    ciop-log "DEBUG" "The LatMinPatch used is: ${LatMinInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LatMaxInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMinInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMaxInPatch}"
+
+    ciop-log "DEBUG" "The STORAGE Path used is: ${STORAGE}"
+    ciop-log "DEBUG" "The MAINSPINUA Path used is: ${MAINSPINUA}"
+    ciop-log "DEBUG" "The SPINUA Path used is: ${SPINUA}"
 
     SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
 

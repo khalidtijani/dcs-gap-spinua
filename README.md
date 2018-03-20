@@ -79,20 +79,22 @@ On the target computer, append the following to your STORAGE and SPINUA environm
 ~/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-$step.on/bash/env/env_include.sh  with step.on=1 (from 1 to 7) 
 
 ```bash
-vi ~/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-1/bash/env/env_include.sh 
+vi ${HOME}/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-1/bash/env/env_include.sh 
 ```
 
-set the environment variables to use SPINUA sw and Storage Path  
+```bash
+#set the environment variables to use SPINUA sw and Storage Path  
 export STORAGE=/data/input/storage2
-export SPINUA=~/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-export MAINSPINUA=~/dcs-cnr-issia-spinua/spinua
-export COMMADS=~/dcs-cnr-issia-spinua/spinua
+export USER=khalidtijani
+export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
-set the environment variables to use MATLAB Runtime v91 release R2016b
+#set the environment variables to use MATLAB Runtime v91 release R2016b
 export MCR_ROOT=/opt/MCR_R2016b
 export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-
+```
 
 #### Install SPINUA-Step X0: The Splitter
 The Step-On installation is quite straightforward, and it is performed with the Maven tool:
@@ -137,16 +139,16 @@ ciop-run node_splitter
 ```bash
 
 
-cd $STORAGE/S1splitter/outdir/stdout/    # outdir is the string that you choose as outfolder in application.xml  <parameter id="out">outdir</parameter>
+cd $STORAGE/S1splitter/StackDataset/stdout/    # as example StackDataset is the string that you choose as S1splitter outputfolder in application.xml  <parameter id="splitterout">StackDataset</parameter>
 
 ls 
 
 Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
 
-tail -f $STORAGE/S1splitter/outdir/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
+tail -f $STORAGE/S1splitter/StackDataset/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
 ```
 
-The result saved in this path $STORAGE/S1splitter/outdir/out 
+The result saved in this path $STORAGE/S1splitter/StackDataset/out 
 
 Now we need to choose our dataset to be downloaded and used for the next Step of Spinua Chain.
 
