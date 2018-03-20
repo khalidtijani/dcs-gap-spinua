@@ -1,22 +1,68 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="geocoding">
-      <streamingExecutable>/application/geocoding/run</streamingExecutable>
+    <jobTemplate id="pscandidate">
+      <streamingExecutable>/application/pscandidate/run</streamingExecutable>
       <defaultParameters>
         <parameter id="rootFolder" title="Input Output Folder" abstract="Define the inputoutfolder data" scope="runtime" maxOccurs="1">rootDataset</parameter>
-      </defaultParameters>
+    <!--    
+        <parameter id="subswath" title="Sub-swath name" abstract="Define the sub-swath name" scope="runtime" maxOccurs="1">IW2</parameter>
+        <parameter id="polarization" title="polarization name" abstract="Define the polarization name" scope="runtime" maxOccurs="1">VV</parameter> 
+     
+        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">15.194</parameter>
+        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.725</parameter>
+        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">15.213</parameter>
+        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.737</parameter>
+     -->
+
+         <parameter id="subswath" title="Product subswath" abstract="Define the subswath of the product to be processed with SNAP" scope="test" maxOccurs="1">
+	         <options>
+        	         <option>IW1</option>
+                         <option>IW2</option>
+                         <option>IW3</option>
+                         <option>IW1,IW2</option>
+                         <option>IW2,IW3</option>
+                         <option>IW1,IW2,IW3</option>
+                         <default>IW2</default>
+                 </options>
+         </parameter>
+	 <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
+	 	<options>
+			<option>VV</option>
+			<option>VH</option>
+			<option>HH</option>
+			<option>HV</option>
+			<default>VV</default>
+		</options>
+	 </parameter>
+
+
+<parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.194,37.725,15.213,37.737)" scope="runtime"  maxOccurs="1">15.194,37.725,15.213,37.737</parameter>
+
+      
+<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
+
+<parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
+<parameter id="SPSC_SettingStr2" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BTEMP " scope="runtime" maxOccurs="1">ON</parameter>
+<parameter id="SPSC_SettingStr3" title="SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns" abstract="Define the SkipLAPSRBBFLTERuns" scope="runtime" maxOccurs="1">0</parameter>
+<parameter id="IIPSTE_SettingStr1" title="IIPSTE_SettingStr.PSReports.PSCohTh" abstract="Define the PSCohTh" scope="runtime" maxOccurs="1">0.77</parameter>
+<parameter id="IIPSTE_SettingStr2" title="IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon" abstract="Define the OffsetsVelDEMErrAzPosLatLon" scope="runtime" maxOccurs="1">[0 0 0 0 0]</parameter>
+<parameter id="IIPSTE_SettingStr3" title="IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity" abstract="Define the ThMinMaxVelocity" scope="runtime" maxOccurs="1">[0 -10 10]</parameter>
+<parameter id="IIPSTE_SettingStr4" title="IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh" abstract="Define the VelAbsTh" scope="runtime" maxOccurs="1">5</parameter>
+
+
+</defaultParameters>
     <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-7" title="Geocoding" abstract="Test Geocoding">
+    <workflow id="spinua-step-9" title="PSC - Persistent Scatterers Candidate" abstract="Test PSC - Persistent Scatterers Candidate">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_geocoding">
-      <job id="geocoding"/>
+    <node id="node_pscandidate">
+      <job id="pscandidate"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;04</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05;06;07</source>  
 </sources>
 <parameters>
 </parameters>

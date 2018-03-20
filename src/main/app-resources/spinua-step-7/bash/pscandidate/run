@@ -2,23 +2,24 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
+source $_CIOP_APPLICATION_PATH/env/env_include.sh
 export MATLAB_SHELL=
 
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
-export USER=khalidtijani
-export STORAGE=/data/input/storage2
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+#export USER=khalidtijani
+#export STORAGE=/data/input/storage2
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
-export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
+#export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
-export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
+#export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
 #export MCR_ROOT=/home/khalidtijani/MATLAB/MATLAB_Runtime
 #export LD_LIBRARY_PATH=${MCR_ROOT}/v90/runtime/glnxa64:${MCR_ROOT}/v90/bin/glnxa64:${MCR_ROOT}/v90/sys/os/glnxa64:${LD_LIBRARY_PATH}
-export MCR_ROOT=/opt/MCR_R2016b
-export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
+#export MCR_ROOT=/opt/MCR_R2016b
+#export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 
 #export STORAGE=/home/${USER}/storage
 #export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
@@ -33,7 +34,7 @@ ERR_NOARG=2
 # add a trap to exit gracefully
 function cleanExit ()
 {
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 
     local retval=$?
     local msg=""
@@ -56,7 +57,7 @@ source /home/khalidtijani/.bashrc
 trap cleanExit EXIT
 
 function main() {
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
     
     #defines the input
     
@@ -232,7 +233,7 @@ echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
     [ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L3_Interferograms"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map"
 
     
   
@@ -248,7 +249,7 @@ echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
 }
 
 # create the output folder to store the output products and export it
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 #step="X0"
 while read arg; do
 #   step="X"$step 

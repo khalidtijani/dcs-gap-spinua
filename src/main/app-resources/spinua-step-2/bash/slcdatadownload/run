@@ -2,7 +2,10 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
-source /home/khalidtijani/.bashrc
+source $_CIOP_APPLICATION_PATH/env/env_include.sh
+export MATLAB_SHELL=
+
+#source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
 #export MCR_ROOT=/opt/MCR_R2016b
 #export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
@@ -20,7 +23,7 @@ ERR_NOARG=2
 # add a trap to exit gracefully
 function cleanExit ()
 {
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 
     local retval=$?
     local msg=""
@@ -43,7 +46,7 @@ source /home/khalidtijani/.bashrc
 trap cleanExit EXIT
 
 function main() {
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
     
     #defines the input
     
@@ -117,7 +120,7 @@ source /home/khalidtijani/.bashrc
 }
 
 # create the output folder to store the output products and export it
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 #step="X0"
 while read arg; do
 #   step="X"$step 

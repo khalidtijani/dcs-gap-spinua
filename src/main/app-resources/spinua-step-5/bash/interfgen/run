@@ -2,9 +2,10 @@
 
 # source the ciop functions (e.g. ciop-log, ciop-getparam)
 source ${ciop_job_include}
+
+source $_CIOP_APPLICATION_PATH/gpt/snap_include.sh
 source $_CIOP_APPLICATION_PATH/env/env_include.sh
 export MATLAB_SHELL=
-
 
 #source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
@@ -16,7 +17,7 @@ export MATLAB_SHELL=
 #export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
 #export JAVA_HOME=/usr/java/jdk1.6.0_35/jre
-#export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:${PATH}
+#export PATH=/bin:/usr/local/bin:/usr/bin:$JAVA_HOME/bin:$COMMADS/bin:/opt/snap-5.0/bin:${PATH}
 
 #export MCR_ROOT=/opt/MCR_R2016b
 #export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
@@ -89,11 +90,24 @@ function main() {
 
     rootFolder="`ciop-getparam rootFolder`"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+    
+    numifg="`ciop-getparam numifg`"
+    ciop-log "DEBUG" "The Interferogram Generation number : ${numifg}"
+    
+    SubswathIn="`ciop-getparam subswath`"
+    PolarizationIn="`ciop-getparam polarization`"
+    local Subswath_POl
+    Subswath_POl=${SubswathIn}"_"${PolarizationIn}
 
+    ciop-log "DEBUG" "The sub-swath name and polarization name used is Subswath_POl: ${Subswath_POl}"
+ 
+    
     # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
+    [ -z "$numifg" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
-
+    [ -z "$SubswathIn" ] && exit $ERR_NOARG
+    [ -z "$PolarizationIn" ] && exit $ERR_NOARG
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
@@ -106,8 +120,14 @@ function main() {
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-     
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - GAP_DEM_preprocessing_AlgConfig.txt  &> /dev/null
+   # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null    
+
+
+    $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
+    #rsync -Pav /data/input/storage3/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/* /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/
+    #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
+
 
          
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
@@ -117,7 +137,7 @@ function main() {
     [ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L1_SM_selection"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L3_Interferograms"
 
     
   
