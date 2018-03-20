@@ -188,7 +188,7 @@ To learn more and find information go to
 
 ### <a name="questions"></a>Questions, bugs, and suggestions
 
-Please file any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-cnr-issia-spinua>) or send in a email to:
+Please file any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-cnr-issia-spinua/issues>) or send in a email to:
 raffaele.nutricato@gapsrl.eu or khalid.tijani@gapsrl.eu
 
 ### <a name="license"></a>License
