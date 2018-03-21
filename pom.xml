@@ -2,17 +2,17 @@
 <project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
 	<modelVersion>4.0.0</modelVersion>
-	<groupId>CNR-ISSIA</groupId>
-	<artifactId>dcs-cnr-issia-spinua-step-${step.on}</artifactId>
+	<groupId>GAP-SRL</groupId>
+	<artifactId>dcs-gap-spinua-step-${step.on}</artifactId>
 	<packaging>rpm</packaging>
-	<name>dcs-cnr-issia-spinua-step-${step.on}</name>
+	<name>dcs-gap-spinua-step-${step.on}</name>
 	<description>Developer Cloud Sandbox SPINUA application Step ${step.on}</description>
 	<version>1.0.11</version>
 	
 	<scm>
-		<connection>scm:git:git@github.com:khalidtijani/dcs-cnr-issia-spinua.git</connection>
-		<developerConnection>scm:git:git@github.com:khalidtijani/dcs-cnr-issia-spinua.git</developerConnection>
-		<url>https://github.com/khalidtijani/dcs-cnr-issia-spinua</url>
+		<connection>scm:git:git@github.com:khalidtijani/dcs-gap-spinua.git</connection>
+		<developerConnection>scm:git:git@github.com:khalidtijani/dcs-gap-spinua.git</developerConnection>
+		<url>https://github.com/khalidtijani/dcs-gap-spinua</url>
 		<tag>HEAD</tag>
 	</scm>
 	
@@ -61,7 +61,7 @@
 							<extensions>true</extensions>
 							<configuration>
 								<copyright>${project.inceptionYear}, CNR ISSIA InSAR4Indo SPINUA, GPL</copyright>
-								<distribution>CNR ISSIA InSAR4Indo SPINUA ${project.inceptionYear}</distribution>
+								<distribution>GAP srl InSAR4Indo SPINUA ${project.inceptionYear}</distribution>
 								<group>air</group>
 								<packager>Terradue</packager>
 								<summary>Developer Cloud Sandbox SPINUA application Step ${step.on}</summary>

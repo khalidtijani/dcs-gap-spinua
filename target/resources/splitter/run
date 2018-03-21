@@ -5,6 +5,7 @@ source ${ciop_job_include}
 source $_CIOP_APPLICATION_PATH/env/env_include.sh
 export MATLAB_SHELL=
 
+
 #source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b 
 #export MCR_ROOT=/opt/MCR_R2016b
@@ -51,12 +52,12 @@ function main() {
     #defines the input
     
     ver=$( echo "${1}" | cut -d";" -f1 )
-    ciop-log "INFO" "The version $ver for spinua chain"
-    [ -z "${ver}" ] && return ${ERR_NOARG}
+ #   ciop-log "INFO" "The version $ver for spinua chain"
+ #   [ -z "${ver}" ] && return ${ERR_NOARG}
 
     step=$( echo "${1}" | cut -d";" -f2 )
-    ciop-log "INFO" "Th step $step for spinua chain"
-   [ -z "${step}" ] && return ${ERR_NOARG}
+ #   ciop-log "INFO" "Th step $step for spinua chain"
+ #   [ -z "${step}" ] && return ${ERR_NOARG}
 
 
 
@@ -65,53 +66,78 @@ function main() {
     #ver=$1
     #local step
     #step="X0"
-    #ciop-log "INFO" "The version $ver for spinua chain"
-    #ciop-log "INFO" "Th step $step for spinua chain"  
+    ciop-log "INFO" "The version $ver for spinua chain"
+    ciop-log "INFO" "Th step $step for spinua chain"  
 
 #  step=$1
     # retrieve the parameters value from workflow or job default value
+    splitterOutputFolder="`ciop-getparam splitterout`"
+    
+    startDATEIn="`ciop-getparam startDATE`"
+    endDATEIn="`ciop-getparam endDATE`"
+    extentSearchIn="`ciop-getparam extentSearch`"
 
-    rootFolder="`ciop-getparam rootFolder`"
-    splitterOutputFolder="`ciop-getparam splitterOut`"
-    ciop-log "DEBUG" "The InputFolder which the same string of outfoldername used in step 1 of spinua chain : ${splitterOutputFolder}"
-    ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
+    LatMinIn=$( echo "${extentSearchIn}" | cut -d"," -f1 )
+    LatMaxIn=$( echo "${extentSearchIn}" | cut -d"," -f2 )
+    LonMinIn=$( echo "${extentSearchIn}" | cut -d"," -f2 )   
+    LonMaxIn=$( echo "${extentSearchIn}" | cut -d"," -f4 )
+    
+    local bbox
+    bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
+    ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+    ciop-log "INFO" "The Start Day argument used is $startDATEIn for this run"
+    ciop-log "INFO" "The End Day argument used is $endDATEIn for this run"
 
     # run a check on the expression value, it can't be empty
-    [ -z "$rootFolder" ] && exit $ERR_NOARG
-    [ -z "$step" ] && exit $ERR_NOARG
     [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
+    
+    [ -z "$startDATEIn" ] && exit $ERR_NOARG
+    [ -z "$endDATEIn" ] && exit $ERR_NOARG
+
+
+    [ -z "$LatMinIn" ] && exit $ERR_NOARG
+    [ -z "$LatMaxIn" ] && exit $ERR_NOARG
+    [ -z "$LonMinIn" ] && exit $ERR_NOARG
+    [ -z "$LonMaxIn" ] && exit $ERR_NOARG
+    
+    # log the value, it helps debugging. 
+    # the log entry is available in the process stderr 
+    ciop-log "DEBUG" "The splitterOutputFolder used is: ${splitterOutputFolder}"
+    ciop-log "DEBUG" "The LatMin used is: ${LatMinIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LatMaxIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMinIn}"
+    ciop-log "DEBUG" "The LatMax used is: ${LonMaxIn}"
 
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
-    
-    chmod -R 777 ${STORAGE}/S1Data
-    busyfile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/busy
-    donefile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/done
-    [ -f "${busyfile}" ] && rm -rf ${busyfile} && touch $donefile   
-    #rm ${STORAGE}/S1Data/$rootFolder/L0_InputData/out/S1A_IW_SLC__1SDV_20161201T170412_20161201T170439_014189_016EC6_908B.zip
-    #outputfolder=${STORAGE}/S1Data/$rootFolder
-    # cleanup
-    #[ -d "$outputfolder" ] && rm -rf $outputfolder  
+    ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
+    ciop-log "INFO" "The Start Day argument used is $startDATEIn for this run"
+    ciop-log "INFO" "The End Day argument used is $endDATEIn for this run"
 
+    
+    outputfolder=${STORAGE}/S1splitter/${splitterOutputFolder}
+    # cleanup
+    [ -d "$outputfolder" ] && rm -rf $outputfolder  
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNRISSIA  &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox $startDATEIn $endDATEIn    &> /dev/null
     
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L0_InputData"
-
+    outputfolder="${STORAGE}/S1splitter/${splitterOutputFolder}/out"
     
+    tar -zcvf ${splitterOutputFolder}.tar.gz ${outputfolder} &> /dev/null 
   
     # publish the compressed results
-    ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
+    ciop-log "INFO" "The Result is saved as namedataset.list01 namedataset.list02 namedataset.list03 in this path ${outputfolder} "
     ciop-log "INFO" "Publishing ${outputfolder} " 
-    
+    ciop-publish $STORAGE/$splitterOutputFolder.tgz
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 
