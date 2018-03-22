@@ -46,8 +46,8 @@ Install the pre-requisites as instructed above.
 Log on the Developer Cloud Sandbox and run these commands in a shell:
 
 ```bash
-git clone https://github.com/khalidtijani/dcs-cnr-issia-spinua.git
-cd dcs-cnr-issia-spinua
+git clone https://github.com/khalidtijani/dcs-gap-spinua.git
+cd dcs-gap-spinua
 ls 
 Jenkinsfile  pom.xml  README.md  spinua  src
 ```
@@ -76,19 +76,19 @@ export LD_LIBRARY_PATH=/opt/MCR_R2016b/v91/runtime/glnxa64:/opt/MCR_R2016b/v91/b
 
 On the target computer, append the following to your STORAGE and SPINUA environment variable in the files
 
-~/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-$step.on/bash/env/env_include.sh  with step.on=1 (from 1 to 7) 
+$HOME/dcs-gap-spinua/src/main/app-resources/spinua-step-$step.on/bash/env/env_include.sh  with step.on=1 (from 1 to 7) 
 
 ```bash
-vi ${HOME}/dcs-cnr-issia-spinua/src/main/app-resources/spinua-step-1/bash/env/env_include.sh 
+vi ${HOME}/dcs-gap-spinua/src/main/app-resources/spinua-step-1/bash/env/env_include.sh 
 ```
 
 ```bash
 #set the environment variables to use SPINUA sw and Storage Path  
 export STORAGE=/data/input/storage2
 export USER=khalidtijani
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
-export COMMADS=/home/${USER}/dcs-cnr-issia-spinua/spinua
+export SPINUA=/home/${USER}/dcs-gap-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/${USER}/dcs-gap-spinua/spinua
+export COMMADS=/home/${USER}/dcs-gap-spinua/spinua
 export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 
 #set the environment variables to use MATLAB Runtime v91 release R2016b
@@ -99,7 +99,7 @@ export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa
 #### Install SPINUA-Step X0: The Splitter
 The Step-On installation is quite straightforward, and it is performed with the Maven tool:
 ```bash
-cd dcs-cnr-issia-spinua/
+cd dcs-gap-spinua/
 mvn clean install -D step.on=1 -P bash
 ```
 
@@ -161,8 +161,8 @@ Install the pre-requisites as instructed above.
 Log on the Developer Cloud Sandbox and run these commands in a shell:
 
 ```bash
-git clone https://github.com/khalidtijani/dcs-cnr-issia-spinua.git
-cd dcs-cnr-issia-spinua
+git clone https://github.com/khalidtijani/dcs-gap-spinua.git
+cd dcs-gap-spinua
 mvn clean install -D step.on=-id- -P bash
 ```
 
@@ -183,14 +183,14 @@ To learn more and find information go to
 
 ### <a name="authors"></a>Authors (alphabetically)
 
-* Fabio Bovenga
+* Maria Teresa Chiaradia
 * Raffaele Nutricato
 * Davide Oscar Nitti
 * Khalid Tijani
 
 ### <a name="questions"></a>Questions, bugs, and suggestions
 
-Please file any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-cnr-issia-spinua/issues>) or send in a email to:
+Please file any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-gap-spinua/issues>) or send in a email to:
 raffaele.nutricato@gapsrl.eu or khalid.tijani@gapsrl.eu
 
 ### <a name="license"></a>License
@@ -206,9 +206,7 @@ Copyright (c) 2018, GAP srl and CNR-ISSIA
 Geophysical Applications Processing - GAP srl       
 c/o Dipartimento Interateneo di Fisica "M. Merlin"
 Via Amendola 173, 70126 Bari, ITALY
-
-CNR-ISSIA 
-Via Amendola 122/D, 70126 Bari (BA) Italy                     
+                     
 
 Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/LICENSE-2.0
 
