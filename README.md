@@ -201,7 +201,7 @@ Project: Indonesia Alcantara
 
 Release Date: <YYYYMMDD>=20180320                   
 
-Copyright (c) 2018, GAP srl and CNR-ISSIA 
+Copyright (c) 2018, GAP srl  
 
 Geophysical Applications Processing - GAP srl       
 c/o Dipartimento Interateneo di Fisica "M. Merlin"
