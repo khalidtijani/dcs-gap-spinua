@@ -20,9 +20,11 @@
         	         <option>IW1</option>
                          <option>IW2</option>
                          <option>IW3</option>
+<!--
                          <option>IW1,IW2</option>
                          <option>IW2,IW3</option>
                          <option>IW1,IW2,IW3</option>
+-->
                          <default>IW2</default>
                  </options>
          </parameter>
@@ -38,15 +40,13 @@
 
 
 <parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.194,37.725,15.213,37.737)" scope="runtime"  maxOccurs="1">15.194,37.725,15.213,37.737</parameter>
-
+<!--
       
 <parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
 
-<!--
 <parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
 <parameter id="SPSC_SettingStr2" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BTEMP " scope="runtime" maxOccurs="1">ON</parameter>
 <parameter id="SPSC_SettingStr3" title="SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns" abstract="Define the SkipLAPSRBBFLTERuns" scope="runtime" maxOccurs="1">0</parameter> 
--->
 <parameter id="IIPSTE_SettingStr1" title="Inter-Image Coherence Threshold" abstract="Define the minimum coherence for targets to be included in the final product" scope="runtime" maxOccurs="1">0.77</parameter>
 <parameter id="IIPSTE_SettingStr21" title="Mean Velocity Offset" abstract="Offset in mm/yr to be added to the mean velocity of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
 <parameter id="IIPSTE_SettingStr22" title="Height Offset" abstract="Offset in meters to be added to the height of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
@@ -54,7 +54,7 @@
 <parameter id="IIPSTE_SettingStr24" title="Longitude Offset" abstract="Offset in decimal degrees to be added to the longitude of the coherent targets" scope="runtime" maxOccurs="1">0</parameter>
 <parameter id="IIPSTE_SettingStr3" title="Maximum Velocity Value for palette saturation of KML maps" abstract="Define the maximum velocity (in mm/yr, in absolute value) for colorbar saturation of KML velocity maps" scope="runtime" maxOccurs="1">10</parameter>
 <parameter id="IIPSTE_SettingStr4" title="Threshold on the Mean Velocity for Displacement Trend Generation" abstract="Displacement trends will be generated only for coherent targets with mean velocity higher than the threshold specified by the user (in absolute value), expressed in mm/yr" scope="runtime" maxOccurs="1">5</parameter>
-
+-->
 
 </defaultParameters>
     <defaultJobconf>
@@ -62,12 +62,12 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-9" title="PSC - Persistent Scatterers Candidate" abstract="Test PSC - Persistent Scatterers Candidate">
+    <workflow id="spinua-step-7" title="PSC - Persistent Scatterers Candidate" abstract="Test PSC - Persistent Scatterers Candidate">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_pscandidate">
       <job id="pscandidate"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05;06;07</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;05;06</source>  
 </sources>
 <parameters>
 </parameters>

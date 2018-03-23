@@ -11,8 +11,8 @@ Available SPINUA processing Step
 * [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-4)
 * [SPINUA-Step 03: Configuration and Interferogram Generation](src/main/app-resources/spinua-step-5)
 * [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-6)
-* [SPINUA-Step 05: Crop and Persistent Scatterers Candidate with Patch Processing](src/main/app-resources/spinua-step-7)
-* [SPINUA-Step FD: Final Delivery](src/main/app-resources/spinua-step-8)
+* [SPINUA-Step 05: Crop and Persistent Scatterers Candidate](src/main/app-resources/spinua-step-7)
+* [SPINUA-Step FD: Patch Processing and Final Delivery](src/main/app-resources/spinua-step-8)
 
 
 

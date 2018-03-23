@@ -66,13 +66,11 @@ function main() {
     ciop-log "INFO" "The version $ver for spinua chain"
     [ -z "${ver}" ] && return ${ERR_NOARG}
 
-    step1=$( echo "${1}" | cut -d";" -f2 )
-    ciop-log "INFO" "Th step1 $step1 for spinua chain"
-   [ -z "${step1}" ] && return ${ERR_NOARG}
+    step=$( echo "${1}" | cut -d";" -f2 )
+    ciop-log "INFO" "Th step $step1 for spinua chain"
+   [ -z "${step}" ] && return ${ERR_NOARG}
     
-    step2=$( echo "${1}" | cut -d";" -f3 )
-    ciop-log "INFO" "Th step2 $step2 for spinua chain"
-   [ -z "${step2}" ] && return ${ERR_NOARG}
+ 
 
     #local ver
     #ver="v2.0"
@@ -96,29 +94,29 @@ function main() {
     LonMaxIn=$( echo "${extentCropIn}" | cut -d"," -f3 )
     LatMaxIn=$( echo "${extentCropIn}" | cut -d"," -f4 )
     
-#    extentPatchIn="`ciop-getparam extentPatch`"
+    extentPatchIn="`ciop-getparam extentPatch`"
     
-#    LonMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f1 )
-#    LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
-#    LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
-#    LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
+    LonMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f1 )
+    LatMinInPatch=$( echo "${extentPatchIn}" | cut -d"," -f2 )
+    LonMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f3 )
+    LatMaxInPatch=$( echo "${extentPatchIn}" | cut -d"," -f4 )
 
-#    SPSC_SettingStrIn1="OFF"
-#    SPSC_SettingStrIn2="ON"
-#    SPSC_SettingStrIn3="0"
+    SPSC_SettingStrIn1="OFF"
+    SPSC_SettingStrIn2="ON"
+    SPSC_SettingStrIn3="0"
     
 #    SPSC_SettingStrIn1="`ciop-getparam SPSC_SettingStr1`"
 #    SPSC_SettingStrIn2="`ciop-getparam SPSC_SettingStr2`"
 #    SPSC_SettingStrIn3="`ciop-getparam SPSC_SettingStr3`"
 
-#    IIPSTE_SettingStrIn1="`ciop-getparam IIPSTE_SettingStr1`"
-#    IIPSTE_SettingStrIn21="`ciop-getparam IIPSTE_SettingStr21`"
-#    IIPSTE_SettingStrIn22="`ciop-getparam IIPSTE_SettingStr22`"
-#    IIPSTE_SettingStrIn23="`ciop-getparam IIPSTE_SettingStr23`"
-#    IIPSTE_SettingStrIn24="`ciop-getparam IIPSTE_SettingStr24`"
+    IIPSTE_SettingStrIn1="`ciop-getparam IIPSTE_SettingStr1`"
+    IIPSTE_SettingStrIn21="`ciop-getparam IIPSTE_SettingStr21`"
+    IIPSTE_SettingStrIn22="`ciop-getparam IIPSTE_SettingStr22`"
+    IIPSTE_SettingStrIn23="`ciop-getparam IIPSTE_SettingStr23`"
+    IIPSTE_SettingStrIn24="`ciop-getparam IIPSTE_SettingStr24`"
     
-#    IIPSTE_SettingStrIn3="`ciop-getparam IIPSTE_SettingStr3`"
-#    IIPSTE_SettingStrIn4="`ciop-getparam IIPSTE_SettingStr4`"
+    IIPSTE_SettingStrIn3="`ciop-getparam IIPSTE_SettingStr3`"
+    IIPSTE_SettingStrIn4="`ciop-getparam IIPSTE_SettingStr4`"
      
     local bbox
     bbox="LAT"$LatMinIn"_"$LatMaxIn"LON"$LonMinIn"_"$LonMaxIn
@@ -131,48 +129,44 @@ function main() {
 #    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = $SPSC_SettingStrIn1"
 #    ciop-log "DEBUG" "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = $SPSC_SettingStrIn2"
 #    ciop-log "DEBUG" "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = $SPSC_SettingStrIn3"
-#    ciop-log "DEBUG" "Inter-Image Coherence Threshold = $IIPSTE_SettingStrIn1"
-#    ciop-log "DEBUG" "Mean Velocity Offset = $IIPSTE_SettingStrIn21"
-#    ciop-log "DEBUG" "Height Offset = $IIPSTE_SettingStrIn22"
-#    ciop-log "DEBUG" "Latitude Offset = $IIPSTE_SettingStrIn23"
-#    ciop-log "DEBUG" "Longitude Offset = $IIPSTE_SettingStrIn24"
+    ciop-log "DEBUG" "Inter-Image Coherence Threshold = $IIPSTE_SettingStrIn1"
+    ciop-log "DEBUG" "Mean Velocity Offset = $IIPSTE_SettingStrIn21"
+    ciop-log "DEBUG" "Height Offset = $IIPSTE_SettingStrIn22"
+    ciop-log "DEBUG" "Latitude Offset = $IIPSTE_SettingStrIn23"
+    ciop-log "DEBUG" "Longitude Offset = $IIPSTE_SettingStrIn24"
 
-#    ciop-log "DEBUG" "Maximum Velocity Value for palette saturation of KML maps = $IIPSTE_SettingStrIn3"
-#    ciop-log "DEBUG" "Threshold on the Mean Velocity for Displacement Trend Generation = $IIPSTE_SettingStrIn4"
+    ciop-log "DEBUG" "Maximum Velocity Value for palette saturation of KML maps = $IIPSTE_SettingStrIn3"
+    ciop-log "DEBUG" "Threshold on the Mean Velocity for Displacement Trend Generation = $IIPSTE_SettingStrIn4"
 
     
      # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
-    [ -z "$step1" ] && exit $ERR_NOARG
-    [ -z "$step2" ] && exit $ERR_NOARG
-#    [ -z "$step3" ] && exit $ERR_NOARG
-
+    [ -z "$step" ] && exit $ERR_NOARG
+ 
     [ -z "$LatMinIn" ] && exit $ERR_NOARG
     [ -z "$LatMaxIn" ] && exit $ERR_NOARG
     [ -z "$LonMinIn" ] && exit $ERR_NOARG
     [ -z "$LonMaxIn" ] && exit $ERR_NOARG
     
-#    [ -z "$LatMinInPatch" ] && exit $ERR_NOARG
-#    [ -z "$LatMaxInPatch" ] && exit $ERR_NOARG
-#    [ -z "$LonMinInPatch" ] && exit $ERR_NOARG
-#    [ -z "$LonMaxInPatch" ] && exit $ERR_NOARG
-#    [ -z "$SPSC_SettingStrIn1" ] && exit $ERR_NOARG
-#    [ -z "$SPSC_SettingStrIn2" ] && exit $ERR_NOARG
-#    [ -z "$SPSC_SettingStrIn3" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn1" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn21" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn22" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn23" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn24" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn3" ] && exit $ERR_NOARG
-#    [ -z "$IIPSTE_SettingStrIn4" ] && exit $ERR_NOARG
+    [ -z "$LatMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LatMaxInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMinInPatch" ] && exit $ERR_NOARG
+    [ -z "$LonMaxInPatch" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn1" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn2" ] && exit $ERR_NOARG
+    [ -z "$SPSC_SettingStrIn3" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn1" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn21" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn22" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn23" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn24" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn3" ] && exit $ERR_NOARG
+    [ -z "$IIPSTE_SettingStrIn4" ] && exit $ERR_NOARG
     [ -z "$Subswath_POl" ] && exit $ERR_NOARG
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
-    ciop-log "INFO" "Th step $step1 for spinua chain"
-    ciop-log "INFO" "Th step $step2 for spinua chain"
-#    ciop-log "INFO" "Th step $step3 for spinua chain"
-
+    ciop-log "INFO" "Th step $step for spinua chain"
+    
     ciop-log "DEBUG" "The LatMin used is: ${LatMinIn}"
     ciop-log "DEBUG" "The LatMax used is: ${LatMaxIn}"
     ciop-log "DEBUG" "The LatMax used is: ${LonMinIn}"
@@ -180,10 +174,10 @@ function main() {
 
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
 
-#    ciop-log "DEBUG" "The LatMinPatch used is: ${LatMinInPatch}"
-#    ciop-log "DEBUG" "The LatMaxPatch used is: ${LatMaxInPatch}"
-#    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMinInPatch}"
-#    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMaxInPatch}"
+    ciop-log "DEBUG" "The LatMinPatch used is: ${LatMinInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LatMaxInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMinInPatch}"
+    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMaxInPatch}"
 
     ciop-log "DEBUG" "The STORAGE Path used is: ${STORAGE}"
     ciop-log "DEBUG" "The MAINSPINUA Path used is: ${MAINSPINUA}"
@@ -200,30 +194,25 @@ function main() {
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
+    #rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
 
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - ${Subswath_POl} $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
-    
-    
-#    PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
-#    echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
+    PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
+    echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
 
-#echo "% --- Processing Optimization. --- " >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = '"$SPSC_SettingStrIn1"';" >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = '"$SPSC_SettingStrIn2"';" >>  $PatchGeoCoordTxtFile
-#echo "% --- End Processing Optimization. --- "  >>  $PatchGeoCoordTxtFile
-#echo "" >>  $PatchGeoCoordTxtFile
-#echo "% --- Output refinement. ---" >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = "$SPSC_SettingStrIn3";" >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.PSCohTh = "$IIPSTE_SettingStrIn1"; "  >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = ["$IIPSTE_SettingStrIn21" "$IIPSTE_SettingStrIn22" 0 "$IIPSTE_SettingStrIn23" "$IIPSTE_SettingStrIn24"];"   >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = [0 -"$IIPSTE_SettingStrIn3" "$IIPSTE_SettingStrIn3"];"   >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = "$IIPSTE_SettingStrIn4";"  >>  $PatchGeoCoordTxtFile
-#echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
+echo "% --- Processing Optimization. --- " >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = '"$SPSC_SettingStrIn1"';" >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = '"$SPSC_SettingStrIn2"';" >>  $PatchGeoCoordTxtFile
+echo "% --- End Processing Optimization. --- "  >>  $PatchGeoCoordTxtFile
+echo "" >>  $PatchGeoCoordTxtFile
+echo "% --- Output refinement. ---" >>  $PatchGeoCoordTxtFile
+echo "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = "$SPSC_SettingStrIn3";" >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.PSCohTh = "$IIPSTE_SettingStrIn1"; "  >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = ["$IIPSTE_SettingStrIn21" "$IIPSTE_SettingStrIn22" 0 "$IIPSTE_SettingStrIn23" "$IIPSTE_SettingStrIn24"];"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = [0 -"$IIPSTE_SettingStrIn3" "$IIPSTE_SettingStrIn3"];"   >>  $PatchGeoCoordTxtFile
+echo "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = "$IIPSTE_SettingStrIn4";"  >>  $PatchGeoCoordTxtFile
+echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
     
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
-
-#    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
