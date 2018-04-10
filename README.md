@@ -1,6 +1,6 @@
 ## Developer Cloud Sandbox SPINUA application  
 
-SPINUA (Stable Point INterferometry even over Unurbanized Areas) is a PSI-like algorithm originally developed for detection and monitoring of coherent targets (CT) in non- or scarcely- urbanized areas, extended for applications involving densely urbanized areas, as well as to assure proper processing of high resolution X-band data from both CSK and TSX. SPINUA through GEP will be used to derive deformation maps in Indonesia over test sites.
+SPINUA (Stable Point Interferometry even over Unurbanized Areas) is a PSI-like algorithm originally developed for detection and monitoring of coherent targets (CT) in non- or scarcely- urbanized areas, extended for applications involving densely urbanized areas, as well as to assure proper processing of high resolution X-band data from both COSMO-SkyMed and TerraSAR-X missions. SPINUA through GEP can be used to derive deformation maps by using Sentinel-1 IWS data.
 
 Available SPINUA processing Step
 --------------------------------
