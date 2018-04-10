@@ -1,8 +1,13 @@
-##### SPINUA-Step X0: The Splitter
+### SPINUA-Step X0: The Splitter
 
 ESA Sentinel-1 catalogue Browsing for interferometric data takes identification.
 
 #### Install SPINUA-Step X0: The Splitter
+
+##### Setup the environment variables
+* [vi /application/env/env_include.sh](env/env_include.sh)
+
+
 The Step-On installation is quite straightforward, and it is performed with the Maven tool:
 ```bash
 cd dcs-gap-spinua/
