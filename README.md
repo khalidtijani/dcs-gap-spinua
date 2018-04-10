@@ -181,7 +181,7 @@ To learn more and find information go to
 
 * [Developer Cloud Sandbox](http://docs.terradue.com/developer-sandbox/)  
 
-### <a name="authors"></a>Authors (alphabetically)
+### <a name="authors"></a>Authors
 
 * Maria Teresa Chiaradia
 * Raffaele Nutricato
@@ -190,7 +190,7 @@ To learn more and find information go to
 
 ### <a name="questions"></a>Questions, bugs, and suggestions
 
-Please file any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-gap-spinua/issues>) or send in a email to:
+Please any bugs or questions as [issues](<https://github.com/khalidtijani/dcs-gap-spinua/issues>) or send an e-mail to:
 raffaele.nutricato@gapsrl.eu or khalid.tijani@gapsrl.eu
 
 ### <a name="license"></a>License
@@ -199,7 +199,7 @@ Software: SPINUA (Stable Point INterferometry even over Unurbanized Areas)
 
 Project: Indonesia Alcantara      
 
-Release Date: <YYYYMMDD>=20180320                   
+Release Date: 20180320                   
 
 Copyright (c) 2018, GAP srl  
 
@@ -212,4 +212,4 @@ Licensed under the Apache License, Version 2.0: http://www.apache.org/licenses/L
 
 ### <a name="funding"></a>Funding
 
-Put here any information about the funding.
+ESA Contract No. 4000114611/15/F/MOS – ALCANTARA INITIATIVE: INTERNATIONAL R&D STUDIES ANNOUNCEMENT OF OPPORTUNITY - Alcantara Study Enhanced Tectonic Characterization for Indonesia - Integrating SAR interferometry and GNSS for studying tectonic processes in Indonesia
