@@ -62,17 +62,17 @@ Run compiled MATLAB applications or components without installing MATLAB
 The MATLAB Runtime is a standalone set of shared libraries that enables the execution of compiled MATLAB applications or components on computers that do not have MATLAB installed.
 
 
-Installation
+###### Installation
 
 Install the package:
 ```bash
 sudo yum install -y matlab-9.1
 ```
-Usage
+###### Usage
 Configure the environment:  
-
+```bash
 export LD_LIBRARY_PATH=/opt/MCR_R2016b/v91/runtime/glnxa64:/opt/MCR_R2016b/v91/bin/glnxa64:/opt/MCR_R2016b/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
-
+```
 
 On the target computer, append the following to your STORAGE and SPINUA environment variable in the files
 
