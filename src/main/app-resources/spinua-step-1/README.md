@@ -24,11 +24,11 @@ cd $_CIOP_APPLICATION_PATH
 Check for a file named application.xml
 Open it with a text editor (e.g. vi) and inspect its content. It will be similar to:
 
-* [vi /application/application.xml](src/main/app-resources/spinua-step-1/application.xml)
+* [vi /application/application.xml](application.xml)
 
 A run executable is responsible for the execution of your application (or a step of it) by the Hadoop compute engine. In the application.xml we defined a workflow with a single node and the related run executable:
 
-* [vi /application/splitter/run](src/main/app-resources/spinua-step-1/bash/splitter/run)
+* [vi /application/splitter/run](bash/splitter/run)
 
 
 Run the node
