@@ -46,19 +46,34 @@ Execute it by typing:
 ```bash
 ciop-run node_splitter
 ```
+
+Wait until the workflow is completed (it will take approximately five minutes).
+
+#####Browse the results
+
+Open a browser and type http://$HOSTNAME:50070
+
+Sometimes the Hands-On refer to the variable $HOSTNAME. To obtain its value type:
 ```bash
-
-
-cd $STORAGE/S1splitter/StackDataset/stdout/    # as example StackDataset is the string that you choose as S1splitter outputfolder in application.xml  <parameter id="splitterout">StackDataset</parameter>
-
-ls
-
-Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
-
-tail -f $STORAGE/S1splitter/StackDataset/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
+echo $HOSTNAME
 ```
 
-The result saved in this path $STORAGE/S1splitter/StackDataset/out
+The output will be similar to:
+```bash
+sb-xx-xx-xx-xx.lab.terradue.int
+```
 
-Now we need to choose our dataset to be downloaded and used for the next Step of Spinua Chain.
+Click on the link Browse the filesystem,
+Click on the link ciop,
+Click on the link run,
+Click on the link hands-on-8,
+Click on the link representing the workflow id (e.g., 0000269-150209145053100-oozie-oozi-W),
+Click on the link _result,
+To see intermediate results, click on node_splitter and then click on data.
+
+In the * [Hands-On Exercise 8: browse published results](http://docs.terradue.com/developer-sandbox/developer/browseresults.html), you find how you can browse your results through the Oozie Web Console showing with images the steps that we have just perfermed.
+
+The following link of image show The contents of directory _results, that we need to choose our dataset to be downloaded and used for the next Step of Spinua Chain.
+
+* [The contents of directory _result](BrowseResults.png)
 
