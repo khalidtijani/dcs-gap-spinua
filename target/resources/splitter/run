@@ -120,7 +120,7 @@ function main() {
     
     outputfolder=${STORAGE}/S1splitter/${splitterOutputFolder}
     # cleanup
-    [ -d "$outputfolder" ] && rm -rf $outputfolder  
+    [ -d "$outputfolder" ] && rm -rf "$outputfolder"*  
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
@@ -129,7 +129,7 @@ function main() {
     # check the exit code
   
     #tail -f ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
-     ciop-log "INFO" "publishing stdout cmdX0 of splitter" 
+    ciop-log "INFO" "publishing stdout cmdX0 of splitter" 
     ciop-publish -m ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
     donefile=${outputfolder}/status/done
     if [ -f "${donefile}" ]

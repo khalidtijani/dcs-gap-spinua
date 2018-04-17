@@ -6,6 +6,28 @@
       <defaultParameters>
         <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>
         <parameter id="splitterOut" title="S1splitter Output Folder of stack of datasets in step 1" abstract="Define the S1splitter Output Folder of step 1 using the same string of the splitterOutputFolder" scope="runtime" maxOccurs="1">StackDataset</parameter>
+        <parameter id="directionorb" title="Direction of the orbit (ascending, descending)" abstract="Direction of the orbit (ascending, descending)" scope="runtime" maxOccurs="1">
+                <options>
+                        <option>Descending</option>
+                        <option>Ascending</option>
+                        <default>Descending</default>
+                </options>
+         </parameter>
+         <parameter id="relativeorbitnumber" title="Relative Orbit Number (from 1 to 175)" abstract="Relative Orbit Number (from 1 to 175)" scope="runtime" maxOccurs="1">124</parameter>
+
+        <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
+                <options>
+                        <option>VV</option>
+                        <option>VH</option>
+                        <option>HH</option>
+                        <option>HV</option>
+                        <default>VV</default>
+                </options>
+         </parameter>
+
+
+
+
       </defaultParameters>
        <defaultJobconf>
         <property id="mapred.task.timeout">9900000000</property>

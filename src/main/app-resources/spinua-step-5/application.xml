@@ -41,7 +41,7 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-6" title="Interferogram Generation" abstract="Test Interferogram Generation">
+    <workflow id="spinua-step-5" title="Interferogram Generation" abstract="Test Interferogram Generation">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_interfgen">
       <job id="interfgen"/>

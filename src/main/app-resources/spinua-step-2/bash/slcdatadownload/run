@@ -76,10 +76,27 @@ function main() {
     ciop-log "DEBUG" "The InputFolder which the same string of outfoldername used in step 1 of spinua chain : ${splitterOutputFolder}"
     ciop-log "DEBUG" "The RootFolder of results as IN/OUT processing step is: ${rootFolder}"
 
+    directionorbIn="`ciop-getparam directionorb`"
+    relativeorbitnumberIn="`ciop-getparam relativeorbitnumber`"
+    polarisationIn="`ciop-getparam polarisation`"
+    ciop-log "DEBUG" "Direction of the orbit (ascending, descending) : ${directionorbIn}"
+    ciop-log "DEBUG" "Relative Orbit Number (from 1 to 175) : ${relativeorbitnumberIn}"
+    ciop-log "DEBUG" "Product polarisation : ${polarisationIn}"
+
     # run a check on the expression value, it can't be empty
     [ -z "$rootFolder" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
     [ -z "$splitterOutputFolder" ] && exit $ERR_NOARG
+    [ -z "$directionorbIn" ] && exit $ERR_NOARG
+    [ -z "$relativeorbitnumberIn" ] && exit $ERR_NOARG
+    [ -z "$polarisationIn" ] && exit $ERR_NOARG
+
+    Directionstr=$(echo "${directionorbIn}" | cut -c 1)
+
+
+    local Direct_Orb_POL
+    Direct_Orb_POL="*S1_IW_SLC_"${Directionstr}"_orb"${relativeorbitnumberIn}"_"${PolarisationIn}"*"
+
 
 
     # report activity in log
@@ -98,7 +115,8 @@ function main() {
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder - CNRISSIA  &> /dev/null
+    # S1_IW_SLC_D_orb152_VH 
+    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder ${Direct_Orb_POL} GAPSRL  &> /dev/null
     
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA
