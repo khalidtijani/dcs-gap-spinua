@@ -1,45 +1,39 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="slcdatadownload">
-      <streamingExecutable>/application/slcdatadownload/run</streamingExecutable>
+    <jobTemplate id="splitter">
+      <streamingExecutable>/application/splitter/run</streamingExecutable>
       <defaultParameters>
-        <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>
-        <parameter id="splitterOut" title="S1splitter Output Folder of stack of datasets in step 1" abstract="Define the S1splitter Output Folder of step 1 using the same string of the splitterOutputFolder" scope="runtime" maxOccurs="1">StackDataset</parameter>
-        <parameter id="directionorb" title="Direction of the orbit (ascending, descending)" abstract="Direction of the orbit (ascending, descending)" scope="runtime" maxOccurs="1">
-                <options>
-                        <option>Descending</option>
-                        <option>Ascending</option>
-                        <default>Ascending</default>
-                </options>
-         </parameter>
-         <parameter id="relativeorbitnumber" title="Relative Orbit Number (from 1 to 175)" abstract="Relative Orbit Number (from 001 to 175)" scope="runtime" maxOccurs="1">044</parameter>
-
-        <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
-                <options>
-                        <option>VV</option>
-                        <option>VH</option>
-                        <option>HH</option>
-                        <option>HV</option>
-                        <default>VV</default>
-                </options>
-         </parameter>
+        <parameter id="splitterout" title="Output Folder of stack of datasets" abstract="Define the outfolder to save lists of stack of data" scope="runtime" maxOccurs="1">StackDataset</parameter>
+        <!--parameter id="splitterout" title="Output Folder of stack of datasets" abstract="Define the outfolder to save lists of stack of data" scope="runtime" maxOccurs="1">StackDataset</parameter-->
+        <parameter id="startDATE" title="Start Date yyyy-mm-dd" abstract="Define the Start Day" scope="runtime" maxOccurs="1">2014-08-01</parameter>
+        <parameter id="endDATE" title="End Day yyyy-mm-dd" abstract="Define the End Day" scope="runtime" maxOccurs="1">2017-10-31</parameter>
 
 
+        <parameter id="extentSearch" title="Search AOI extent" abstract="Search AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.194,37.725,15.213,37.737)" scope="runtime"  maxOccurs="1">14.245,37.027,14.306,37.055</parameter>
 
-
+<!--
+        <parameter id="LonMin" title="Longitude Min" abstract="Define the longitude Min" scope="runtime" maxOccurs="1">14.20</parameter>
+        <parameter id="LatMin" title="Latitude  Min" abstract="Define the latitude  Min" scope="runtime" maxOccurs="1">37.01</parameter>
+        <parameter id="LonMax" title="Longitude Max" abstract="Define the longitude Max" scope="runtime" maxOccurs="1">14.35</parameter>
+        <parameter id="LatMax" title="Latitude  Max" abstract="Define the latitude  Max" scope="runtime" maxOccurs="1">37.09</parameter>
+-->
       </defaultParameters>
-       <defaultJobconf>
+      <defaultJobconf>      	
+<!--        
+<property id="ciop.job.max.tasks">1</property>
+-->
         <property id="mapred.task.timeout">9900000000</property>
-      </defaultJobconf>  
-  </jobTemplate>
+      </defaultJobconf>
+    </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-2" title="SLC data download" abstract="Test SLC data download, using the string of the parameter named splitterOutputFolder in splitter application">
+    <workflow id="spinua-step-1" title="Splitter" abstract="Test Splitter, using parameters">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_slcdatadownload">
-      <job id="slcdatadownload"/>
+    <node id="node_splitter">
+      <job id="splitter"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;00</source>  
+        <!--source scope="runtime" id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;X0</source-->
+        <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;X0</source>
 </sources>
 <parameters>
 </parameters>
