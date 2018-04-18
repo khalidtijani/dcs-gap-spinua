@@ -81,12 +81,34 @@ source /home/khalidtijani/.bashrc
 
     ciop-log "INFO" "The version $ver for spinua chain"
     ciop-log "INFO" "Th step $step for spinua chain"
+    
+    
+    for file1 in $(less /home/khalidtijani/S1_Khalid_N098_S1_IW_SLC_A_orb044_VV.list1)
+    do
+    cd /data/input/storage2/S1Data/rootDataset/L0_InputData/out/
+    mv $file1".zip" Aorb044vv/ 
+    mv $file1".ESA"  Aorb044vv/
+    done
+    
+    for file2 in $(less /home/khalidtijani/S1_Khalid_N100_S1_IW_SLC_A_orb117_VV.list1)
+    do
+    cd /data/input/storage2/S1Data/rootDataset/L0_InputData/out/
+    mv $file2".zip" Aorb117vv/  
+    mv $file2".ESA" Aorb117vv/                                          
+    done
+ 
+    for file3 in $(less /home/khalidtijani/S1_Khalid_N100_S1_IW_SLC_D_orb124_VV.list1)
+    do
+    cd /data/input/storage2/S1Data/rootDataset/L0_InputData/out/
+    mv $file3".zip" Dorb124vv/
+    mv $file3".ESA" Dorb124vv/                                                         
+    done
 
     
     # prepare the SPINUA Step request
 
     # invoke the Main SPINUA run binary
-    ${MAINSPINUA}/Fun_callsystem  $stringin    &> /tmp/log.txt 
+    #${MAINSPINUA}/Fun_callsystem  $stringin    &> /tmp/log.txt 
     
     # check the exit code
     [ $? -eq 0 ] || return $ERR_SPINUA

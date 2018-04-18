@@ -10,10 +10,10 @@
                 <options>
                         <option>Descending</option>
                         <option>Ascending</option>
-                        <default>Descending</default>
+                        <default>Ascending</default>
                 </options>
          </parameter>
-         <parameter id="relativeorbitnumber" title="Relative Orbit Number (from 1 to 175)" abstract="Relative Orbit Number (from 1 to 175)" scope="runtime" maxOccurs="1">124</parameter>
+         <parameter id="relativeorbitnumber" title="Relative Orbit Number (from 1 to 175)" abstract="Relative Orbit Number (from 001 to 175)" scope="runtime" maxOccurs="1">044</parameter>
 
         <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
                 <options>
