@@ -1,3 +1,3 @@
-SPINUA-Step 00: SLC data download
+SPINUA-Step 01: Supermaster Selection
 
-Download of the selected interferometric stack.
+Selection of SAR acquisition that will be used as reference image (Super Master) to perform the coregistration and all subsequent interferometric steps.

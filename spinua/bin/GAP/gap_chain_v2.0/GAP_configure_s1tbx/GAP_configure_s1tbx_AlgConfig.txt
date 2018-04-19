@@ -35,4 +35,4 @@ externalDEMNoDataValue = -32767;
 if strcmp(class_DTM,'SRTM 3Sec'); externalDEMNoDataValue = -32768; end
 if strcmp(class_DTM,'SRTM 1Sec HGT'); externalDEMNoDataValue = -32767; end
 
-flag_remove_tmp_files = 1;
+flag_remove_tmp_files = 0;

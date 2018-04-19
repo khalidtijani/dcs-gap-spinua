@@ -24,4 +24,4 @@ flag_step04_resfile_generation = 1;
 flag_step05_compute_baseline = 1;
 flag_step06_SM_selection = 1;
 
-flag_remove_tmp_files = 1;
+flag_remove_tmp_files = 0;

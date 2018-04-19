@@ -43,5 +43,5 @@ HPfilterP=401;
 ENDIANNESS = 'l'; % do not modify
 PRECISION = 'float32'; % do not modify
 
-flag_remove_tmp_files = 1;
+flag_remove_tmp_files = 0;
 flag_move_tmp_files_previous_steps = 0;

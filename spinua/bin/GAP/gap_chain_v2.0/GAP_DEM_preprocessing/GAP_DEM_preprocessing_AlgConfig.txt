@@ -26,7 +26,7 @@ SHA_ASPECT_ANG_TH=30;
 HEADING=[350 190]; % in degrees
 INC_ANG=[34 39 44]; % in degrees
 
-flag_remove_tmp_files = 1;
+flag_remove_tmp_files = 0;
 
 % layerID==1 % along track
 % layerID==2 % cross-track (foreshortening)
