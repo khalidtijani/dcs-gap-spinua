@@ -169,15 +169,15 @@ function main() {
     
     ciop-log "DEBUG" "The LatMin used is: ${LatMinIn}"
     ciop-log "DEBUG" "The LatMax used is: ${LatMaxIn}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMinIn}"
-    ciop-log "DEBUG" "The LatMax used is: ${LonMaxIn}"
+    ciop-log "DEBUG" "The LonMin used is: ${LonMinIn}"
+    ciop-log "DEBUG" "The LonMax used is: ${LonMaxIn}"
 
     ciop-log "INFO" "The Boundary Box argument used is $bbox for this run"
 
     ciop-log "DEBUG" "The LatMinPatch used is: ${LatMinInPatch}"
     ciop-log "DEBUG" "The LatMaxPatch used is: ${LatMaxInPatch}"
-    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMinInPatch}"
-    ciop-log "DEBUG" "The LatMaxPatch used is: ${LonMaxInPatch}"
+    ciop-log "DEBUG" "The LonMinPatch used is: ${LonMinInPatch}"
+    ciop-log "DEBUG" "The LonMaxPatch used is: ${LonMaxInPatch}"
 
     ciop-log "DEBUG" "The STORAGE Path used is: ${STORAGE}"
     ciop-log "DEBUG" "The MAINSPINUA Path used is: ${MAINSPINUA}"
@@ -214,13 +214,16 @@ echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
     
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
+     # check the exit code
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
+    
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    #[ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map/$SM_UUID/${Subswath_POl}/$bbox"
 
     
   

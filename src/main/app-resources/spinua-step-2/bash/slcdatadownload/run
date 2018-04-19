@@ -104,9 +104,9 @@ function main() {
     ciop-log "INFO" "Th step $step for spinua chain"
     
     chmod -R 777 ${STORAGE}/S1Data
-    busyfile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/busy
-    donefile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/done
-    [ -f "${busyfile}" ] && rm -rf ${busyfile} && touch $donefile   
+    #busyfile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/busy
+    #donefile=${STORAGE}/S1Data/$rootFolder/L0_InputData/status/done
+    #[ -f "${busyfile}" ] && rm -rf ${busyfile} && touch $donefile   
     #rm ${STORAGE}/S1Data/$rootFolder/L0_InputData/out/S1A_IW_SLC__1SDV_20161201T170412_20161201T170439_014189_016EC6_908B.zip
     #outputfolder=${STORAGE}/S1Data/$rootFolder
     # cleanup
@@ -119,7 +119,7 @@ function main() {
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder 0 $splitterOutputFolder ${Direct_Orb_POL} GAPSRL  &> /dev/null
     
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
 
     # compress the ESA BEAM results
     outputfolder="${STORAGE}/S1Data/$rootFolder/L0_InputData"

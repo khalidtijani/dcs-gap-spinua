@@ -123,24 +123,38 @@ function main() {
    # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null    
 
+     # check the exit code
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
 
     $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
     #rsync -Pav /data/input/storage3/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/* /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/
     #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
 
+     # check the exit code
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
 
          
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    #[ $? -eq 0 ] || return $ERR_SPINUA
+    
+    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+
+    ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L3_Interferograms"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L3_Interferograms/$SM_UUID/$Subswath_POl"
 
-    
-  
+    ciop-log "INFO" "Generating kml image files"
+
+    for entry in "${outputfolder}"/out/*.dim
+    do
+      echo "$entry"
+    ciop-publish -m "$entry" &> /dev/null 
+    done 
+   
     # publish the compressed results
     ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
     ciop-log "INFO" "Publishing ${outputfolder} " 

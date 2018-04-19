@@ -113,15 +113,29 @@ function main() {
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl GAP_SAR_geocoding_AlgConfig.txt &> /dev/null
 
 
-         
+    #check the exit code
+     [ $? -ne 0 ] && || exit $ERR_SPINUA
+ 
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    #[ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L4_Geocoding"
+     SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+
+     ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
+
+   
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L4_Geocoding/$SM_UUID/$Subswath_POl"
+  
+      ciop-log "INFO" "Compressing and publishing kml product"
+    cd ${outputfolder}/out
+    tar -czf L4_Geocoding.tgz *.kml
+  # stage-out the kml product
+  cd - &> /dev/null
+  ciop-publish -m ${outputfolder}/out/L4_Geocoding.tgz
 
     
   

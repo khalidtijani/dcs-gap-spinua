@@ -204,34 +204,22 @@ function main() {
 
     ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - ${Subswath_POl} $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
     
+     # check the exit code
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
     
-#    PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
-#    echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
-
-#echo "% --- Processing Optimization. --- " >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP = '"$SPSC_SettingStrIn1"';" >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BTEMP = '"$SPSC_SettingStrIn2"';" >>  $PatchGeoCoordTxtFile
-#echo "% --- End Processing Optimization. --- "  >>  $PatchGeoCoordTxtFile
-#echo "" >>  $PatchGeoCoordTxtFile
-#echo "% --- Output refinement. ---" >>  $PatchGeoCoordTxtFile
-#echo "SPSC_SettingStr.RP.PSReports.SkipLAPSRBBFLTERuns = "$SPSC_SettingStrIn3";" >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.PSCohTh = "$IIPSTE_SettingStrIn1"; "  >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.OffsetsVelDEMErrAzPosLatLon = ["$IIPSTE_SettingStrIn21" "$IIPSTE_SettingStrIn22" 0 "$IIPSTE_SettingStrIn23" "$IIPSTE_SettingStrIn24"];"   >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.KMLGeneration.ThMinMaxVelocity = [0 -"$IIPSTE_SettingStrIn3" "$IIPSTE_SettingStrIn3"];"   >>  $PatchGeoCoordTxtFile
-#echo "IIPSTE_SettingStr.PSReports.TrendGeneration.VelAbsTh = "$IIPSTE_SettingStrIn4";"  >>  $PatchGeoCoordTxtFile
-#echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
     
     ${MAINSPINUA}/Main_Spinua_Run $ver $step2 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL7.m &> /dev/null
-
+    
+      [ $? -ne 0 ] && || exit $ERR_SPINUA
 #    ${MAINSPINUA}/Main_Spinua_Run $ver $step3 $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    #[ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map"
+    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map/$SM_UUID/${Subswath_POl}/$bbox"
 
     
   
