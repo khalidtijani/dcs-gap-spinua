@@ -1,3 +1,3 @@
-SPINUA-Step 02: DEM pre-processing
+SPINUA-Step 03: Configuration and Interferogram Generation
 
-External DTM download and pre-processing (mosaicking + geodi2ellipsoid conversion).
+Generation of the stack of interferograms all referred to the Super Master geometry.

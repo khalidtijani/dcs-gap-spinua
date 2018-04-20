@@ -1,23 +1,49 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="dem">
-      <streamingExecutable>/application/dem/run</streamingExecutable>
+    <jobTemplate id="interfgen">
+      <streamingExecutable>/application/interfgen/run</streamingExecutable>
       <defaultParameters>
-      <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>        
+       <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>        
+  
+<!--
+        <parameter id="subswath" title="Sub-swath name" abstract="Define the sub-swath name" scope="runtime" maxOccurs="1">IW2</parameter>
+        <parameter id="polarization" title="polarization name" abstract="Define the polarization name" scope="runtime" maxOccurs="1">VV</parameter>
+-->
+
+   <parameter id="subswath" title="Product subswath" abstract="Define the subswath of the product to be processed with SNAP" scope="runtime" maxOccurs="1">
+                 <options>
+                         <option>IW1</option>
+                         <option>IW2</option>
+                         <option>IW3</option>
+                         <default>IW2</default>
+                 </options>
+         </parameter>
+         <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
+                <options>
+                        <option>VV</option>
+                        <option>VH</option>
+                        <option>HH</option>
+                        <option>HV</option>
+                        <default>VV</default>
+                </options>
+         </parameter>
+
+
+        <parameter id="numifg" title="The Interferogram Generation number" abstract="Define number of the Interferogram " scope="runtime" maxOccurs="1">10</parameter>
+
       </defaultParameters>
     <defaultJobconf>
-        <property id="ciop.job.max.tasks">1</property>
-         <property id="mapred.task.timeout">9900000000</property>
+        <property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-4" title="DEM pre-processing" abstract="Test DEM pre-processing">
+    <workflow id="spinua-step-5" title="Interferogram Generation" abstract="Test Interferogram Generation">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_dem">
-      <job id="dem"/>
+    <node id="node_interfgen">
+      <job id="interfgen"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;02</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;03</source>  
 </sources>
 <parameters>
 </parameters>
