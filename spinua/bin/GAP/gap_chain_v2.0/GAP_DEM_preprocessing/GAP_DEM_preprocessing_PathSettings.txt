@@ -1,3 +1,3 @@
-InstallationFolder='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0/GAP_DEM_preprocessing';
+InstallationFolder='/home/khalidtijani/dcs-gap-spinua/spinua/bin/GAP/gap_chain_v2.0/GAP_DEM_preprocessing';
 MainOutFolder='/data/input/storage2/S1Data';
 DEM_CGIAR_FOLDER='/data/input/storage/SRTMData';

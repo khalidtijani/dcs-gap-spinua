@@ -119,7 +119,7 @@ function main() {
     outputfolder="${STORAGE}/S1Data/$rootFolder/L1_SM_selection"
 
       ciop-log "INFO" "Compressing and publishing kml product"
-      cd ${outputfolder}/out/kml
+      cd ${outputfolder}/out
       tar -czf L1_SM_selection.tgz kml/*
 
      # stage-out the kml product

@@ -131,7 +131,7 @@ function main() {
     #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
 
      # check the exit code
-    [ $? -ne 0 ] && || exit $ERR_SPINUA
+    [ $? -ne 0 ] && exit $ERR_SPINUA
 
          
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log

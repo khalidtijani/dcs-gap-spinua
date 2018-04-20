@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="us-ascii"?>
 <application xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" id="spinua_chain">
   <jobTemplates>
-    <jobTemplate id="supermaster">
-      <streamingExecutable>/application/supermaster/run</streamingExecutable>
+    <jobTemplate id="dem">
+      <streamingExecutable>/application/dem/run</streamingExecutable>
       <defaultParameters>
-       <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>        
+      <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>        
       </defaultParameters>
     <defaultJobconf>
-         <property id="ciop.job.max.tasks">1</property>
-        <property id="mapred.task.timeout">9900000000</property>
+        <property id="ciop.job.max.tasks">1</property>
+         <property id="mapred.task.timeout">9900000000</property>
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-3" title="Supermaster Selection" abstract="Test Supermaster Selection">
+    <workflow id="spinua-step-4" title="DEM pre-processing" abstract="Test DEM pre-processing">
     <workflowVersion>1.0</workflowVersion>
-    <node id="node_supermaster">
-      <job id="supermaster"/>
+    <node id="node_dem">
+      <job id="dem"/>
  <sources>
-         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;01</source>  
+         <source id="args" title="Spinua Version and Step Arguments" abstract="Spinua Version and Step Arguments" refid="string:list">v2.0;02</source>  
 </sources>
 <parameters>
 </parameters>

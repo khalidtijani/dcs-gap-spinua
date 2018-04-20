@@ -1,12 +1,12 @@
-InstallationFolder='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0/GAP_configure_s1tbx';
+InstallationFolder='/home/khalidtijani/dcs-gap-spinua/spinua/bin/GAP/gap_chain_v2.0/GAP_configure_s1tbx';
 MainOutFolder='/data/input/storage2/S1Data';
 
-gpt_path_s1tbx_v1_1_1='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif/bin/gpt';
-gpt_path_snap_v3_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif/bin/gpt';
-gpt_path_snap_v4_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif/bin/gpt';
-gpt_path_snap_v5_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif/bin/gpt';
+gpt_path_s1tbx_v1_1_1='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif/bin/gpt';
+gpt_path_snap_v3_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif/bin/gpt';
+gpt_path_snap_v4_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif/bin/gpt';
+gpt_path_snap_v5_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif/bin/gpt';
 
-gptM_path_s1tbx_v1_1_1='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif_master/bin/gpt';
-gptM_path_snap_v3_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif_master/bin/gpt';
-gptM_path_snap_v4_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif_master/bin/gpt';
-gptM_path_snap_v5_0='/home/khalidtijani/dcs-cnr-issia-spinua/spinua/sw/snap_modif_master/bin/gpt';
+gptM_path_s1tbx_v1_1_1='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif_master/bin/gpt';
+gptM_path_snap_v3_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif_master/bin/gpt';
+gptM_path_snap_v4_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif_master/bin/gpt';
+gptM_path_snap_v5_0='/home/khalidtijani/dcs-gap-spinua/spinua/sw/snap_modif_master/bin/gpt';

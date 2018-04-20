@@ -16,7 +16,7 @@
                          <option>IW1</option>
                          <option>IW2</option>
                          <option>IW3</option>
-                         <default>IW1</default>
+                         <default>IW2</default>
                  </options>
          </parameter>
          <parameter id="polarisation" title="Product polarisation" abstract="Define the product polarisation" scope="runtime" maxOccurs="1">
