@@ -118,7 +118,7 @@ function main() {
     # compress the ESA BEAM results
     outputfolder="${STORAGE}/S1Data/$rootFolder/L1_SM_selection"
 
-        ciop-log "INFO" "Compressing and publishing kml product"
+      ciop-log "INFO" "Compressing and publishing kml product"
       cd ${outputfolder}/out/kml
       tar -czf L1_SM_selection.tgz kml/*.*
 

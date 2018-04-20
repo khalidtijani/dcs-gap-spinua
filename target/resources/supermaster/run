@@ -106,10 +106,14 @@ function main() {
 #    chmod -R 777 /data/input/storage2/S1Data/rootDataset/L1_SM_selection   
         
     #unzip -o /data/input/storage2/S1Data/rootDataset/L0_InputData/out/S*_20141020T165548_*.zip *s1*-iw1-slc-vv-*.xml -d /data/input/storage2/S1Data/rootDataset/L1_SM_selection/tmp > /tmp/khalid.log
+    # check the exit code
+    [ $? -ne 0 ] && || exit $ERR_SPINUA
+
     ciop-log "INFO" "check the exit code $? for spinua chain"
 
     # check the exit code
-    [ $? -eq 0 ] || return $ERR_SPINUA
+    #[ $? -ne 0 ] && || exit $ERR_SPINUA   
+    #[ $? -eq 0 ] || return $ERR_SPINUA
 
     # compress the ESA BEAM results
     outputfolder="${STORAGE}/S1Data/$rootFolder/L1_SM_selection"
