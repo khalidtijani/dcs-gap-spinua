@@ -95,7 +95,7 @@ function main() {
     [ -z "$rootFolder" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
     [ -z "$SubswathIn" ] && exit $ERR_NOARG
-    [ -z "$PolarizationIn" ] && exit $ERR_NOARG
+    [ -z "$PolarisationIn" ] && exit $ERR_NOARG
 
 
     # report activity in log
