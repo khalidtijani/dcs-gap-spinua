@@ -107,7 +107,7 @@ function main() {
     [ -z "$numifg" ] && exit $ERR_NOARG
     [ -z "$step" ] && exit $ERR_NOARG
     [ -z "$SubswathIn" ] && exit $ERR_NOARG
-    [ -z "$PolarizationIn" ] && exit $ERR_NOARG
+    [ -z "$PolarisationIn" ] && exit $ERR_NOARG
 
     # report activity in log
     ciop-log "INFO" "The version $ver for spinua chain"
@@ -121,12 +121,14 @@ function main() {
     #unzip --version 
     #which unzip
    # for i in `seq 1 36`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done
-    ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null    
+    #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null    
 
      # check the exit code
-    [ $? -ne 0 ] && || exit $ERR_SPINUA
+    #[ $? -ne 0 ] && exit $ERR_SPINUA
 
-    $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
+    #$MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl $numifg GAP_run_s1tbx_AlgConfig.txt &> /dev/null
+    
+    for i in `seq 16 99`; do echo $i; $MAINSPINUA/Main_Spinua_Run $ver $step $rootFolder dbg - $Subswath_POl $i GAP_run_s1tbx_AlgConfig.txt &> /dev/null ; done  
     #rsync -Pav /data/input/storage3/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/* /data/input/storage2/S1Data/rootDataset/L3_Interferograms/d69948b7-788b-4b7b-b37e-a6b523d75ce4/IW2_VV/
     #${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - IW2_VV 0 GAP_configure_s1tbx_AlgConfig.txt &> /dev/null
 

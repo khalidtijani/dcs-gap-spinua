@@ -35,7 +35,7 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-7" title="Geocoding" abstract="Test Geocoding">
+    <workflow id="spinua-step-6" title="Geocoding" abstract="Test Geocoding">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_geocoding">
       <job id="geocoding"/>

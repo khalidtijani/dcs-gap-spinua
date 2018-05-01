@@ -127,7 +127,7 @@ function main() {
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $splitterOutputFolder $bbox $startDATEIn $endDATEIn    &> /dev/null
     
     # check the exit code
-     [ $? -ne 0 ] && || exit $ERR_SPINUA 
+    [ $? -ne 0 ] && exit $ERR_SPINUA 
     #tail -f ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
     ciop-log "INFO" "publishing stdout cmdX0 of splitter" 
     ciop-publish -m ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
