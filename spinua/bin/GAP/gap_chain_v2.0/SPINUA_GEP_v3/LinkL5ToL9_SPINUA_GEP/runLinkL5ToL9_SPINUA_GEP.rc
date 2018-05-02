@@ -4,12 +4,12 @@
 source ${ciop_job_include}
 export MATLAB_SHELL=
 
-source /home/khalidtijani/.bashrc
+#source /home/khalidtijani/.bashrc
 # set the environment variables to use MATLAB Runtime v91 release R2016b
-export USER=khalidtijani
-export STORAGE=/data/input/storage2
-export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
-export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
+#export USER=khalidtijani
+#export STORAGE=/data/input/storage2
+#export SPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua/bin/GAP/gap_chain_v2.0
+#export MAINSPINUA=/home/${USER}/dcs-cnr-issia-spinua/spinua
 
 overwriteFlag=$1
 datasetID=$2

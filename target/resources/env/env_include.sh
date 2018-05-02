@@ -5,10 +5,10 @@ source ${ciop_job_include}
 # set the environment variables to use SPINUA sw and Storage Path  
 export USER=khalidtijani
 export STORAGE=/data/input/storage2
-export SPINUA=/home/${USER}/dcs-gap-spinua/spinua/bin/GAP/gap_chain_v2.0
-export MAINSPINUA=/home/${USER}/dcs-gap-spinua/spinua
+export SPINUA=/home/$USER/dcs-gap-spinua/spinua/bin/GAP/gap_chain_v2.0
+export MAINSPINUA=/home/$USER/dcs-gap-spinua/spinua
 
-export COMMADS=/home/${USER}/dcs-gap-spinua/spinua
+export COMMADS=/home/$USER/dcs-gap-spinua/spinua
 
 export PATH=/bin:/usr/local/bin:/usr/bin:$COMMADS/bin:${PATH}
 

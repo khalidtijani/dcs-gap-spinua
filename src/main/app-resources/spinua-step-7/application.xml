@@ -39,7 +39,7 @@
 	 </parameter>
 
 
-<parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.194,37.725,15.213,37.737)" scope="runtime"  maxOccurs="1">15.194,37.725,15.213,37.737</parameter>
+<parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.245,37.027,14.306,37.055)" scope="runtime"  maxOccurs="1">14.20,37.01,14.45,37.18</parameter>
 <!--
       
 <parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
@@ -62,7 +62,8 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-7" title="PSC - Persistent Scatterers Candidate" abstract="Test PSC - Persistent Scatterers Candidate">
+    <workflow id="spinua-step-7" title="PSC - Persistent Scatterers Candidate" abstract="SPINUA-Step 05: Crop and Persistent Scatterers Candidates 
+Crop of the interferograms over the AOI (Area Of Interest) and identification of the position of the Persistent Scatterers Candidates by exploiting the amplitudes of the coregistered SAR images.">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_pscandidate">
       <job id="pscandidate"/>
