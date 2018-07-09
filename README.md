@@ -5,14 +5,14 @@ SPINUA (Stable Point Interferometry even over Unurbanized Areas) is a PSI-like a
 Available SPINUA processing Step
 --------------------------------
 
-* [SPINUA-Step X0: The Splitter](src/main/app-resources/spinua-step-1/)
-* [SPINUA-Step 00: SLC data download](src/main/app-resources/spinua-step-2)
-* [SPINUA-Step 01: Supermaster Selection](src/main/app-resources/spinua-step-3)
-* [SPINUA-Step 02: DEM pre-processing](src/main/app-resources/spinua-step-4)
-* [SPINUA-Step 03: Configuration and Interferogram Generation](src/main/app-resources/spinua-step-5)
-* [SPINUA-Step 04: Geocoding](src/main/app-resources/spinua-step-6)
-* [SPINUA-Step 05: Crop and Persistent Scatterers Candidate](src/main/app-resources/spinua-step-7)
-* [SPINUA-Step FD: Patch Processing and Final Delivery](src/main/app-resources/spinua-step-8)
+* [SPINUA-Step 01: The Splitter](src/main/app-resources/spinua-step-1/)
+* [SPINUA-Step 02: SLC data download](src/main/app-resources/spinua-step-2)
+* [SPINUA-Step 03: Supermaster Selection](src/main/app-resources/spinua-step-3)
+* [SPINUA-Step 04: DEM pre-processing](src/main/app-resources/spinua-step-4)
+* [SPINUA-Step 05: Configuration and Interferogram Generation](src/main/app-resources/spinua-step-5)
+* [SPINUA-Step 06: Geocoding](src/main/app-resources/spinua-step-6)
+* [SPINUA-Step 07: Crop and Persistent Scatterers Candidate](src/main/app-resources/spinua-step-7)
+* [SPINUA-Step 08: Patch Processing and Final Delivery](src/main/app-resources/spinua-step-8)
 
 
 
@@ -96,7 +96,7 @@ export MCR_ROOT=/opt/MCR_R2016b
 export LD_LIBRARY_PATH=${MCR_ROOT}/v91/runtime/glnxa64:${MCR_ROOT}/v91/bin/glnxa64:${MCR_ROOT}/v91/sys/os/glnxa64:${LD_LIBRARY_PATH}
 ```
 
-#### Install SPINUA-Step X0: The Splitter
+#### Install SPINUA-Step 01: The Splitter
 The Step-On installation is quite straightforward, and it is performed with the Maven tool:
 ```bash
 cd dcs-gap-spinua/
