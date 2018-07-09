@@ -49,9 +49,7 @@ Wait until the workflow is completed (it will take approximately five minutes).
 ```bash
 cd $STORAGE/S1Data/rootDataset/stdout    # as example rootDataset is the string that you choose as S1splitter outputfolder in application.xml  <parameter id="rootFolder" title="S1Data Input Output Folder of step 2..7" abstract="Define the S1Data rootOutputFolder L0,L1,L2,L3,L4,L5 levels" scope="runtime" maxOccurs="1">rootDataset</parameter>
 
-ls -lrt
-
-Main_Spinua_Run_v2.0_stdout_2018.04.19_T10.08.57.978293316_cmd00_config.txt
+ls -lrt *_cmd00_config.txt
 
 tail -f $STORAGE/S1Data/rootDataset/stdout/Main_Spinua_Run_v2.0_stdout_2018.04.19_T10.08.57.978293316_cmd00_config.txt
 ```

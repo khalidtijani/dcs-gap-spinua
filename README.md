@@ -141,11 +141,9 @@ ciop-run node_splitter
 
 cd $STORAGE/S1splitter/StackDataset/stdout/    # as example StackDataset is the string that you choose as S1splitter outputfolder in application.xml  <parameter id="splitterout">StackDataset</parameter>
 
-ls 
+ls -lrt *_cmdX0.txt
 
-Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
-
-tail -f $STORAGE/S1splitter/StackDataset/stdout/Main_Spinua_Run_v2.0_stdout_2017.10.04_T14.04.33.266557272_cmdX0.txt
+tail -f $STORAGE/S1splitter/StackDataset/stdout/Main_Spinua_Run_v2.0_stdout_2018.07.09_T11.02.26.547603596_cmdX0.txt
 ```
 
 The result saved in this path $STORAGE/S1splitter/StackDataset/out 

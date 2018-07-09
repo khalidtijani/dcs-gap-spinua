@@ -1,8 +1,9 @@
-### SPINUA-Step X0: The Splitter
+
+### SPINUA-Step 1: The Splitter
 
 ESA Sentinel-1 catalogue Browsing for interferometric data takes identification.
 
-#### Install SPINUA-Step X0: The Splitter
+#### Install SPINUA-Step 1: The Splitter
 
 ##### Setup the environment variables
 * [vi /application/env/env_include.sh](env/env_include.sh)
@@ -48,6 +49,21 @@ ciop-run node_splitter
 ```
 
 Wait until the workflow is completed (it will take approximately five minutes).
+
+```bash
+
+cd $STORAGE/S1splitter/StackDataset/stdout/    # as example StackDataset is the string that you choose as S1splitter outputfolder in application.xml  <parameter id="splitterout">StackDataset</parameter>
+
+ls -lrt *_cmdX0.txt
+
+tail -f $STORAGE/S1splitter/StackDataset/stdout/Main_Spinua_Run_v2.0_stdout_2018.07.09_T11.02.26.547603596_cmdX0.txt
+```
+
+The result saved in this path $STORAGE/S1splitter/StackDataset/out 
+
+Now we need to choose our dataset to be downloaded and used for the next Step of Spinua Chain.
+
+
 
 #####Browse the results
 
