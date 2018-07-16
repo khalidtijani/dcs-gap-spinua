@@ -27,7 +27,7 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-1" title="Splitter" abstract="Test Splitter, using parameters">
+    <workflow id="spinua-step-1" title="Splitter-SPINUA application" abstract="ESA Sentinel-1 catalogue Browsing for interferometric data takes identification.">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_splitter">
       <job id="splitter"/>

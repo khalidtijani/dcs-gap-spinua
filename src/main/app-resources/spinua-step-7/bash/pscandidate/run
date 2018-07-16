@@ -42,7 +42,7 @@ function cleanExit ()
     case ${retval} in
         ${SUCCESS})            msg="Processing successfully concluded";;
  #       ${SNAP_REQUEST_ERROR}) msg="Could not create snap request file";;
-        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step X0 : Splitter ";;
+        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step 05,06: PSC - Persistent Scatterers Candidate ";;
         
         
         ${ERR_NOARG})         msg="No Input Argument provided";;
@@ -189,7 +189,7 @@ function main() {
     ciop-log "DEBUG" "The MAINSPINUA Path used is: ${MAINSPINUA}"
     ciop-log "DEBUG" "The SPINUA Path used is: ${SPINUA}"
 
-    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt" | awk 'NR == 1'`
 
     ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
 
@@ -200,7 +200,7 @@ function main() {
     #export PATH=/usr/local/bin:/usr/bin:${PATH} 
     #unzip --version 
     #which unzip
-    rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
+    #rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
 
     ${MAINSPINUA}/Main_Spinua_Run $ver $step1 $rootFolder dbg - ${Subswath_POl} $bbox GAP_s1tbx2SPP_AlgConfig.txt &> /dev/null
     
@@ -227,20 +227,33 @@ function main() {
     ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
     ciop-log "INFO" "Publishing ${outputfolder} " 
     ciop-log "INFO" "publishing stdout cmd05 of splitter"
-    ciop-publish -m ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmd05.txt &> /dev/null
-     ciop-log "INFO" "Compressing and publishing kml product"
-      cd ${outputfolder}/out/FF* 
-      tar -czf PS_Candidate.tgz Search_PS_Results
+    cd ${outputfolder}/stdout/
+    filelogcmd05=$(ls -t1 *_cmd05_* |  head -n 1)
+    ciop-publish -m ${filelogcmd05} &> /dev/null
+    ciop-log "INFO" "publishing stdout cmd06 of splitter"
+    filelogcmd06=$(ls -t1 *_cmd06_* |  head -n 1)
+    ciop-publish -m ${filelogcmd06} &> /dev/null
+    cd - &> /dev/null
+    ciop-log "INFO" "Compressing and publishing kml product"
+    cd ${outputfolder}/out/FF*/PreProcessing/
+    tar -czf PS_Candidate.tgz Search_PS_Results
   # stage-out the kml product
-  cd - &> /dev/null
-  ciop-publish -m ${outputfolder}/out/PS_Candidate.tgz
-  ciop-log "INFO" "Generating kml image files"
+    cd - &> /dev/null
+    ciop-publish -m ${outputfolder}/out/FF*/PreProcessing/PS_Candidate.tgz
+  
+    ciop-log "INFO" "Generating kml image files"
+    for entry1 in "${outputfolder}"/out/FF*/PreProcessing/Search_PS_Results/AmplitudeStabilityBinaryMask*
+    do 
+    echo "$entry1"
+    ciop-publish -m "$entry1" &> /dev/null
+    done
 
-  for entry in "${outputfolder}"/out/FF*/Search_PS_Results/*.kml
-  do
-      echo "$entry"
-  ciop-publish -m "$entry" &> /dev/null
-  done
+
+    for entry in "${outputfolder}"/out/FF*/PreProcessing/Search_PS_Results/*.kml
+    do
+    echo "$entry"
+    ciop-publish -m "$entry" &> /dev/null
+    done
 
 
     # cleanup

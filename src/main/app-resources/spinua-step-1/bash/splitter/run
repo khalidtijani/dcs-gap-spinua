@@ -130,7 +130,7 @@ function main() {
     [ $? -ne 0 ] && exit $ERR_SPINUA 
     #tail -f ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
     ciop-log "INFO" "publishing stdout cmdX0 of splitter" 
-    ciop-publish -m ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
+   # ciop-publish -m ${outputfolder}/stdout/Main_Spinua_Run_v2.0_stdout_*_cmdX0.txt &> /dev/null
     #donefile=${outputfolder}/status/done
     #if [ -f "${donefile}" ]
     #then 
@@ -146,7 +146,7 @@ function main() {
       tar -czf ${splitterOutputFolder}.tgz *.kml
   # stage-out the kml product
   cd - &> /dev/null
-  ciop-publish -m ${outputfolder}/out/${splitterOutputFolder}.tgz
+  #ciop-publish -m ${outputfolder}/out/${splitterOutputFolder}.tgz
   ciop-log "INFO" "Generating kml image files"
   
   for entry in "${outputfolder}"/out/*.kml

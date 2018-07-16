@@ -39,10 +39,10 @@
 	 </parameter>
 
 
-<parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.194,37.725,15.213,37.737)" scope="runtime"  maxOccurs="1">15.194,37.725,15.213,37.737</parameter>
+<parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.20,37.01,14.45,37.18)" scope="runtime"  maxOccurs="1">14.20,37.01,14.45,37.18</parameter>
 
       
-<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 15.200,37.729,15.210,37.735)" scope="runtime"  maxOccurs="1">15.200,37.729,15.210,37.735</parameter>
+<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.245,37.027,14.306,37.055)" scope="runtime"  maxOccurs="1">14.245,37.027,14.306,37.055</parameter>
 
 <!--
 <parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
@@ -64,7 +64,8 @@
       </defaultJobconf>
     </jobTemplate>
   </jobTemplates>
-    <workflow id="spinua-step-8" title="PSC - Patch Processing and Final Delivery" abstract="Test PSC - Patch Processing and Final Delivery">
+    <workflow id="spinua-step-8" title="PSC - Patch Processing and Final Delivery" abstract="SPINUA-Step FD: Patch Processing and Final Delivery
+Selection of one or more patches within the AOI and generation of the displacement maps. This will involve the identification of the position of additional PSC by exploiting the phase of the SAR interferograms (Atmospheric Phase Screen Estimation and Removal - Inter-Image Analysis and estimation of velocity/dem-error after APS removal - Displacement Trend generation and conversion to KML and SHP formats). All these steps are performed for each patch selected by the user.">
     <workflowVersion>1.0</workflowVersion>
     <node id="node_patchprocessing">
       <job id="patchprocessing"/>

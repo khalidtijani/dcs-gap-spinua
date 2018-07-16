@@ -42,7 +42,7 @@ function cleanExit ()
     case ${retval} in
         ${SUCCESS})            msg="Processing successfully concluded";;
  #       ${SNAP_REQUEST_ERROR}) msg="Could not create snap request file";;
-        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step X0 : Splitter ";;
+        ${ERR_SPINUA})           msg="Main_Spinua_Run failed to process step 07 : SPINUA-Step FD: Patch Processing and Final Delivery ";;
         
         
         ${ERR_NOARG})         msg="No Input Argument provided";;
@@ -183,7 +183,7 @@ function main() {
     ciop-log "DEBUG" "The MAINSPINUA Path used is: ${MAINSPINUA}"
     ciop-log "DEBUG" "The SPINUA Path used is: ${SPINUA}"
 
-    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt"`
+    SM_UUID=`cat ${STORAGE}"/S1Data/"${rootFolder}"/L1_SM_selection/log/sm_uuid.txt" | awk 'NR == 1'`
 
     ciop-log "DEBUG" "SM_UUID= : $SM_UUID"
 
@@ -215,7 +215,7 @@ echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
     ${MAINSPINUA}/Main_Spinua_Run $ver $step $rootFolder dbg - ${Subswath_POl} $bbox Prm_SPINUA_GEP_TemplateLinkL5ToL9.m &> /dev/null
 
      # check the exit code
-    [ $? -ne 0 ] && || exit $ERR_SPINUA
+    [ $? -ne 0 ] && exit $ERR_SPINUA
     
     ciop-log "INFO" "check the exit code $? for spinua chain"
 

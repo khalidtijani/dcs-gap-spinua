@@ -1,4 +1,4 @@
-SPINUA-Step 05: Crop and Persistent Scatterers Candidates
+SPINUA-Step FD: Patch Processing and Final Delivery
 
-Crop of the interferograms over the AOI (Area Of Interest) and identification of the position of the Persistent Scatterers Candidates by exploiting the amplitudes of the coregistered SAR images.
-
+Selection of one or more patches within the AOI and generation of the displacement maps.
+This will involve the identification of the position of additional PSC by exploiting the phase of the SAR interferograms; Atmospheric Phase Screen Estimation and Removal; Inter-Image Analysis and estimation of velocity/dem-error after APS removal; Displacement Trend generation and conversion to KML and SHP formats. All these steps are performed for each patch selected by the user.
