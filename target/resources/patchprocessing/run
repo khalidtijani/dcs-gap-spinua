@@ -195,7 +195,7 @@ function main() {
     #unzip --version 
     #which unzip
     #rm -rf "$STORAGE"/S1Data/"$rootFolder"/L5_PSC_Map/$SM_UUID/${Subswath_POl}/LAT37* 
-
+   
     PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp/PatchGeoCoordTxtFile_User.txt"
     echo "LatLonPatches = ["${LatMinInPatch}", "${LatMaxInPatch}","${LonMinInPatch}", "${LonMaxInPatch}"];" >  $PatchGeoCoordTxtFile
 
@@ -221,16 +221,67 @@ echo "% --- End Output refinement. ---"  >>  $PatchGeoCoordTxtFile
 
     # check the exit code
     #[ $? -eq 0 ] || return $ERR_SPINUA
-
-    # compress the ESA BEAM results
-    outputfolder="${STORAGE}/S1Data/$rootFolder/L5_PSC_Map/$SM_UUID/${Subswath_POl}/$bbox"
-
     
+    tmproot=${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/tmp"
+    Resultsdir1=$(less $tmproot"/Prm_SPINUA_GEP_GetL9PatchCoordinates.txt" | grep "Results dir" | cut -d":" -f2)
+    Resultsdir=$(echo $Resultsdir1 | sed 's/ //g')   
+    cd ${STORAGE}"/S1Data/"${rootFolder}"/FinalDelivery/"
+    ln -s ${STORAGE}"/S1Data/"${rootFolder}"/L5_PSC_Map/"${SM_UUID}/${Subswath_POl}/${bbox}"/out/"$Resultsdir .  
+    cd - &> /dev/null
+    # compress the ESA BEAM results
+    PatchDir=$(echo $Resultsdir  | cut -d"/" -f5)
+    outputfolder=${STORAGE}"/S1Data/"${rootFolder}"/FinalDelivery/"$PatchDir
+    
+    Coh=$(echo $IIPSTE_SettingStrIn1 | cut -d"." -f2)
+
+    outGIS=$outputfolder"/Processing/BEST_LINEAR_RUN/BBFLTE_Results/SPINUA_Coh0"$Coh"/GIS"
+    outGoogleEarth=$outputfolder"/Processing/BEST_LINEAR_RUN/BBFLTE_Results/SPINUA_Coh0"$Coh"/GoogleEarth"
   
     # publish the compressed results
     ciop-log "INFO" "The Result is saved in this path ${outputfolder} "
     ciop-log "INFO" "Publishing ${outputfolder} " 
     
+    ciop-log "INFO" "The Result GIS is saved in this path ${outGIS} "
+
+    ciop-log "INFO" "Compressing and publishing Shapefiles product"
+    cd ${outGIS}
+    tar -czf SHAPEFILES_GIS.tgz *
+    ciop-publish -m SHAPEFILES_GIS.tgz &> /dev/null
+  # stage-out the kml product
+  cd - &> /dev/null
+  #ciop-publish -m ${outputfolder}/out/${splitterOutputFolder}.tgz
+  ciop-log "INFO" "Generating shapefiles files"
+
+  for entry in "${outGIS}"/*
+  do
+      echo "$entry"
+  ciop-publish -m "$entry" &> /dev/null
+  done
+
+
+
+
+
+    ciop-log "INFO" "The Result GoogleEarth is saved in this path ${outGoogleEarth} "
+ 
+  ciop-log "INFO" "Compressing and publishing KML  product"
+    cd ${outGoogleEarth}
+    tar -czf KML_GoogleEarth.tgz *
+    ciop-publish -m KML_GoogleEarth.tgz &> /dev/null
+
+  # stage-out the kml product
+  cd - &> /dev/null
+  #ciop-publish -m ${outputfolder}/out/${splitterOutputFolder}.tgz
+  ciop-log "INFO" "Generating KML files"
+
+  for entry in "${outGoogleEarth}"/*
+  do
+      echo "$entry"
+  ciop-publish -m "$entry" &> /dev/null
+  done
+
+
+
 
     # cleanup
     #rm -rf ${retrieved} ${OUTPUTDIR}/${outputname}.d* ${OUTPUTDIR}/${outputname}.tgz 

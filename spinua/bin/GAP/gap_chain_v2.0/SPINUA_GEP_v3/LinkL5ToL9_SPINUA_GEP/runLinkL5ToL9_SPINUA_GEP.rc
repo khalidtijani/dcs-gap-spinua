@@ -35,6 +35,9 @@ L5RootDir=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${
 PatchGeoCoordTxtFile=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/PatchGeoCoordTxtFile_User.txt"
 outPrmFileName=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/Prm_SPINUA_GEP_OperationalLinkL5ToL9.m"
 
+outPrmFileName2=${STORAGE}"/S1Data/"${datasetID}"/L5_PSC_Map/"${SM_UUID}/${swathID}/${cropID}"/tmp/Prm_SPINUA_GEP_GetL9PatchCoordinates.txt"
+
+
  
 # Step 2 - Parameters
 pathrunSPINUA_L7ToL13_GEP=${SPINUA}/SPINUA_GEP_v3/SPINUA_Main_GEP
@@ -47,3 +50,10 @@ $pathrunLinkL5ToL9_SPINUA_GEP/runLinkL5ToL9_SPINUA_GEP  $L5RootDir  $PatchGeoCoo
 cd $L5RootDir
 echo $pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 
 $pathrunSPINUA_L7ToL13_GEP/SPINUA_Main_GEP  $outPrmFileName 1 1 
+
+# Step 3 - Execution
+
+echo $pathrunLinkL5ToL9_SPINUA_GEP/runGetL9PatchCoordinates  $L5RootDir  $PatchGeoCoordTxtFile $outPrmFileName  
+$pathrunLinkL5ToL9_SPINUA_GEP/runGetL9PatchCoordinates  $L5RootDir  $PatchGeoCoordTxtFile $outPrmFileName  > $outPrmFileName2
+
+

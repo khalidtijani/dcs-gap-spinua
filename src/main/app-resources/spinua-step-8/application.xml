@@ -42,7 +42,7 @@
 <parameter id="extentCrop" title="Crop AOI extent" abstract="Crop AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.20,37.01,14.45,37.18)" scope="runtime"  maxOccurs="1">14.20,37.01,14.45,37.18</parameter>
 
       
-<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.245,37.027,14.306,37.055)" scope="runtime"  maxOccurs="1">14.245,37.027,14.306,37.055</parameter>
+<parameter id="extentPatch" title="Patch AOI extent" abstract="Patch AOI extent expressed as LonMin,LatMin,LonMax,LatMax in Decimal Degrees coordinates (e.g. 14.245,37.027,14.306,37.055)" scope="runtime"  maxOccurs="1">14.239,37.022,14.306,37.055</parameter>
 
 <!--
 <parameter id="SPSC_SettingStr1" title="SPSC_SettingStr.RP.LAPSR_APS_INTIMG_LIN_EST_BPERP" abstract="Define the LAPSR_APS_INTIMG_LIN_EST_BPERP " scope="runtime" maxOccurs="1">OFF</parameter>
